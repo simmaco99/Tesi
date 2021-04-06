@@ -1,0 +1,231 @@
+\input{Preambolo}
+\begin{document}
+
+\section{Il modello SIR}
+Il modello SIR \`e un modello compartimentale: la popolazione (che si ritiene costante nel tempo) viene suddivisa in $3$ classi
+\begin{itemize}
+	\item $S$: i\textit{ suscettibili}  ovvero individui che possono contrarre la malattia
+	\item $I$: gli \textit{ infetti} ovvero coloro che sono ammalati
+	\item $R$: i \textit{ rimossi } ovvero quelli tolti dalla prima classe perch\`e completamente guariti (dunque immuni) 
+	\end{itemize}
+	Tale modello si basa su alcune assunzioni 
+	\begin{itemize}
+		\item Il numero della popolazione \`e costante nel tempo e verr\`a indicato con $N$ 
+		\item Non si considerano nuove nascite o morti 
+
+		\item Esiste un fattore di contatto  $\beta$. Tale rapporto indica, mediamente,  quanti suscettibili vengono infettati da un infetto.
+		\item Gli infetti lasciano la classe al tasso $\alpha$ per unit\`a di tempo e vanno nella classe $R$
+		\item Un individuo che entra nella classe $R$ non uscir\`a da tale classe
+	\end{itemize}
+Da queste considerazioni segue che 
+\begin{equation}
+\label{SIR}
+\begin{aligned}
+  S'&=-\beta S I \\
+  I'&= \beta S I -\alpha I\\
+  R'&=\alpha I 
+\end{aligned}
+\end{equation}
+Poich\`e abbiamo assunto $N=S+I+R$ fosse costante, il sistema precedente risulta equivalente a 
+\begin{equation}
+\label{SI}
+\begin{aligned}
+  S'&=-\beta S I \\
+  I'&= \beta S I -\alpha I
+\end{aligned}
+\end{equation}\\ 
+Studiamo cosa succede se introduciamo un piccolo numeri di infetti in una popolazione di suscettibili, ovvero consideriamo il sistema~\ref{SI} con le condizioni iniziali
+\begin{equation*}
+\begin{aligned}
+  I(0)&=I_0>0 \\
+  S(0)&=S_0= N-I_0 \end{aligned}
+\end{equation*}\\ Da~\ref{SI} osserviamo che $S'<0$ per ogni tempo $t$ mentre $I'>0$ se~e~solo~se~$\frac{\beta S }{\alpha}~>~1 $
+Chiamiamo  
+$$ \ro  = \frac{\beta S_0 }{\alpha}$$ 
+il \textit{ numero  di riproduttivit\`a di base} ( rappresenta il numero di individui infettati all'interno di una popolazione di suscettibili, consideriamo $I_0<<N$).\\
+Tale valore ci permette di capire l'andamento dell'epidemia
+\begin{itemize}
+	\item se $\ro<1$ allora l'epidemia si estingue infatti sotto queste condizioni $I'(t)<0$ per ogni tempo $t$ 
+	\item se $\ro>1$ allora $I$ inizialmente aumenta e dunque l'epidemia pu\`o iniziare
+\end{itemize}
+Vogliamo studiare il sistema autonomo di equazioni differenziali~\ref{SI}.\\
+Osserviamo che essendo $I=0$ un equilibrio, per risolvere tale sistema non possiamo trovare gli equilibri e linearizzare attorno ad essi. Occorre dunque tentare un aprooccio diverso.\\ \\
+Sommando le due equazioni otteniamo 
+\begin{equation}
+	\label{(S+I)'}(S+I)' = -\alpha I
+\end{equation}
+Ora $S+I$ \`e una funzione non negativa, decrescente dunque ammette un limite.\\
+Poich\`e la derivata di una funzione decrescente e limitata deve tendere a $0$ si ha $I(t)\to 0 $.
+\\
+Da queste due osservazioni si ha $S(t) \to S_\infty$.\\
+Ora integrando da $0$ a $+\infty$ in~\ref{(S+I)'} otteniamo 
+$$ \alpha \int_0^{+\infty} I(t) \di t = -\int_0^{+\infty} \tonde{ S(t) + I(t)}' == N -S_\infty$$ 
+
+In~\ref{SI}, dividendo per $S$ e integrando da $0$ a $T$ otteniamo 
+\begin{equation}\label{rel_finale} \log \frac{S_0}{S_\infty} = \beta \int_0^{+\infty} I(t) \di t =  \frac{\beta}{\alpha} \tonde{ N - S_\infty }= \ro \tonde{ 1 - \frac{S_\infty}{N}}
+\end{equation}
+
+tale equazione prende il nome di \textit{ relazione di dimensione finale} infatti fornisce una relazione tra il numero $\ro$ e la dimensione dell'epidemia (numero di membri che sono stati infetti nel corso dell'epidemia: $ N-S_\infty$) .
+\begin{oss}
+Poich\`e il lato destro della~\ref{rel_finale} \`e finito lo \`e anche il lato sinistro e dunque $S_\infty >0$ ovvero finita l'epidemia esisteranno ancora degli individui suscettibili	
+\end{oss}
+
+\begin{oss}
+Mostriamo che la relazione finale ha un'unica soluzione \\
+Sia 
+$$ g(x) =\log \frac{S_0}{x} -\ro \tonde{ 1 -\frac{x}{N}}$$
+ora 
+$$\lim_{x\to 0^+} g(x)>0 \qquad g(N) =\log\frac{S_0}{N} < 0$$ 
+mentre
+$$g'(x)=-\frac{1}{x} + \frac{\ro}{N} < 0\quad \ses x < \frac{N}{\ro} $$
+\begin{itemize}
+	\item se $\ro\leq 1 $ allora $N < \frac{N}{\ro}$ dunque $g$ decresce da un valore positivo in $0^+$  fino ad un valore negativo in $N$.\\
+	In questo caso esiste $g(x)$ ha un'unica soluzione $S_\infty$ con $S_\infty< N $	
+	\item se $\ro >1$ allora la funzione \`e monotona decrescente da un valore positivo in $0^+$ fino al minimo in $\frac{N}{\ro}$.\\
+Poich\`e 
+$$ g\tonde{ \frac{S_0}{\ro}} =\log \ro - \ro +\frac{S_0}{N}\leq \log \ro 0 \ro + 1 <0$$
+infatti $\log x < x - 1$ per $x>0$.\\
+Dunque $g(x)$ ha un unico zero in $S_\infty$ con $S_\infty< \frac{N}{\ro}$
+\end{itemize}	
+\end{oss}
+
+\vspace{0.5 cm}
+
+Andiamo ora a descrivere le orbite delle soluzioni nel piano $(S,I)$.\\
+Dividendo per $S$  l'equazione~\ref{SI} e integrando tra $0$ a $t$ otteniamo 
+$$ \log \frac{S_0}{S(t)} =\beta \int_0^{+\infty } I(t) \di t = \frac{\beta}{\alpha} \tonde{ N- S(t) - I(t)}$$ 
+\vspace{0.5 cm}
+
+\begin{oss}[Stima dei parametri]Il fattore $\beta$ \`e di difficile stima: dipenda dalla malattia in esame ma soprattutto da fattori sociali e comportamentali.\\
+I valori di $S_0$ e $S_\infty$ possono essere ricavati tramite test sierologici (misurazione della risposta immunitaria tramite analisi del sangue); da questi valori usando~\ref{rel_finale} possiamo stimare $\ro$.\\
+Questa stima, tuttavia \`e retrospettiva e pu\`o essere ricavata solamente dopo che l'epidemia ha fatto il suo corso.\\ \\
+Presentiamo un altro modo per stimare $\beta$.\\
+Inizialmente vale la seguente approssimazione 
+$$ I' = \tonde{ \beta N -\alpha } I$$ 
+dunque il numero degli infetti cresce esponenzialmente con un tasso di crescita 
+$$ r =\beta N - \alpha = \alpha \tonde{ \ro -1}$$
+Ora $r$ pu\`o essere ricavato dell'incidenza della malattia  all'inizio dell'epidemia, dunque otteniamo 
+$$ \beta = \frac{r + \alpha } {N}$$
+\end{oss}
+
+\begin{oss}[Immunizzazione]
+Se un gruppo di infetti viene introdotto in una popolazione, per prevenire un'epidemia \`e necessario ridurre $\ro$.\\
+Un modo pu\`o essere tramite l'immunizzazione, lo scopo \`e quello di trasferire membri della popolazione della classe $S$ a quella $R$, cos\`i facendo viene ridotto il numero $S_0$ dunque anche $\ro$.\\
+Andiamo a studiare il nuovo modello che si genera.\\
+Supponiamo che una frazione $p$ della popolazione sia  immunizzata: il numeri dei suscettibili passa da $S_0$ a $S_0(1-p)$.\\
+Se inizialmente il numero di riproduzione di base era $\frac{\beta N}{\alpha}$, nella nuova situazione passa a $\frac{\beta N(1-p)}{\alpha}$ dunque 
+$$\frac{\beta N(1-p)}{\alpha}< 1\quad \ses \quad p> 1-\frac{\alpha}{\beta N} = 1 -\frac{1}{\ro}
+$$
+
+\end{oss}
+\newpage
+\subsection{Un esempio}
+Analizziamo i dati della peste bubonica del $1665-66$ nel villaggio di Eyam (ref 3) \\
+I membri del villaggio hanno annotato giorno per giorno il numero di decessi. Per appianare alcune significative variazioni giornaliera nel tasso di mortalit\`a abbiamo raccolto  i dati con una cadenza di $15 \frac{1}{2}$ giorni a partire dal $18$ Giugno del $1666$ (vedi tabella~\ref{table::1})
+\begin{table}[!h]
+\centering
+\caption{Popolazione di deceduti e rimossi }
+\label{table::1}
+\begin{tabular}{l | c | c }
+
+Periodo (1666) & Deceduti & Rimossi (alla fine del periodo) \\
+\hline
+
+19 Giugno-3/4 Luglio & 11.5 & 11.5\\
+4/5 Luglio-19 Luglio & 26.5 & 38\\ 
+20 Luglio-3/4 Agosto & 40.5 & 78.5\\
+4/5 Agosto-19 Agosto & 41.5 & 120\\
+20 Agosto-3/4 Settembre & 25 & 145\\
+4/5 Settembre-19 Settembre & 11 & 156\\
+20 Settembre-4/5 Ottobre & 11.5 & 167.5\\
+5/6 Ottobre-20 Ottobre & 10.5 & 178\\
+
+\end{tabular}
+
+\end{table}
+
+Prendendo come periodo medio di infezione  $11$ giorni, possiamo stimare il numero degli infetti. Alla fine di ogni intervallo di tempo il numero di infetti \`e dato analizzando il diario dei decessi degli $11$ giorni successivi.\\
+Sfruttando la relazione 
+$$ N = S(t) + I(t) + R(t)$$ 
+otteniamo la tabella~\ref{table::2}
+
+
+
+
+\begin{table}[!h]
+\centering
+\caption{Numero di suscettibili ed infetti. $S(0) = 254$ $I(0) = 7$ e $N = 261$ }	
+\label{table::2}
+\begin{tabular}{l|c|c}
+
+Data (1666) & S & I\\
+\cline{1-3}
+3/4 Luglio  & 235& 14.5\\
+19 Luglio  & 201 & 22\\
+3/4 Agosto  & 153.5& 29\\
+19  Agosto  & 121& 20\\
+3/4 Settembre  & 108&  8\\
+19 Settembre  & 97& 8\\
+4/5 Ottobre  & Sconosciuti& Sconosciuti\\
+20 Ottobre  & 83& 0\\
+ 
+\end{tabular}
+\end{table}
+
+Dalla relazione di dimensione finale~(\ref{rel_finale}) otteniamo $\frac{\alpha}{\beta} \simeq 159$
+\newpage
+Andiamo a calcolare i valori implementando il modello SIR in matlab. Utilizzando le funzioni
+
+
+\begin{lstlisting}
+	
+function f = sir(t,y,alpha, beta)
+	f=zeros(2,1);
+	f(1)=-beta*y(1)*y(2);
+	f(2)=beta*y(1)*y(2)- alpha*y(2);
+end
+\end{lstlisting}
+\begin{lstlisting}
+
+function [S,I,R,t]= sir_model(N,S0,I0, beta, alpha,t)
+	c=[S0; I0];
+	[t,y]=ode45(@(t,y) sir(t,y,alpha,beta), t , c);
+	R= ones(size(t,1),1)*N -y(:,1)-y(:,2);
+	S=y(:,1);
+	I=y(:,2);
+end
+
+\end{lstlisting}
+otteniamo i seguenti dati 
+
+\begin{table}[!h]
+\centering
+\caption{Numero di suscettibili ed infetti. $S(0) = 254$ $I(0) = 7$ e $N = 261$ }	
+\label{table::2}
+\begin{tabular}{l|c|c}
+
+Data (1666) & S & I\\
+\cline{1-3}
+3/4 Luglio  & 230& 15\\
+19 Luglio  & 190 & 26\\
+3/4 Agosto  & 147& 30\\
+19  Agosto  & 115& 24\\
+3/4 Settembre  & 96&  15\\
+19 Settembre  & 86& 9\\
+4/5 Ottobre  & 81& 4\\
+20 Ottobre  & 78& 2\\
+ 
+\end{tabular}
+\end{table}
+\begin{figure}
+\centering
+\input{Figure/SI}
+\caption{Orbite nel piano $(S,I)$.  In blu i valori reali,  in rosso quelli ottenuti applicando il modello SIR}
+\end{figure}
+
+\begin{figure}
+\centering
+\input{Figure/SIR_Grafico}
+\caption{Grafico ottenuto applicando il modello SIR}
+\end{figure}
+\end{document}

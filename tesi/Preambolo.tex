@@ -1,0 +1,74 @@
+%Posso fare i vari capitoli in file diversi
+\documentclass[12pt,a4paper,twoside]{report}
+
+%Formattazione e codifica caratteri
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{libertine}
+% Tavola dei contenuti
+\usepackage{tocloft}
+\renewcommand{\cftdot}{}
+% Figure
+\usepackage{graphicx}
+\usepackage{caption}
+% Matematica
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+% Tabelle
+\usepackage{booktabs}
+%Listati
+\usepackage{listings}
+\lstloadlanguages{MATLAB}
+% Testatine
+\author{S. Di Lillo}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\headheight}{15pt}
+\fancyhf{}
+\fancyhead[LE,RO]{S. Di Lillo}
+\fancyhead[RE,LO]{\leftmark}
+\fancyfoot[CE,CO]{}
+\fancyfoot[LE,RO]{\thepage}
+\renewcommand{\headrulewidth}{1.5pt}
+% Titoli dei capitoli che "rubano" meno spazio
+\usepackage{titlesec, blindtext}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{15pt}}
+\titleformat{\chapter}[hang]{\LARGE\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Large\bfseries}
+\titleformat{\section}[hang]{\Large\bfseries}{\thesection\hsp\textcolor{gray75}{|}\hsp}{0pt}{\large\bfseries}
+
+% Hyperref e metadati
+\usepackage[linktocpage,
+			colorlinks,
+			citecolor=ForestGreen,
+			bookmarks,
+			pdftitle={Il Modello Epidemiologico SIR sulle Reti Complesse},
+			pdfauthor={S. Di Lillo},
+			pdfsubject={Tesi di Laurea Triennale},
+			pdfkeywords={SIR,Epidemiologia,Reti Complesse},
+			]{hyperref}
+
+
+% Per importare le figure in MATLAB
+\usepackage{pgfplots}
+ \pgfplotsset{compat=newest}
+  \usetikzlibrary{plotmarks}
+  \usetikzlibrary{arrows.meta}
+  \usepgfplotslibrary{patchplots}
+  \usepackage{grffile}
+\usepackage{tikz}
+\pgfplotsset{plot coordinates/math parser=false}
+  \newlength\figureheight
+ \newlength\figurewidth
+
+
+%Per le osservazioni
+\theoremstyle{plain}
+\newtheorem{oss}{Osservazione} 
+%COMANDI PERSONALIZZATI 
+\newcommand{\ro}{\mathcal R_0}
+\newcommand{\di}{\,\,\mathrm{d} }
+\newcommand{\tonde}[1]{\left( #1 \right)}
+\newcommand{\ses}{\Leftrightarrow} 
+
