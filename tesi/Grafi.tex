@@ -1,0 +1,133 @@
+\section{Reti complesse e grafi}
+Molti sistemi che si basano su interazioni tra soggetti sono rappresentabili e visualizzabili, in maniera naturale, come network dove i nodi rappresentano gli individui e gli archi le interazioni.\\
+In questa sezione andremo a definire formalmente un grafo e alcune nozioni rilevanti.\\ \\
+Un \textit{grafo} \`e una coppia $G=(V,	E) $ dove:
+\begin{itemize}
+	\item $V$ \`e detto  insieme dei \textit{vertici} o nodi,
+	\item $E\subseteq V \times V$ \`e l'insieme degli \textit{archi} o link.
+\end{itemize}
+Diremo che un grafo \`e \textit{non orientato} se ogni arco appare in entrambe le direzioni, altrimenti diremo che \`e un grafo \textit{diretto} o \textit{orientato}.\\
+Per visualizzare un grafo si pu\`o usare una rappresentazione come in Figura~\ref{fig::esegrafi}: cerchi, i vertici, connessi da frecce, nel caso di grafi diretti, oppure da segmenti, per grafi non orientati. 
+\begin{figure}[h]
+\centering
+\subfloat[Grafo non orientato ]
+{
+\centering
+\begin{tikzpicture}
+\Vertex[label=1]{A} \Vertex[x=2,label=2]{B} \Vertex[x=4,label=3]{C} \Edge(A)(B) \Edge(B)(C)
+\end{tikzpicture}
+}  \hfill
+\subfloat[][Grafo orientato]{
+\centering
+\begin{tikzpicture}
+\Vertex[label=1]{A} \Vertex[label=2,x=2]{B} \Vertex[label=3,x=4]{C} \Edge[Direct](A)(B) \Edge[Direct](B)(C)
+\end{tikzpicture}
+}
+\caption{Due esempi di grafi.}
+\label{fig::esegrafi}
+\end{figure}
+
+\`E possibile codificare un grafo, con un numero finito di nodi, attraverso una matrice detta matrice di adiacenza.\\
+Supponiamo $\abs{V}=N$ dunque esiste una biezione $\phi:\{ 1, \dots, N\}\to E$.\\La \textit{matrice di adiacenza} di $G$ \`e la matrice $H_G=(g_{ij})$ dove 
+$$ g_{ij}=\begin{cases}
+1	& \text{ se } \tonde{ \phi(i), \phi(j)} \in E \\
+0 &\text{ altrimenti } 
+\end{cases}.$$
+Un esempio di matrice di adiacenza \`e riportata nella Figura~\ref{fig::toast}.\\
+\begin{figure}[!h]
+\centering
+\begin{minipage}{.45\textwidth}
+\centering
+	\begin{tikzpicture}
+\Vertex[label=2]{2}
+\Vertex[label=1,x=2]{1}
+\Vertex[label=3,y=-2]{3}
+\Vertex[label=4,x=2,y=-2]{4}
+
+\Edge(1)(2) \Edge(1)(3) \Edge(1)(4) \Edge(2)(3) \Edge(3)(4)
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{.45\textwidth}
+$$\begin{pmatrix} 0 & 1 & 1 & 1 \\ 1 & 0 & 1 & 0 \\ 1&1 & 0 & 1\\ 1& 0& 1& 0
+\end{pmatrix}
+$$
+\end{minipage}
+\caption{Grafo e matrice di adiacenza del toast.}
+\label{fig::toast} 
+\end{figure}
+\newpage
+Un grafo $G$ si dice \textit{pesato} se ad ogni suo arco \`e associato un'etichetta.\\
+Formalmente, $G=(E,V)$ si dice grafo pesato se esiste una funzione $p:\, V \to P$ dove $P$ \`e un insieme. Generalmente $T=\mathbb{R}$.\\ \\
+Dato un grafo $G=(E,V)$, un \text{cammino}$P$ che connette i vertici $u,v\in V$ \`e una sequenza di vertici 
+$$ P=\left( v_0, \dots, v_n\right) $$ 
+dove $\forall i=0, \dots, n-1)$ si ha $(v_i, v_{i+1})\in E$, $v_0=u$ e  $v_n= v$.\\
+Un grafo si dice \textit{fortemente connesso} se per ogni coppia di nodi $(u,v)$ esiste un cammino che li congiunge.\\
+Definiamo il \textit{diametro} di un grafo come la distanza massima tra  due nodi, la distanza \`e il numero di archi di un cammino. 
+\newpage
+
+
+Nello studio della diffusione di una malattia in una citt\`a, \`e irrealistico sperare di conoscere l'esatta matrice di adiacenza. Supporremo, dunque, che la propagazione della malattia sia governata solamente da alcune misure qualitative delle rete che andiamo a presentare.\\ \\
+Definiamo il \textit{grado uscente} (\textit{out-degree})  del nodo $i$  come il numero di archi che partono dal nodo $i$. In termini della matrice di adiacenza
+$$ k_i^{out} =\sum_{j=1}^N g_{ij}.$$
+Analogamente il \textit{grado entrante} (\textit{in-degree}) \`e il numero di archi che arrivano al nodo:
+$$ k_i^{in} = \sum_{j=1}^N g_{ji}.$$
+Nel caso di grafi non orientati si ha $k_i^{out} = k_i^{in}$ che denoteremo, semplicemente, con $k_i$.\\
+Il \textit{grado medio} di un grafo \`e la quantit\`a 
+$$ \angol K = \frac{1}{N}\sum_{i=1}^N k_i.$$
+Sia $L$ il numero di gradi differenti e siano $\{ d_1, \dots, d_L\}$ i possibili gradi.\\
+Sia $N_\ell$ il numero di vertici con grado $d_\ell$ allora il \textit{grado di distribuzione} del grado $\ell$ \`e la quantit\`a
+$$ p_\ell = \frac{N_\ell}{N}.$$
+Se tutti i vertici hanno lo stesso grado, diremo che il grafo \`e \textit{regolare}.\\  \\
+Andiamo, ora, a definire una misura che ci permette di capire  come nodi con gradi diversi sono collegati.\\ \\ 
+Sia $L$ il numero di gradi differenti che denotiamo conn  $\{ d_1, \dots, d_L\}$.\\
+Definiamo i \textit{mixing coefficients} (coefficienti di miscelamento) $n_{\ell j}$ come il numero di collegamenti tra nodi di grado $d_\ell$ e nodi di grado $d_j$.\\ \\ 
+Osserviamo che i due coefficienti definiti non caratterizzano, a meno di isomorfismo, un grafo: in  Figura~\ref{fig::esagoni}  sono presentati due grafi con gli stessi coefficienti di miscelamento e medesimo  grado di distribuzione  che non sono, tuttavia, isomorfi avendo numero diverso di triangoli.
+
+ \begin{figure}[h]
+\centering
+\subfloat
+{
+\centering
+\begin{tikzpicture}
+\Vertex[label=5]{5}
+\Vertex[x=2,label=6]{6}
+\Vertex[x=-1, y=1.73,label=4]{4}
+\Vertex[x=2, y=3.46,label=2]{2}
+\Vertex[y=3.46,label=3]{3}
+\Vertex[x=3,y=1.73,label=1]{1}
+\Edge(1)(2) \Edge(2)(3) \Edge(3)(4) \Edge(4)(5) \Edge(5)(6) \Edge(6)(1)
+\Edge(1)(4) 
+\Edge(3)(5) \Edge(2)(6)
+\end{tikzpicture}
+}  \hfill
+\subfloat{
+\centering
+\begin{tikzpicture}
+\Vertex[label=5]{5}
+\Vertex[x=2,label=6]{6}
+\Vertex[x=-1, y=1.73,label=4]{4}
+\Vertex[x=2, y=3.46,label=2]{2}
+\Vertex[y=3.46,label=3]{3}
+\Vertex[x=3,y=1.73,label=1]{1}
+\Edge(1)(2) \Edge(2)(3) \Edge(3)(4) \Edge(4)(5) \Edge(5)(6)  \Edge(1)(6)
+\Edge(1)(4) \Edge(3)(6) \Edge(2)(5)
+\end{tikzpicture}
+}
+
+\caption{Due grafi non isomorfi con stesso grado di distribuzione e coefficiente di miscelamento.}
+\label{fig::esagoni}
+\end{figure}
+
+Presentiamo una misura del grado in cui i nodi di un grafo tendono a raggrupparsi insieme, di tale misura esiste una versione locale ed una globale.\\ \\
+Definiamo l'\textit{intorno} del nodo $i$ come l'insieme dei nodi con cui $i$ \`e direttamente connesso: 
+$$ N_i = \{ j \in V \, :\, (i,j)\in E  \vee (j,i)\in E \}.$$ 
+e poniamo $s_i=\abs{ N_i}$.\\
+Il coefficiente di \textit{clustering locale} (raggruppamento locale) per i grafi diretti   \`e il numero 
+$$ C_i =\frac{\abs{ \{ (j,k)\in E \, : \, j,k\in N_i\}}}
+{s_i(s_i-1)},$$
+ovvero, il numero di collegamenti  tra i membri di $N_i$ fratto il numero di collegamenti potenziali fra loro,  \`e $s_i(s_i-1)$.\\
+Nei grafi non orientati il numero dei collegamenti potenziali \`e la met\`a e dunque il coefficiente \`e 
+$$ C_i =\frac{2\cdot \abs{ \{ (j,k)\in E \, : \, j,k\in N_i\}}}
+{s_i(s_i-1)}.$$ \\
+Il coefficiente di \textit{clustering globale}  \`e il numero delle triple chiuse (tre nodi connessi da tre collegamenti) fratto il numero totale di triple.

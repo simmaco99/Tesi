@@ -9,8 +9,10 @@
 % Figure
 \usepackage{graphicx}
 \usepackage{caption}
+\usepackage{subfig}
 % Matematica
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{color}
 % Tabelle
 \usepackage{booktabs}
 %Listati
@@ -35,6 +37,9 @@
 \titleformat{\chapter}[hang]{\LARGE\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Large\bfseries}
 \titleformat{\section}[hang]{\Large\bfseries}{\thesection\hsp\textcolor{gray75}{|}\hsp}{0pt}{\large\bfseries}
 
+%Grafi
+\usepackage{tikz-network}
+\SetVertexStyle[MinSize=1\DefaultUnit,FillColor=white]
 % Hyperref e metadati
 \usepackage[linktocpage,
 			colorlinks,
@@ -59,7 +64,6 @@
   \newlength\figureheight
  \newlength\figurewidth
 
-
 %Per le osservazioni
 \theoremstyle{plain}
 \newtheorem{oss}{Osservazione} 
@@ -70,4 +74,7 @@
 \newcommand{\di}{\,\,\mathrm{d} }
 \newcommand{\tonde}[1]{\left( #1 \right)}
 \newcommand{\ses}{\Leftrightarrow} 
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\angol}[1]{\langle #1 \rangle}
+\newcommand{\spa}{\mathbin{\textcolor{white}{-}}} %per indentare le equazioni in o-o-o serve pacchetto color
 

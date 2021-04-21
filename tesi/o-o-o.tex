@@ -1,0 +1,132 @@
+\chapter{Il modello SIR \textit{bottom-up} su una rete}
+\section{Un primo esempio}
+Vediamo come \`e possibile applicare il modello $SIR$ ad un semplice grafo con 3 nodi (vedi Figura~\ref{fig::3nodi}).\\
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+	\Vertex[label=1]{1} \Vertex[x=2,label=2]{2} \Vertex[x=4,label=3]{3}
+	\Edge(1)(2) \Edge(2)(3)
+\end{tikzpicture}	
+
+\caption{Grafo con 3 nodi.}
+\label{fig::3nodi}
+\end{figure}
+Fissiamo la notazione:
+\begin{itemize}
+	\item  $\angol{S_i}(t)$  denota la probabilit\`a che il nodo $i$ sia suscettibile al tempo $t$;
+	\item   $\angol{I_i}(t)$  denota la probabilit\`a che il nodo $i$ sia infetto al tempo $t$;
+	\item  $\angol{R_i}(t)$  denota la probabilit\`a che il nodo $t$ sia rimosso al tempo $t$;
+	\item $\tonde{ \angol{ I_i}+ \angol{ R_i}}(t)$ denota la probabilit\`a che il nodo $i$ sia infetto o rimosso al tempo $t$;
+	\item $\angol{S_iI_j}(t)$ denota la probabilit\`a che il nodo $i$ sia sano e il nodo $j$ sia infetto al tempo $t$.
+	\end{itemize}
+In analogia a quanto fatto in~\ref{modellosir} si ha che:
+\begin{itemize}
+	\item ogni nodo $i$ pu\`o diventare infetto se \`e suscettibile e almeno uno dei suoi vicini \`e infetto. Per ogni suo vicino infetto $i$ diventa infetto con un tasso di~$\tau$;
+	\item una volta infettato, ogni nodo diventa rimosso con un tasso di $\gamma$ indipendentemente dallo stato di qualsiasi altro nodo.
+\end{itemize}
+\newpage
+Passiamo ora allo studio del grafo~\ref{fig::3nodi}.
+\begin{itemize}
+	
+
+\item Poich\`e il nodo $1$ ha come vicino solamente il nodo $2$ la probabbilit\`a che possa infettarsi \`e $\angol{S_1 I_2} $. $\angol{S_1}$ diminuisce con un tasso di $\tau \angol{S_1 I_2}$.
+\item Il nodo $2$ ha due possibili fonti d'infezione: i nodi $1$ e $2$. Il suo tasso d'infezione \`e, dunque,  $\tau \tonde{ \langle{S_2I_1} + \angol{S_2 I_3}}$.
+\item Il tasso d'infezione relativo al nodo $3$ \`e,  
+in analogia a quanto visto per il nodo $1$, $\tau\angol{S_3I_2}$.
+\end{itemize}
+Mettendo insieme questi punti e ricordando il tasso di rimozione otteniamo il seguente sistema di equazioni differenziali:
+\begin{equation*}
+\begin{aligned}
+	\dot{\angol {S_1}} = & -\tau \angol{ S_1 I_2}, 
+\quad &
+	\dot{\angol {I_1}} = & \tau \angol{S_1 I_2}-\gamma \angol{I_1}, 
+\quad & 
+	\dot{\angol {R_1}} = & \gamma \angol{ I_1},
+\\
+	\dot{\angol {S_2}} = & -\tau \tonde{ \angol{ I_1 S_2} + \angol{I_3S_2}},	
+\quad & 
+	\dot{\angol {I_2}} = & \tau \tonde{ \angol{ I_1 S_2} + \angol{I_3S_2}}-\gamma \angol{I_2},
+\quad & 
+	\dot{\angol {R_2}} = & \gamma \angol{ I_2},
+\\
+	\dot{\angol {S_3}} = & -\tau \angol{ I_2 S_3},
+\quad & 
+	\dot{\angol {I_3}} = & \tau \angol{ I_2 S_3}-\gamma \angol{I_3},
+\quad & 
+ 	\dot{\angol {R_3}} = & \gamma \angol{ I_3}.
+\end{aligned}
+\end{equation*}
+Analizzando attentamente il sistema possiamo notare che le equazioni per $\angol{R_i}$ possono essere rimosse infatti 
+$$ \forall i\in\{1, 2, 3\} \quad \forall t\geq 0 \quad \angol{R_i}(t) = 1 - \tonde{\angol{S_i} +\angol{I_i}}(t).$$
+Osserviamo, inoltre, che il sistema precedente non \`e chiuso: abbiamo altre quantit\`a  (come ad esempio: $\angol{S_1I_2}$), dunque, dobbiamo conoscere come esse evolvono nel tempo. Servono altre equazioni.\\
+Usando argomenti simili a quanto fatto per i nodi otteniamo  il sistema 
+\begin{equation*}
+\begin{aligned}
+	\dot{\angol{S_1I_2}}=&\spa\tau\angol{S_1S_2I_3} - \tonde{ \tau + \gamma}\angol{S_1 I_2},
+\\
+	\dot{\angol{I_1S_2}}=&-\tau\angol{I_1S_2I_3} - \tonde{ \tau + \gamma}\angol{I_1 S_2},
+\\
+	\dot{\angol{S_2I_3}}=&-\tau\angol{I_1S_2I_3} - \tonde{ \tau + \gamma}\angol{S_2 I_3},
+\\
+	\dot{\angol{I_2S_3}}=&\spa\tau\angol{I_1S_2S_3} - \tonde{ \tau + \gamma}\angol{I_2 S_3}.
+	\end{aligned}
+\end{equation*}
+Anche tale sistema non \`e chiuso: richiede  ulteriori informazioni sulle triple.\\
+Aggiungendo le equazioni necessarie otteniamo il sistema 
+\begin{equation}
+\label{3nodi}
+\begin{aligned}
+	\dot{\angol {S_1}} =& -\tau \angol{ S_1 I_2},
+& \quad 
+	\dot{\angol{S_1I_2}}=& \spa\tau\angol{S_1S_2I_3} - \tonde{ \tau + \gamma}\angol{S_1 I_2},
+\\ 
+	\dot{\angol {I_1}} =&\spa \tau \angol{ S_1 I_2}-\gamma \angol{I_1}, 
+& \quad 
+	\dot{\angol{I_1S_2}}=&-\tau\angol{I_1S_2I_3} - \tonde{ \tau + \gamma}\angol{I_1 S_2},
+\\ 
+	\dot{\angol {S_2}} = & -\tau \tonde{ \angol{ I_1 S_2}+ \angol{I_3S_2}},
+& \quad 
+	\dot{\angol{I_2S_3}}=&\spa\tau\angol{I_1S_2I_3} - \tonde{ \tau + \gamma}\angol{I_1 S_2},
+\\
+	\dot{\angol {I_2}} = &\spa \tau \tonde{ \angol{ I_1 S_2} + \angol{I_3S_2}}-\gamma \angol{I_2}, 
+& \quad 
+	\dot{\angol{S_2I_3}}=&-\tau\angol{I_1S_2I_3} - \tonde{ \tau + \gamma}\angol{I_1 S_2},
+\\ 
+	\dot{\angol {S_3}} = & -\tau \angol{ I_2 S_3}
+&\quad  
+	\dot{\angol{S_1S_2I_3}}=&-\tonde{\tau + \delta}\angol{S_1S_2I_3},
+\\
+	\dot{\angol {I_3}} = & \spa \tau  \angol{ I_2 S_3}-\gamma \angol{I_3},	
+& \quad 
+	\dot{\angol{I_1S_2I_3}}=&-\tonde{2\tau + 2\delta}\angol{I_1S_2I_3},
+\\
+	&
+&\quad  
+	\dot{\angol{I_1S_2S_3}}=&-\tonde{\tau + \delta}\angol{I_1S_2S_3}.
+ \end{aligned}
+\end{equation}
+Nella Figura~\ref{fig::spe3nodi} sono riportati i grafici dello stato dei nodi in funzione del tempo (a)(b)(c) e del grafico di prevalenza (d).\\
+Per la sperimentazione,le condizioni iniziali sono state prese a partire da uno stato puro ($1$ infetto e $2,3$ sani) sotto le ipotesi di indipendenza statica delle condizioni iniziali (vedi~\cite{MR3340258}).
+\begin{figure}[h]
+
+\centering
+\subfloat[][Nodo 1]
+{\resizebox{0.45\textwidth}{!}{\input{Figure/Nodo1}}}
+ \quad 
+\subfloat[][Nodo 2]
+{\resizebox{0.45\textwidth}{!}{ \input{Figure/Nodo2}}}
+\\
+\subfloat[][Nodo 3]
+{\resizebox{0.45\textwidth}{!}
+{\input{Figure/Nodo3}}
+}
+\quad
+\subfloat[][Preferenza]
+{\resizebox{0.45\textwidth}{!}
+{\input{Figure/Nodo3}}
+}
+\caption{Sperimentazione in MATLAB relativa al  grafo~\ref{fig::3nodi}.}
+\label{fig::spe3nodi}
+\end{figure}
+
+
