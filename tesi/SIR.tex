@@ -1,15 +1,13 @@
-
 \chapter{Epidemiologia matematica e reti}
-
-\section{Il modello SIR}
-Il modello SIR \`e un modello compartimentale: la popolazione  viene suddivisa in tre classi \begin{itemize}
-	\item $S$: i\textit{ suscettibili}  ovvero individui che possono contrarre la malattia,
-	\item $I$: gli \textit{ infetti} ovvero coloro che sono ammalati,
-	\item $R$: i \textit{ rimossi } ovvero quelli tolti dalla prima classe perch\`e completamente guariti (dunque immuni).
+\section{Il modello SIR}{\label{modellosir}}
+Il modello SIR \`e un modello compartimentale: la popolazione  viene suddivisa in tre classi: \begin{itemize}
+	\item $S$: i \textit{suscettibili}  ovvero individui che possono contrarre la malattia;
+	\item $I$: gli \textit{infetti} ovvero coloro che sono ammalati;
+	\item $R$: i \textit{rimossi} ovvero  quelli tolti dalla prima classe perch\`e completamente guariti (dunque immuni).
 	\end{itemize}
-	Tale modello si basa su alcune assunzioni 
+	Tale modello si basa su alcune assunzioni.
 	\begin{itemize}
-		\item[A1] Il numero della popolazione \`e costante nel tempo e verr\`a indicato con $N$, ovvero on si considerano nuove nascite o morti. Inoltre stiamo assumendo che $N$ sia sufficientemente grande da poter considerare la variazione in ogni classe continua e non discreta.
+		\item[A1] Il numero della popolazione \`e costante nel tempo e verr\`a indicato con $N$, ovvero mon si considerano nuove nascite o morti. Inoltre stiamo assumendo che $N$ sia sufficientemente grande da poter considerare la variazione in ogni classe continua e non discreta.
 
 \item[A2] Esiste un fattore di contatto  $\beta$. Tale rapporto indica il valore medio di contatti per infettivo per unit\`a di tempo.
 		\item[A3] Gli infetti lasciano la classe al tasso $\alpha$ per unit\`a di tempo e vanno nella classe $R$, un individuo che entra nella classe $R$ non uscir\`a da tale classe.
@@ -35,14 +33,16 @@ Studiamo cosa succede se introduciamo un piccolo numero di infetti in una popola
 \begin{equation*}
 \begin{aligned}
   I(0)&=I_0>0 ,\, I_0 \ll N \text{ e } \\
-  S(0)&=S_0= N-I_0 \end{aligned}
-\end{equation*}\\ Da~\eqref{SI} osserviamo che $S'<0$ per ogni tempo $t$,  mentre $I'>0$ se~e~solo~se~$\frac{\beta S }{\alpha}~>~1 $.\\
+  S(0)&=S_0= N-I_0.
+\end{aligned}
+\end{equation*}
+Da~\eqref{SI} osserviamo che $S'<0$ per ogni tempo $t$,  mentre $I'>0$ se~e~solo~se~$\frac{\beta S }{\alpha}~>~1 $.\\
 Definiamo  
 $$ \ro  = \frac{\beta S_0 }{\alpha}$$ 
 il \textit{ numero  di riproduttivit\`a di base}. Esso  rappresenta il numero di individui infettati all'interno di una popolazione di suscettibili.\\
-Tale valore ci permette di descrivere la fase iniziale dell'epidemia
+Tale valore ci permette di descrivere la fase iniziale dell'epidemia:
 \begin{itemize}
-	\item se $\ro<1$ allora l'epidemia si estingue infatti sotto queste condizioni $I'(t)<0$ per ogni tempo $t$, 
+	\item se $\ro<1$ allora l'epidemia si estingue infatti sotto queste condizioni $I'(t)<0$ per ogni tempo $t$,
 	\item se $\ro>1$ allora $I$ inizialmente aumenta e dunque l'epidemia ha inizio.
 \end{itemize}
 Studiamo ora  gli equilibri del sistema autonomo di equazioni differenziali~\eqref{SI}.\\
@@ -58,13 +58,13 @@ $$ \alpha \int_0^{+\infty} I(t) \di t = -\int_0^{+\infty} \tonde{ S(t) + I(t)}' 
 In~\eqref{SI}, dividendo per $S$ e integrando da $0$ a $T$ otteniamo 
 \begin{equation}\label{rel_finale} \log \frac{S_0}{S_\infty} = \beta \int_0^{+\infty} I(t) \di t =  \frac{\beta}{\alpha} \tonde{ N - S_\infty }= \ro \tonde{ 1 - \frac{S_\infty}{N}}.
 \end{equation}
-L'equazione~\eqref{rel_finale} prende il nome di \textit{ relazione di dimensione finale} infatti fornisce una relazione tra il numero $\ro$ e la dimensione dell'epidemia,  ovvero il numero di membri che sono stati infetti nel corso dell'epidemia: $ N-S_\infty$.
+L'equazione~\eqref{rel_finale} prende il nome di \textit{relazione di dimensione finale} infatti fornisce una relazione tra il numero $\ro$ e la dimensione dell'epidemia,  ovvero il numero di membri che sono stati infetti nel corso dell'epidemia: $ N-S_\infty$.
 \begin{oss}
-Poich\`e il lato destro della~\eqref{rel_finale} \`e finito lo \`e anche il lato sinistro:  $S_\infty >0$ ovvero finita l'epidemia esisteranno ancora degli individui suscettibili	
+Poich\`e il lato destro della~\eqref{rel_finale} \`e finito lo \`e anche il lato sinistro:  $S_\infty >0$ ovvero finita l'epidemia esisteranno ancora degli individui suscettibili.	
 \end{oss}
 
 \begin{prop}
-La relazione finale~\eqref{rel_finale}  ha un'unica soluzione 
+La relazione finale~\eqref{rel_finale}  ha un'unica soluzione.
 \proof 
 Sia 
 $$ g(x) =\log \frac{S_0}{x} -\ro \tonde{ 1 -\frac{x}{N}}, $$
@@ -76,9 +76,9 @@ $$g'(x)=-\frac{1}{x} + \frac{\ro}{N} < 0\quad \ses x < \frac{N}{\ro}. $$
 	\item Se $\ro\leq 1 $,   allora $N < \frac{N}{\ro}$ dunque $g$ decresce da un valore positivo in $0^+$  fino ad un valore negativo in $N$.\\
 	In questo caso  $g(x)$ ammette un'unico zero   $S_\infty$ con $S_\infty< N $.
 	\item Se $\ro >1$, allora $g(x)$ \`e monotona decrescente da un valore positivo in $0^+$ fino al minimo in $\frac{N}{\ro}$.\\
-Poich\`e 
-$$ g\tonde{ \frac{S_0}{\ro}} =\log \ro - \ro +\frac{S_0}{N}\leq \log \ro 0 \ro + 1 <0,$$
-infatti $\log x < x - 1$ per $x>0$.\\
+Ora
+$$ g\tonde{ \frac{S_0}{\ro}} =\log \ro - \ro +\frac{S_0}{N}\leq \log \ro \leq  \ro + 1 <0,$$
+dove la penultima disuguaglianza deriva da $\log x < x - 1$ se $x>0$.\\
 Dunque $g(x)$ ha un unico zero in $S_\infty$ con $S_\infty< \frac{N}{\ro}$.
 \end{itemize}
 \endproof	
@@ -92,18 +92,18 @@ $$ \log \frac{S_0}{S(t)} =\beta \int_0^{+\infty } I(t) \di t = \frac{\beta}{\alp
 \newpage
 
 Per poter studiare il modello, occorre stimare i parametri.\\ Il fattore $\beta$ \`e di difficile stima: dipende dalla malattia in esame e,  in particolar modo, da fattori sociali e comportamentali.\\
-I valori di $S_0$ e $S_\infty$ possono essere ricavati tramite test sierologici (misurazione della risposta immunitaria tramite analisi del sangue); da questi valori usando la~\eqref{rel_finale} possiamo stimare $\ro$.\\
+I valori di $S_0$ e $S_\infty$ possono essere ricavati tramite test sierologici (misurazione della risposta immunitaria tramite analisi del sangue): da questi valori usando la~\eqref{rel_finale} possiamo stimare $\ro$.\\
 Questa stima tuttavia \`e a posteriori, cio\`e pu\`o essere ricavata solamente dopo che l'epidemia ha fatto il suo corso.\\ \\
 Un altro modo per stimare $\beta$ pu\`o essere ricavato dalla seguente approssimazione
 $$ I' = \tonde{ \beta N -\alpha } I,$$ 
 da cui si ottiene che il numero degli infetti cresce esponenzialmente con un tasso di crescita 
 $$ r =\beta N - \alpha = \alpha \tonde{ \ro -1},$$
 ricavabile dall'incidenza della malattia  all'inizio dell'epidemia.\\Otteniamo cos\`i 
-$$ \beta = \frac{r + \alpha } {N}$$
+$$ \beta = \frac{r + \alpha } {N}.$$
  
 \begin{oss}[Immunizzazione]
 Se un gruppo di infetti viene introdotto in una popolazione,  \`e possibile ridurre l'impatto dell'epidemia diminuedo $\ro$.\\
-Una strategia pu\`o essere tramite l'immunizzazione, il cui scopo \`e quello di trasferire membri della popolazione della classe $S$ a quella $R$, cos\`i facendo viene ridotto il numero $S_0$ dunque anche $\ro$.\\
+Una strategia pu\`o essere tramite l'immunizzazione, il cui scopo \`e quello di trasferire membri della popolazione della classe $S$ a quella $R$, cos\`i facendo viene ridotto il numero $S_0$ e dunque anche $\ro$.\\
 Supponiamo che una frazione $p$ della popolazione sia  immunizzata: il numeri dei suscettibili passa da $S_0$ a $S_0(1-p)$.\\
 Se inizialmente il numero di riproduzione di base era $\ro = \frac{\beta N}{\alpha}$, nella nuova situazione diventa $\ro''=\frac{\beta N(1-p)}{\alpha}$  da cui si ha che  
 $$\frac{\beta N(1-p)}{\alpha}< 1\quad \ses \quad p> 1-\frac{\alpha}{\beta N} = 1 -\frac{1}{\ro}.
@@ -162,16 +162,16 @@ Data (1666) & S & I\\
 \end{tabular}
 \end{table}
 
-Ora sfruttando ~\eqref{rel_finale} otteniamo $\frac{\alpha}{\beta} \simeq 159$
+Ora sfruttando ~\eqref{rel_finale} otteniamo $\frac{\alpha}{\beta} \simeq 159$.
 \newpage
 
-Simulando il modello~\eqref{SI} con condizioni iniziali $S(0) = 254$ e  $I(0)=7$,   utilizzando come parametri $\alpha =2.73 $ e $\beta  = 0.0178 $ troviamo i risultati in Tabella~\ref{table::2} e i grafici di $S,I$ e $R$ come funzioni del tempo (Figura~
-\ref{GraficoSIR}).\\ Si veda il Capitolo~\ref{ode} per i dettagli riguardo la simulazione.\\ \\
-La Figura~\ref{orbite} mostra i punti reali insieme al ritratto di fase per il modello~\eqref{SI}: notiamo che i  dati effettivi sono notevolmente vicini alle previsioni ottenute. \begin{table}[h]
+Simulando il modello~\eqref{SI} con condizioni iniziali $S(0) = 254$ e  $I(0)=7$,   utilizzando come parametri $\alpha =2.73 $ e $\beta  = 0.0178 $ troviamo i risultati in Tabella~\ref{table::3} e i grafici di $S,I$ e $R$ come funzioni del tempo (Figura~
+\ref{fig::sirsemplice}(a)).\\ Si veda il Capitolo~\ref{ode} per i dettagli riguardo la simulazione.\\ \\
+La Figura~\ref{fig::sirsemplice}(b) mostra i punti reali insieme al ritratto di fase per il modello~\eqref{SI}: notiamo che i  dati effettivi sono notevolmente vicini alle previsioni ottenute. \begin{table}[h]
 \centering
 \caption{Numero di suscettibili ed infetti. Dati sperimentali.}
 $S(0) = 254$ $I(0) = 7$ e $N = 261$ \\
-\label{table::2}
+\label{table::3}
 \begin{tabular}{l|c|c}
 
 Data (1666) & S & I\\
@@ -188,27 +188,27 @@ Data (1666) & S & I\\
 \end{tabular}
 \end{table}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
+\subfloat[][Popolazione delle classi in dipendenza del tempo]{
+\centering
+\resizebox{0.45\textwidth}{!}
+{
 \input{Figure/SIR_Grafico}
-
-\caption{Grafico ottenuto applicando il modello SIR.}
-\label{GraficoSIR}
+}
+}
+\subfloat[][Orbite nel piano $(S,I)$]
+{
+\resizebox{0.45\textwidth}{!}{
+\input{Figure/SI}}
+}
+\caption{Grafici ottenuti in MATLAB.}
+\label{fig::sirsemplice}
 \end{figure}
-
-\begin{figure}
-\centering
-\input{Figure/SI}
-\caption{Orbite nel piano $(S,I)$.  In blu i valori reali,  in rosso quelli ottenuti applicando il modello SIR.}
-\label{orbite}
-
-\end{figure}
-
-
-
 
 
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "main"
 %%% End:
+
