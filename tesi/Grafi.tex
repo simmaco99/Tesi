@@ -43,7 +43,6 @@ Un esempio di matrice di adiacenza \`e riportata nella Figura~\ref{fig::toast}.\
 \Vertex[label=1,x=2]{1}
 \Vertex[label=3,y=-2]{3}
 \Vertex[label=4,x=2,y=-2]{4}
-
 \Edge(1)(2) \Edge(1)(3) \Edge(1)(4) \Edge(2)(3) \Edge(3)(4)
 \end{tikzpicture}
 \end{minipage}
@@ -58,10 +57,10 @@ $$
 \end{figure}
 \newpage
 Un grafo $G$ si dice \textit{pesato} se ad ogni suo arco \`e associato un'etichetta.\\
-Formalmente, $G=(E,V)$ si dice grafo pesato se esiste una funzione $p:\, V \to P$ dove $P$ \`e un insieme. Generalmente $T=\mathbb{R}$.\\ \\
-Dato un grafo $G=(E,V)$, un \text{cammino}$P$ che connette i vertici $u,v\in V$ \`e una sequenza di vertici 
+Formalmente, $G=(V,E)$ si dice grafo pesato se esiste una funzione $p:\, E \to P$ dove $P$ \`e un insieme. Generalmente $T=\mathbb{R}$.\\ \\
+Dato un grafo $G=(V,E)$, un \text{cammino} $P$ che connette i vertici $u,v\in V$ \`e una sequenza di vertici 
 $$ P=\left( v_0, \dots, v_n\right) $$ 
-dove $\forall i=0, \dots, n-1)$ si ha $(v_i, v_{i+1})\in E$, $v_0=u$ e  $v_n= v$.\\
+dove $\forall i=0, \dots, n-1$ si ha $(v_i, v_{i+1})\in E$, $v_0=u$ e  $v_n= v$.\\
 Un grafo si dice \textit{fortemente connesso} se per ogni coppia di nodi $(u,v)$ esiste un cammino che li congiunge.\\
 Definiamo il \textit{diametro} di un grafo come la distanza massima tra  due nodi, la distanza \`e il numero di archi di un cammino. 
 \newpage
