@@ -1,0 +1,59 @@
+\section{Chiusure}
+Come gi\`a osservato nell'esempio introduttivo, il modello botton-up su una rete richiede un elevato numero di equazioni differenziali: le equazioni per i nodi dipendono dalle coppie, le coppie dalle triple e cos\`i via.\\
+Tale approccio, al crescere del numero di nodi, risulterebbe computazionalmente intrattabile. Per risolvere questo problema dobbiamo trovare alcune semplificazioni che ci permettono di esprimere le coppie in termini dei singoli nodi, le triple in termini delle coppie e dei nodi e cos\`i via.\\
+Se riusciamo a fare ci\`o, possiamo rompere la ``cascata" nella quale ogni struttura dipende da tutte le strutture di ordine superiore.\\ \\
+Andiamo a presentare un approccio formale basato sul lavoro di Keeling~\cite{keeling1995ecology}  e van Baalen~\cite{van2000pair}.  A tal fine introduciamo i  \textit{coefficienti di correlazione}.\\
+Siano $A, B\in \{ S, I,R\}$ e $(i,j)\in E$ allora 
+$$C_{A_i B_j} = \frac{\angol{A_i B_j}}{\angol{A_i} \angol{B_j}}.$$
+Tali coefficienti quantificano la propensione che due nodi adiacenti abbiamo stato differente o identico.\\
+Se $C_{A_iB_j}=1$ allora possiamo, in modo equivalente, assuemere  $A_i$ e $B_j$ indipendenti.\\
+Osserviamo che nel modello $SIR$ gli stati non sono per\`o indipendenti. I nodi infetti possono infettare i loro vicini dunque hanno una maggior probabilit\`a di essere uniti ad altri nodi infetti,  di conseguenza  $C_{I_i I_j}\geq 1$.  Diremo che $I_i$ e $I_j$ sono correlati positivamente.\\
+Con medesime argomentazioni si arriva a dire che $S_i$ e $I_j$ sono correlati negativamente: $C_{S_i I_j}\leq 1$.\\
+ In un certo senso, sapere che $j$ \`e infetto aumenta la nostra aspettativa  che $i$ sia infetto e diminuisce quella che sia sano.\\
+ 
+\subsection{Chiusura al livello delle coppie}
+Da quanto osservato nella parte introduttiva sulle chiusure, possiamo scrivere:
+$$ \angol{ A_i B_j} = \angol{ A_i} \angol{B_j} C_{A_i B_j} \text{ dove } A,B\in \{S,I,R\} \text{ e } (i,j)\in E.$$ 
+Assumendo, in prima approssimazione, l'indipendenza a livello delle coppie abbiamo 
+$$ \angol{ A_i B_j} \approx \angol{A_i}\angol{B_j}.$$ 
+Per enfatizzare che non abbiamo identit\`a esatte, quando andremo a risolvere un sistema ottenuto usando le chiusure denoteremo  con $\angol{X_i}$ l'approssimazione di $\angol{ S_i}$ e con $\angol{ Y_i}$ quella di $\angol{ I_i}$.\\ \\
+Presentiamo il modello botton-up generale su una rete con $N$ nodi senza loop e mostriamo come usando l'indipendenza a livello delle coppie si riesca ad ottenere un sistema di equazioni differenziali chiuse.\\
+Sia $G=(g_{ij})$ la matrice di adiacenza del grafo $G$. Assumiamo che il tasso di trasmissione da $i$ a $j$ sia $\tau g_{ij}$ e che il tasso di rimozione per il nodo $i$ sia $\gamma_i$ indipendentemente dallo stato di ogni altro nodo.\\
+Dunque le equazione per il sistema diventano
+\begin{equation}
+\begin{aligned}
+	 \angol{ S_i} =& -\tau \sum_{j=1\atop{j\neq i }}^N\angol{ S_i I_j},\\
+	 \angol{I_i} =&\spa \tau \sum_{j=1\atop{j\neq i}}^N \angol{ S_i I_j} -\gamma_i \angol{I_i},
+\end{aligned}
+\end{equation}
+dove ricordiamo che $\angol{R_i}=1-\angol{S_i}- \angol{I_i}$.\\
+Usando l'indipendenza a livello delle coppie possiamo un sistema chiuso: 
+\begin{equation}
+\begin{aligned}
+	 \angol{ X_i} =& -\tau \sum_{j=1\atop{j\neq i }}^N\angol{ X_i} \angol{Y_j},\\
+	 \angol{Y_i} =&\spa \tau \sum_{j=1\atop{j\neq i}}^N \angol{ X_i}\angol{Y_j} -\gamma_i \angol{Y_i}.
+\end{aligned}
+\label{Coppie3nodi}
+\end{equation}
+Nella Figura~\ref{fig::coppie3nodi} possiamo confrontare le soluzioni del modello esatto con l'approssimazione ottenuta  dall'indipendenza a livello delle coppie per il grafo~\ref{fig::3nodi}. Per non appesantire i grafici abbiamo tracciato solamente  $\angol{S_i}$ e $\angol{I_i}$ in funzione  del tempo: $\angol{ R_i}$ pu\`o essere ricavata.
+\begin{figure}[!h]
+
+\centering
+\subfloat[][Nodo 1]
+{\resizebox{0.45\textwidth}{!}{\input{Figure/Coppie_Nodo1}}}
+ \quad 
+\subfloat[][Nodo 2]
+{\resizebox{0.45\textwidth}{!}{ \input{Figure/Coppie_Nodo2}}}
+\\
+\subfloat[][Nodo 3]
+{\resizebox{0.45\textwidth}{!}
+{\input{Figure/Coppie_Nodo3}}
+}
+\quad
+\subfloat[][Prevalenza]
+{\resizebox{0.45\textwidth}{!}
+{\input{Figure/Coppie_Nodo3}}
+}
+\caption[Confronto tra modello esatto e chiuso alle coppie per~\ref{fig::3nodi}]{Nei grafici \`e possibile confrontare le soluzioni del modello esatto~\eqref{3nodi} (in blu) con il modello in cui abbiamo assunto l'indipendenza delle coppie~\eqref{Coppie3nodi} (in rosso)}
+\label{fig::coppie3nodi}
+\end{figure}
