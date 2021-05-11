@@ -8,7 +8,6 @@ Il modello SIR \`e un modello compartimentale: la popolazione  viene suddivisa i
 	Tale modello si basa su alcune assunzioni.
 	\begin{itemize}
 		\item[A1] Il numero della popolazione \`e costante nel tempo e verr\`a indicato con $N$, ovvero mon si considerano nuove nascite o morti. Inoltre stiamo assumendo che $N$ sia sufficientemente grande da poter considerare la variazione in ogni classe continua e non discreta.
-
 \item[A2] Esiste un fattore di contatto  $\beta$. Tale rapporto indica il valore medio di contatti per infettivo per unit\`a di tempo.
 		\item[A3] Gli infetti lasciano la classe al tasso $\alpha$ per unit\`a di tempo e vanno nella classe $R$, un individuo che entra nella classe $R$ non uscir\`a da tale classe.
 	\end{itemize}
@@ -100,7 +99,11 @@ da cui si ottiene che il numero degli infetti cresce esponenzialmente con un tas
 $$ r =\beta N - \alpha = \alpha \tonde{ \ro -1},$$
 ricavabile dall'incidenza della malattia  all'inizio dell'epidemia.\\Otteniamo cos\`i 
 $$ \beta = \frac{r + \alpha } {N}.$$
- 
+Oltre ai parametri $\alpha,\beta$ due misure fondamentali nello studio dell'epidemia sono l'incidenza e la prevalenza. Usiamo la definizione data dal comitato di esperti dell'OMS~\cite{world1959expert}.\\ \\ 
+La \textit{prevalenza} indica il numero di individui malati in una determinata popolazione, senza nessuna distinzione tra nuovi e vecchi casi.La prevalenza può essere registrata in un determinato momento (prevalenza puntuale) o durante un determinato periodo di tempo (periodo di prevalenza). La ``prevalenza puntiforme"  è solitamente espressa come una frazione , il denominatore è il numero della popolazione.\\ \\
+L'\textit{incidenza} \`e il numeri di  individui che si ammalano durante un dato periodo in una specifica popolazione. L'incidenza \`e solitamente espressa come frazione, il denomitare \`e il numero medio di persone nella popolazione.
+\newpage
+
 \begin{oss}[Immunizzazione]
 Se un gruppo di infetti viene introdotto in una popolazione,  \`e possibile ridurre l'impatto dell'epidemia diminuedo $\ro$.\\
 Una strategia pu\`o essere tramite l'immunizzazione, il cui scopo \`e quello di trasferire membri della popolazione della classe $S$ a quella $R$, cos\`i facendo viene ridotto il numero $S_0$ e dunque anche $\ro$.\\
@@ -108,7 +111,6 @@ Supponiamo che una frazione $p$ della popolazione sia  immunizzata: il numeri de
 Se inizialmente il numero di riproduzione di base era $\ro = \frac{\beta N}{\alpha}$, nella nuova situazione diventa $\ro''=\frac{\beta N(1-p)}{\alpha}$  da cui si ha che  
 $$\frac{\beta N(1-p)}{\alpha}< 1\quad \ses \quad p> 1-\frac{\alpha}{\beta N} = 1 -\frac{1}{\ro}.
 $$
-
 \end{oss}
 \newpage
 \subsection{Un esempio}
