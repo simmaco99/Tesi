@@ -4,10 +4,6 @@
 %  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
 %where you can also make suggestions and rate matlab2tikz.
 %
-\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
-\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
-\definecolor{mycolor3}{rgb}{0.92900,0.69400,0.12500}%
-%
 \begin{tikzpicture}
 
 \begin{axis}[%
@@ -26,7 +22,7 @@ axis x line*=bottom,
 axis y line*=left,
 legend style={legend cell align=left, align=left, draw=white!15!black}
 ]
-\addplot [color=mycolor1, dashed]
+\addplot [color=blue, dashed, line width=2.0pt]
   table[row sep=crcr]{%
 0	1\\
 0.000100475457260383	0.999949766056924\\
@@ -100,7 +96,7 @@ legend style={legend cell align=left, align=left, draw=white!15!black}
 };
 \addlegendentry{$\langle\text{ S}_\text{2}\rangle\text{(t)}$}
 
-\addplot [color=mycolor2, dashdotted]
+\addplot [color=green, dashdotted, line width=2.0pt]
   table[row sep=crcr]{%
 0	0\\
 0.000100475457260383	5.02314194582358e-05\\
@@ -174,7 +170,7 @@ legend style={legend cell align=left, align=left, draw=white!15!black}
 };
 \addlegendentry{$\langle\text{ I}_\text{2}\rangle\text{(t)}$}
 
-\addplot [color=mycolor3]
+\addplot [color=red, line width=2.0pt]
   table[row sep=crcr]{%
 0	0\\
 0.000100475457260383	2.52361809227608e-09\\
