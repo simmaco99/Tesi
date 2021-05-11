@@ -7,10 +7,10 @@ Vediamo come \`e possibile applicare il modello $SIR$ ad un semplice grafo con 3
 	\Vertex[label=1]{1} \Vertex[x=2,label=2]{2} \Vertex[x=4,label=3]{3}
 	\Edge(1)(2) \Edge(2)(3)
 \end{tikzpicture}	
-
 \caption{Grafo con 3 nodi.}
 \label{fig::3nodi}
 \end{figure}
+
 Fissiamo la notazione:
 \begin{itemize}
 	\item  $\angol{S_i}(t)$  denota la probabilit\`a che il nodo $i$ sia suscettibile al tempo $t$;
@@ -105,10 +105,26 @@ Aggiungendo le equazioni necessarie otteniamo il sistema
 	\dot{\angol{I_1S_2S_3}}=&-\tonde{\tau + \delta}\angol{I_1S_2S_3}.
  \end{aligned}
 \end{equation}
-Nella Figura~\ref{fig::spe3nodi} sono riportati i grafici dello stato dei nodi in funzione del tempo (a)(b)(c) e del grafico di prevalenza (d).\\
-Per la sperimentazione,le condizioni iniziali sono state prese a partire da uno stato puro ($1$ infetto e $2,3$ sani) sotto le ipotesi di indipendenza statica delle condizioni iniziali (vedi~\cite{MR3340258}).
-\begin{figure}[h]
+Nella Figura~\ref{fig::spe3nodi} sono riportati i grafici dello stato dei nodi in funzione del tempo (a), (b), (c) e del grafico di prevalenza (d).\\
+Per la sperimentazione, le condizioni iniziali sono state prese a partire da uno stato puro ($1$ infetto e $2,3$ sani):
+\begin{equation}
+\label{statipuri}
+\begin{aligned}
+\angol{S_1}(0)&=0, \\
+\angol{I_1}(0) &=1, \\
+\angol{S_2}(0)&=1,\\
+\angol{I_2}(0)& = 0,\\ 
+\angol{S_3}(0)&= 1,\\
+\angol{I_3}(0) &= 0,\\
+\end{aligned}
+\end{equation}
+sotto le ipotesi di indipendenza statica delle condizioni iniziali (vedi~\cite{MR3340258}) ovvero
+$$
+\angol{A_i B_j}(0) =\angol{A_i}(0) \angol{B_j}(0)$$ 
+per $A,B\in \{ S, I\}$ e  $i,j=1, 2,3$.\\
 
+Poich\`e $\angol{S_1}(0)=0$ si ha che $\angol{S_1}(t)=0$ \`e soluzione del problema di Cauchy.  Osserviamo,  inoltre, che $\angol{I_2}(t)\geq \angol{I_3}(t)$ infatti il nodo $2$ ha due strade per infettarsi (di cui una inizialmente chiusa $\angol{I_3}(0)=0$ mentre il nodo $3$ ne ha una sola (che inizialmente \`e chiusa). 
+\begin{figure}[h]
 \centering
 \subfloat[][Nodo 1]
 {\resizebox{0.45\textwidth}{!}{\input{Figure/Nodo1}}}
@@ -121,12 +137,12 @@ Per la sperimentazione,le condizioni iniziali sono state prese a partire da uno 
 {\input{Figure/Nodo3}}
 }
 \quad
-\subfloat[][Preferenza]
+\subfloat[][Prevalenza]
 {\resizebox{0.45\textwidth}{!}
-{\input{Figure/Nodo3}}
+{\input{Figure/Prevalenza}}
 }
-\caption{Sperimentazione in MATLAB relativa al  grafo~\ref{fig::3nodi}.}
-\label{fig::spe3nodi}
+\caption[Sperimentazione in MATLAB relativo al grafo~\ref{fig::3nodi}]{Divisione in classi nei singoli nodi (a)(b)(c) e grafico della prevalenza (d) per il grafo~\ref{fig::3nodi}.   Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy~\eqref{3nodi} con condizioni iniziali  di stati puri~\eqref{statipuri}.  Abbiamo inoltre supposto l'indipendenza statica delle condizioni iniziali.\\
+Per la sperimentazioni abbbiamo usato come parametri $\tau= 0.5$ e $\gamma =1 $.}\label{fig::spe3nodi}
 \end{figure}
 
 

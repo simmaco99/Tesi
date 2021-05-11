@@ -91,7 +91,7 @@ Dividendo per $S$  l'equazione~\eqref{SI} e integrando tra $0$ a $t$ otteniamo
 $$ \log \frac{S_0}{S(t)} =\beta \int_0^{+\infty } I(t) \di t = \frac{\beta}{\alpha} \tonde{ N- S(t) - I(t)}.$$ 
 \newpage
 
-Per poter studiare il modello, occorre stimare i parametri.\\ Il fattore $\beta$ \`e di difficile stima: dipende dalla malattia in esame e,  in particolar modo, da fattori sociali e comportamentali.\\
+Per poter studiare il modello occorre stimare i parametri.\\ Il fattore $\beta$ \`e di difficile stima: dipende dalla malattia in esame e,  in particolar modo, da fattori sociali e comportamentali.\\
 I valori di $S_0$ e $S_\infty$ possono essere ricavati tramite test sierologici (misurazione della risposta immunitaria tramite analisi del sangue): da questi valori usando la~\eqref{rel_finale} possiamo stimare $\ro$.\\
 Questa stima tuttavia \`e a posteriori, cio\`e pu\`o essere ricavata solamente dopo che l'epidemia ha fatto il suo corso.\\ \\
 Un altro modo per stimare $\beta$ pu\`o essere ricavato dalla seguente approssimazione
@@ -190,19 +190,19 @@ Data (1666) & S & I\\
 
 \begin{figure}[h]
 \centering
-\subfloat[][Popolazione delle classi in dipendenza del tempo]{
+\subfloat[][]{
 \centering
 \resizebox{0.45\textwidth}{!}
 {
 \input{Figure/SIR_Grafico}
 }
 }
-\subfloat[][Orbite nel piano $(S,I)$]
+\subfloat[][]
 {
 \resizebox{0.45\textwidth}{!}{
 \input{Figure/SI}}
 }
-\caption{Grafici ottenuti in MATLAB.}
+\caption[Analisi dei dati della peste di Eyam]{Popolazione delle singole classi  in funzioni del tempo (a) e orbite nel piano $(S,I)$ (b).  Per ottenere i grafici abbiamo risolto  numericamente, usando MATLAB,  il problema di Cauchy~\eqref{SI} con  condizioni iniziali $S(0)=254, ~I(0)~=~7$.  Per quanto riguarda i parametri, abbiamo considerato    $\alpha=2.73$  e $\beta= 0.0178$.}
 \label{fig::sirsemplice}
 \end{figure}
 

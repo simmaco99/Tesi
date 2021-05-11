@@ -3,14 +3,14 @@ Molti sistemi che si basano su interazioni tra soggetti sono rappresentabili e v
 In questa sezione andremo a definire formalmente un grafo e alcune nozioni rilevanti.\\ \\
 Un \textit{grafo} \`e una coppia $G=(V,	E) $ dove:
 \begin{itemize}
-	\item $V$ \`e detto  insieme dei \textit{vertici} o nodi,
+	\item $V$ \`e detto  insieme dei \textit{vertici} o nodi;
 	\item $E\subseteq V \times V$ \`e l'insieme degli \textit{archi} o link.
 \end{itemize}
 Diremo che un grafo \`e \textit{non orientato} se ogni arco appare in entrambe le direzioni, altrimenti diremo che \`e un grafo \textit{diretto} o \textit{orientato}.\\
 Per visualizzare un grafo si pu\`o usare una rappresentazione come in Figura~\ref{fig::esegrafi}: cerchi, i vertici, connessi da frecce, nel caso di grafi diretti, oppure da segmenti, per grafi non orientati. 
 \begin{figure}[h]
 \centering
-\subfloat[Grafo non orientato ]
+\subfloat[Grafo non orientato]
 {
 \centering
 \begin{tikzpicture}
@@ -79,7 +79,7 @@ Sia $N_\ell$ il numero di vertici con grado $d_\ell$ allora il \textit{grado di 
 $$ p_\ell = \frac{N_\ell}{N}.$$
 Se tutti i vertici hanno lo stesso grado, diremo che il grafo \`e \textit{regolare}.\\  \\
 Andiamo, ora, a definire una misura che ci permette di capire  come nodi con gradi diversi sono collegati.\\ \\ 
-Sia $L$ il numero di gradi differenti che denotiamo conn  $\{ d_1, \dots, d_L\}$.\\
+Sia $L$ il numero di gradi differenti che denotiamo con $\{ d_1, \dots, d_L\}$.\\
 Definiamo i \textit{mixing coefficients} (coefficienti di miscelamento) $n_{\ell j}$ come il numero di collegamenti tra nodi di grado $d_\ell$ e nodi di grado $d_j$.\\ \\ 
 Osserviamo che i due coefficienti definiti non caratterizzano, a meno di isomorfismo, un grafo: in  Figura~\ref{fig::esagoni}  sono presentati due grafi con gli stessi coefficienti di miscelamento e medesimo  grado di distribuzione  che non sono, tuttavia, isomorfi avendo numero diverso di triangoli.
 
@@ -114,18 +114,18 @@ Osserviamo che i due coefficienti definiti non caratterizzano, a meno di isomorf
 \end{tikzpicture}
 }
 
-\caption{Due grafi non isomorfi con stesso grado di distribuzione e coefficiente di miscelamento.}
+\caption[Due grafi con stesso grado di distribuzione e coefficienti di miscelamento]{Il grado di distribuzione ed il coefficiente di miscelamento non identificano grafi a meno di isomorfismo.  I due  grafi  in figura non sono  isomorfi (avendo il numero di triangoli differenti) ma hanno lo stesso  grado di distribuzione e coefficiente di miscelamento.}
 \label{fig::esagoni}
 \end{figure}
 
 Presentiamo una misura del grado in cui i nodi di un grafo tendono a raggrupparsi insieme, di tale misura esiste una versione locale ed una globale.\\ \\
 Definiamo l'\textit{intorno} del nodo $i$ come l'insieme dei nodi con cui $i$ \`e direttamente connesso: 
-$$ N_i = \{ j \in V \, :\, (i,j)\in E  \vee (j,i)\in E \}.$$ 
-e poniamo $s_i=\abs{ N_i}$.\\
+$$ N_i = \{ j \in V \, :\, (i,j)\in E  \vee (j,i)\in E \},$$ 
+poniamo $s_i=\abs{ N_i}$.\\
 Il coefficiente di \textit{clustering locale} (raggruppamento locale) per i grafi diretti   \`e il numero 
 $$ C_i =\frac{\abs{ \{ (j,k)\in E \, : \, j,k\in N_i\}}}
 {s_i(s_i-1)},$$
-ovvero, il numero di collegamenti  tra i membri di $N_i$ fratto il numero di collegamenti potenziali fra loro,  \`e $s_i(s_i-1)$.\\
+ovvero il numero di collegamenti  tra i membri di $N_i$ fratto il numero di collegamenti potenziali fra loro,  \`e $s_i(s_i-1)$.\\
 Nei grafi non orientati il numero dei collegamenti potenziali \`e la met\`a e dunque il coefficiente \`e 
 $$ C_i =\frac{2\cdot \abs{ \{ (j,k)\in E \, : \, j,k\in N_i\}}}
 {s_i(s_i-1)}.$$ \\
