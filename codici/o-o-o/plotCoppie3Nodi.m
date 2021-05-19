@@ -62,4 +62,13 @@ L3.FontSize=FontSize;
 matlab2tikz('Coppie_Nodo3.tex');  %il sorgente per latex
 
 
-
+figure(4)
+hold on;
+TotI=y(:,12)+ y(:,10)+y(:,8);
+TotS=y(:,13)+ y(:,11)+y(:,9);
+TotY= yc(:,6)+yc(:, 4)+ yc(:, 2);
+TotX = yc(:,5)+ yc(:,3)+ yc(:,1);
+Pc=plot(tc, TotY./(TotY+TotX),'r');
+P=plot(t,TotI./(TotI+TotS),'b');
+L3=legend([ P Pc], 'Esatta', 'Approssimata');
+matlab2tikz('Coppie_Prevalenza.tex');  %il sorgente per latex
