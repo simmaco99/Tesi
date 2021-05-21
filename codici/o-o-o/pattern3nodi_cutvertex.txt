@@ -1,0 +1,12 @@
+\angol{S_1}
+\angol{I_1}
+\angol{S_2}
+\angol{I_2}
+\angol{S_3}
+\angol{I_3}
+\angol{S_1I_2}
+\angol{I_1S_2}
+\angol{S_2I_3}
+\angol{I_2S_3}
+\angol{S_1S_2}
+\angol{S_2S_3}

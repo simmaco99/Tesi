@@ -1,15 +1,15 @@
 %per plottare i 4 grafici del modello o-o-o 
-
 tau =0.5;
 gamma=1;
-c= [1;0;0;0;0;1;0;0;1;0;1;1;0];
+c= zeros(13,1);
+c([2 3 5 8 13])=1;
 LineWidth=2;
 FontSize=12;
 
 [t,y]=ode45(@(t,y) sir3nodi(t,y,.5,1),[ 0 5], c);
 cleanfigure;
 
-figure(1);
+figure();
 hold on;
 xlabel('t');
 S1=plot(t,y(:,13),'b--');
@@ -26,7 +26,7 @@ L1.FontSize=FontSize;
 matlab2tikz('Nodo1.tex');  %il sorgente per latex
 
 cleanfigure;
-figure(2);
+figure();
 hold on;
 xlabel('t');
 S2=plot(t,y(:,11),'b--');
@@ -41,7 +41,7 @@ L2.FontSize=FontSize;
 matlab2tikz('Nodo2.tex'); % il sorgente per latex
 
 cleanfigure;
-figure(3);
+figure();
 hold on;
 title('Nodo 3');
 xlabel('t');
@@ -57,7 +57,7 @@ L3.FontSize=FontSize;
 matlab2tikz('Nodo3.tex');  %il sorgente per latex
 
 cleanfigure;
-figure(4);
+figure();
 hold on 
 TotI=y(:,12)+ y(:,10)+y(:,8);
 TotS=y(:,13)+ y(:,11)+y(:,9);
