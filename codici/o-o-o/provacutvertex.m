@@ -10,7 +10,7 @@ esatto([2 3 5 8 13])=1;
 
 cut=zeros(12,1);
 cut([2 3 5 8 12])=1;
-[t1,y1]=ode45(@(t,y) sir3nodi_cutvertex(t,y,.5,1),[ 0 5], cut);
+[t1,y1]=ode45(@(t1,y1) sir3nodi_cutvertex(t1,y1,.5,1),[ 0 5], cut);
 
 
 figure()
@@ -41,9 +41,6 @@ I3=plot(t,y(:,6), 'r-.');
 SC3=plot(t1,y1(:,5),'b-');
 IC3=plot(t1,y1(:,6), 'b-.');
 legend('sani esatti', 'infetti sani', 'sani cut-vertex', 'infetti cut-vertex');
-
-
-
 
 
 
