@@ -1,7 +1,14 @@
+%confronto tra il modello esatto e il modello chiuso con il cut vertex sotto le condizioni di 1 certamente infetto e 2,3 certamente sani 
+%oer la numerazione si guardi il file pattern3nodi.txt 				per il modello esatto 
+%									  pattern3nodi_cutvertex.txt	per il modello chiuso 
+
+
 tau =0.5;
 gamma=1;
 LineWidth=2;
 FontSize=12;
+
+
 
 esatto= zeros(13,1);
 esatto([2 3 5 8 13])=1;
@@ -10,7 +17,7 @@ esatto([2 3 5 8 13])=1;
 
 cut=zeros(12,1);
 cut([2 3 5 8 12])=1;
-[t1,y1]=ode45(@(t1,y1) sir3nodi_cutvertex(t1,y1,.5,1),[ 0 5], cut);
+[t1,y1]=ode45(@(t1,y1) sir3nodi_cutvertex(t1,y1,.5,1),t, cut);
 
 
 figure()
