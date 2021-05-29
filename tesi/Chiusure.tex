@@ -10,7 +10,7 @@ Se $C_{A_iB_j}=1$ allora possiamo, in modo equivalente, assuemere  $A_i$ e $B_j$
 Osserviamo che nel modello $SIR$ gli stati non sono per\`o indipendenti. I nodi infetti possono infettare i loro vicini dunque hanno una maggior probabilit\`a di essere uniti ad altri nodi infetti,  di conseguenza  $C_{I_i I_j}\geq 1$.  Diremo che $I_i$ e $I_j$ sono correlati positivamente.\\
 Con medesime argomentazioni si arriva a dire che $S_i$ e $I_j$ sono correlati negativamente: $C_{S_i I_j}\leq 1$.\\
  In un certo senso, sapere che $j$ \`e infetto aumenta la nostra aspettativa  che $i$ sia infetto e diminuisce quella che sia sano.\\
- 
+  
 \subsection{Chiusura al livello delle coppie}
 Da quanto osservato nella parte introduttiva sulle chiusure, possiamo scrivere:
 $$ \angol{ A_i B_j} = \angol{ A_i} \angol{B_j} C_{A_i B_j} \text{ dove } A,B\in \{S,I,R\} \text{ e } (i,j)\in E.$$ 
@@ -44,259 +44,23 @@ Possiamo scrivere il sistema precedente in forma vettoriale:
 \end{equation}
 dove $\Gamma=diag(\gamma_1, \dots, \gamma_n)$ e il prodotto tra vettori \`e inteso elemento per elemento.\\
 
-Nella Figura~\ref{fig::coppie3nodi} possiamo confrontare le soluzioni del modello esatto con l'approssimazione ottenuta  dall'indipendenza a livello delle coppie per il grafo~\ref{fig::3nodi}. Per non appesantire i grafici abbiamo tracciato solamente  $\angol{S_i}$ e $\angol{I_i}$ in funzione  del tempo: $\angol{ R_i}$ pu\`o essere ricavata.\\
-Dalla Figura~\ref{fig::coppie3nodi} (d) possiamo notare che il modello semplificato tende a sottostimare la prevalenza della malattia. Tale sottostima risulta sconveniente se volessimo usare queste  predizioni per intervenire con delle politiche di contenimento. Nelle sezioni successive ci domanderemo se sia possibile trovare una rappresentazione con un numero minore di variabili che sia pi\`u accurato o, meglio ancora esatta.  \begin{figure}[!h]
-
-\centering
-\subfloat[][Nodo 1]
-{\resizebox{0.45\textwidth}{!}{\input{Figure/Coppie_Nodo1}}}
- \quad 
-\subfloat[][Nodo 2]
-{\resizebox{0.45\textwidth}{!}{ \input{Figure/Coppie_Nodo2}}}
-\\
-\subfloat[][Nodo 3]
-{\resizebox{0.45\textwidth}{!}
-{\input{Figure/Coppie_Nodo3}}
-}
-\quad
-\subfloat[][Prevalenza]
-{\resizebox{0.45\textwidth}{!}
-{\input{Figure/Coppie_Prevalenza}}
-}
-\caption[Confronto tra modello esatto e chiuso alle coppie per~\ref{fig::3nodi}]{Divisione in classi dei  singoli nodi (a)(b)(c) e grafico della prevalenza (d).\\ Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy derivato dal modello esatto~\eqref{3nodi} (in blu) con quello approssimato  ottenuto   assumendo l'indipendenza delle coppie~\eqref{Coppie3nodi} (in rosso).  Per entrambi i modelli le condizioni iniziali sono stati puri~\eqref{statipuri},  inoltre,  nel modello esatto abbiamo supposto l'indipendenza statica delle condizioni iniziali.\\
-Per la sperimentazione abbiamo usato come parametri $\tau=0.5$ e $\gamma=1$.}
-\label{fig::coppie3nodi}
-\end{figure}
-\subsection{Chiusura al livello delle triple}
-
-\lipsum[6-10]
-
-\subsection{Approccio generale alla chiusura}
-In questa sezione ci domanderemo se sia possibile trovare una rappresentazione con un numero minore di variabili che sia pi\`u accurata o,  meglio ancora, esatta.  Per farlo useremo delle propriet\`a di connessione del grafico.\\ \\
-Sia $G=(V,E)$ un grafo connesso.
-\begin{itemize}
-\item Diremo che $v\in V$ \`e un \textit{cut-vertex} (vertice tagliato) se il grafo senza il nodo $v$ risulta sconnesso.
-\item Diremo che $e\in E$ \`e un \textit{ponte} se il grafo $G'=(V, E\backslash\{e\})$ risulta sconnesso.
-\end{itemize}
-Per un esempio di cut-vertex si guardi la Figura~\ref{fig::cut-vertex}.\newpage
+Nella Figura~\ref{fig::coppie3nodi} possiamo confrontare le soluzioni del modello esatto con l'approssimazione ottenuta  dall'indipendenza a livello delle coppie per il grafo~\ref{fig::3nodi}. Per non appesantire i grafici abbiamo tracciato solamente  $\angol{S_i}$ e $\angol{I_i}$ in funzione  del tempo: $\angol{ R_i}$ pu\`o essere ricavata.  
+Dalla Figura~\ref{fig::coppie3nodi} (d) possiamo notare che il modello semplificato tende a sovrastimare la prevalenza della malattia. Tale sovrastima risulta sconveniente se volessimo usare queste  predizioni per intervenire con delle politiche di contenimento. Nelle sezioni successive ci domanderemo se sia possibile trovare una rappresentazione con un numero minore di variabili che sia pi\`u accurato o, meglio ancora, esatta. 
 
 \begin{figure}[!h]
-\centering
-\subfloat[]{
-\begin{tikzpicture}[scale=0.8]
-
-	\Vertex[y=0]{1}
-	\Vertex[x=2,y=0,label=]{2} 
-	
-	\Vertex[x=1,y=-1.73,label=1]{3}
-	\Vertex[x=3,y=-1.73]{4}
-	
-	\Vertex[x=-1, y=-3.73]{15}
-	\Vertex[x=1,  y=-3.73,label=2]{5}
-	\Vertex[x=3,  y=-3.73,label=4]{6}
-	\Vertex[x=5,  y=-3.73,label=5]{7}
-	\Vertex[x=7,  y=-3.73]{8}
-
-    \Vertex[x=-1, y=-5.73]{14}
-    \Vertex[x=1,  y=-5.73,label=3]{9}
-	\Vertex[x=3,  y=-5.73]{10}
-    \Vertex[x=5,  y=-5.73]{11}
-    \Vertex[x=7,  y=-5.73]{12}
-   
-    \Vertex[x=0, y=-7.46]{16}
-    \Vertex[x=2, y=-7.46]{17}
-    
-\Edge(9)(16)\Edge(9)(17) \Edge(5)(15) \Edge(14)(15) \Edge(2)(3) \Edge(1)(2) \Edge(1)(3) \Edge(3)(4) \Edge(3)(5) \Edge(5)(4) \Edge(6)(4) \Edge(5)(6) \Edge(6)(7) \Edge(8)(7) \Edge(14)(9) \Edge(9)(5) \Edge(6)(10) \Edge(7)(11) \Edge(7)(12) \Edge(8)(11) \Edge(11)(12) \Edge(7)(11) \Edge(8)(12) \Edge(16)(17) \Edge(16)(9) \Edge(17)(9)
-          
-\end{tikzpicture}	}\\
-\subfloat[]{\begin{tikzpicture}[scale=0.8]
-	\Vertex[x=-2,y=0]{1}
-	\Vertex[x=0,y=0]{2}
-\Vertex[x=-1,y=-1.73,label=1]{33}
-	\Vertex[x=1,y=-1.73,label=1]{3}
-	\Vertex[x=3,y=-1.73]{4}
-
-	\Vertex[x=-3, y=-3.73,]{60}
-	\Vertex[x=-1, y=-3.73,label=2]{55}
-	\Vertex[x=1, y=-3.73,label=2]{5}
-	\Vertex[x=3, y=-3.73,label=4]{6}
-	\Vertex[x=5,y=-3.73,label=4]{66}
-	\Vertex[x=7, y=-3.73,label=5]{7}
-	
-	\Vertex[x=-3, y=-5.73]{14}
-    \Vertex[x=-1, y=-5.73,label=3]{20}
-	\Vertex[x=3,  y=-5.73,label=4]{10}
-	\Vertex[x=9,  y=-3.73,label=5]{11}
-	\Vertex[x=11,  y=-3.73]{12}
-
-    \Vertex[x=-1, y=-7.73,label=3]{9}
-    \Vertex[x=3,  y=-7.73]{67}
-	\Vertex[x=9,  y=-5.73]{77}
-    \Vertex[x=11,  y=-5.73]{88}
-     
-    \Vertex[x=-2, y=-9.46]{16}
-    \Vertex[x=0, y=-9.46]{17}
-    
-\Edge(2)(33) \Edge(1)(2) \Edge(1)(33) \Edge(3)(4) \Edge(3)(5) \Edge(5)(4) \Edge(6)(4) \Edge(5)(6) \Edge(66)(7) \Edge(14)(20) \Edge(55)(60) \Edge(55)(20) \Edge(60)(14) \Edge(67)(10) \Edge(77)(11) \Edge(77)(12) \Edge(88)(11) \Edge(88)(77) \Edge(11)(12) \Edge(77)(11) \Edge(88)(12) \Edge(16)(17) \Edge(16)(9) \Edge(17)(9)
-
-\end{tikzpicture}	
-}
-
-\caption[Cut-vertex e decomposizione in sottoreti]{(a) Un esempio di rete con $5$ cut-vertices e (b) la rete equivalente dopo la decomposizioni in sottoreti.}
-\label{fig::cut-vertex}
-\end{figure}
-\newpage
-
-Prima di presentare il teorema cardine del capitolo  
-ricordiamo pero, la seguente definizione.\\ \\
-Siano $A,B$ due eventi di uno spazio di probabilit\`a con $\mathbb{P}(B)>0$. Si dice \textit{probabilit\`a condizionale} di $A$ dato $B$ la quantit\`a.
-\begin{equation} 
-\label{p_con}
-\mathbb{P}(A\, \vert B) = \frac{ \mathbb{P}(A\cap B)}{\mathbb{P}(B)}.
-\end{equation}
-
-\begin{thm}\label{th_cut-vertex}
-Sia $G=(V,E)$ un grafo e $F=\{ v_1, \dots, v_k\}$ un sottoinsieme connesso di vertici e sia $v_i$ un suo cut-vertex. Poniamo  $$ F_1 = \{ v_1, \dots, v_{i-1}\} \text{ e }  F_2 =\{ v_{i+1}, \dots, v_k\}.$$ 
-Se ogni cammino che connette un nodo in $F_1$ ad uno in $F_2$ passa da $v_i$ allora: 
-\begin{equation}\label{cut}\angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i} Z_{v_{i+1}} \dots Z_{v_k}} = \angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i}} \angol{S_{v_i}  Z_{v_{i+1}} \dots Z_{v_k}}	
-\end{equation}
-dove $Z\in \{ S,I,R\}$. 
-\proof  
-Se $\angol{S_{v_i}}=0$ allora l'uguaglianza~\eqref{cut} risulta banalmente vera.\\ \\ 
-Sia $\angol{S_{v_i}}\neq 0 $. Utilizzando la definizione di  probabilit\`a condizionale~\eqref{p_con}
-$$ \angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i} Z_{v_{i+1}}\dots Z_{v_k}} = \angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i} Z_{v_{i+1}}\dots Z_{v_k}\, \vert \, S_{v_i}} \angol{S_{v_i}}.$$
-Notiamo che $$ \angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i} Z_{v_{i+1}}\dots Z_{v_k}\, \vert \, S_{v_i}} = \angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i} \, \vert\, S_{v_i}} \angol{S_{v_i}Z_{v_{i+1}}\dots Z_{v_k}\, \vert \, S_{v_i}},$$ 
-infatti, ogni percorso da $F_1$ a $F_2$ deve passare attraverso $v_i$. Ora  $v_i$ \`e suscettibile dunque la trasmissione non pu\`o avvenire tra un nodo in $F_1$ ed uno in $F_2$. Per tale motivo i due eventi presenti nel membro di sinistra sono indipendenti.\\
-Se riapplichiamo la definizione di probabilit\`a condizionale otteniamo  
-$$ \angol{ Z_{v_1} \dots Z_{v_{i-1}}S_{v_i} \, \vert S_{v_i}} =\frac{ \angol{Z_{v_1} \dots Z_{v_{i-1} S_{v_i}}}}{\angol{ S_{v_i}}},$$
-$$ \angol{ S_{v_i} Z_{v_{i+1}}\dots Z_{v_{k}} \, \vert S_{v_i}} =\frac{ \angol{S_{v_i}Z_{v_{i+1}} \dots Z_{v_{k}}}}{\angol{ S_{v_i}}}.$$
-da cui la tesi.
-\endproof
-\end{thm}
-
-Grazie a questo teorema siamo pronti per presentare l'algoritmo generale per le chiusure. Ecco i passi dell'algoritmo.
-\begin{enumerate}
-	\item Si trovano tutti i cut-vertices di $G$ e si denotino con $C=\{ v_{i_1}, \dots, v_{i_L}\}$. Tale procedimento pu\`o essere fatto con  un costo in tempo di $O(\vert E \vert + \vert V \vert)$ utilizzando una visita DFS. 
-	\item Si divide la rete originale in sottoreti connesse a due a due scollegate.
-	\item Tale procedura conduce ad una famiglia di sottoreti distinte $G_1, \dots, G_P$. Le sottoreti vengono create in modo che i cut-vertices siano mantenuti in tutte le sottoreti generate. Si veda la Figura~\ref{fig::cut-vertex}.
-	\item Per ogni nodo $i$ delle sottoreti, si ha 
-	\begin{equation*}
-	\begin{aligned}
-\dot{\angol{S_i}} &= -\tau \sum_j g_{ij} \angol{S_iI_j},\\
-\dot{\angol{I_i}} &= \tau \sum_j g_{ij} \angol{S_iI_j}-\gamma\angol{I_i},\\
-\dot{\angol{R_i}} &= 1 -\angol{S_i} -\angol{I_i}.
-		\end{aligned}
-	\end{equation*}
-	Si possono trovare  equazioni simili per le derivate di tutte le coppie che sorgono in queste equazioni. Queste coppie dipendono dalle triple. A loro volta le triple dipendono dalle quadruple. Si forma, cos\`i, una gerarchia di equazioni.
-	\item Nella gerarchia che si verr\`a a creare, se in un termine appaiono   vertici di pi\`u sottoreti allora in esso appare un cut-vertex suscettibile. Si usi il Teorema (\ref{th_cut-vertex}) per esprimere questo termine    in termine di altri pi\`u semplici.
-\end{enumerate}
-Nella prossima sezione daremo un esempio della sua applicazione.
-
-\newpage
-
-\section{Un esempio completo}
-Andiamo ad applicare l'algoritmo precedente alla rete in Figura~\ref{fig::lollipop}.\\ \\
-Nella rete esiste un solo cut-vertex: il nodo $3$. Decomponiamo il grafo in un triangolo e un singolo arco (Figura~\ref{fig::lollipop}).\\
-\begin{figure}[!ht]
-\centering
-\subfloat[]{
-\begin{tikzpicture}[scale=0.8]
-\Vertex[label=1]{1}
-\Vertex[label=2,y=-2]{2}
-\Vertex[label=3, y=-1, x=1.73]{3}
-\Vertex[label=4, y=-1, x= 3.73]{4}
-\Edge(1)(2) \Edge(2)(3) \Edge(1)(3) \Edge(3)(4)
-\end{tikzpicture}} \hfil
-\subfloat[]{
-\begin{tikzpicture}[scale=0.8]
-\Vertex[label=1]{1}
-\Vertex[label=2,y=-2]{2}
-\Vertex[label=3, y=-1, x=1.73]{3}
-\Vertex[label=3, y=-1, x= 3.73]{33}
-\Vertex[label=4, y=-1, x=5.73]{4}
-\Edge(1)(2) \Edge(2)(3) \Edge(1)(3) \Edge(33)(4)
-\end{tikzpicture}}
-\caption[Lollipop e sua decomposizione]{(a) Il network lollipop e (b) la sua decomposizione in 2 sottoreti.}
-\label{fig::lollipop}
+	\centering
+\subfloat[][Nodo 2]
+{\resizebox{0.4\textwidth}{!}{\input{Figure/Coppie_Nodo_2_Sano}} 
+ \quad 
+\resizebox{0.4\textwidth}{!}{ \input{Figure/Coppie_Nodo_2_Infetto}}} \\
+\subfloat[][Nodo 3]
+{\resizebox{0.4\textwidth}{!}{\input{Figure/Coppie_Nodo_3_Sano}} 
+ \quad 
+\resizebox{0.4\textwidth}{!}{ \input{Figure/Coppie_Nodo_3_Infetto}}}
+\\
+\subfloat[][Prevalenza.]
+{\resizebox{0.4\textwidth}{!}{\input{Figure/Coppie_Prevalenza}}}
+\caption[Confronto tra modello esatto e chiuso alle coppie per~\ref{fig::3nodi}]{Divisione in classi dei  singoli nodi (a)(b) e grafico della prevalenza (c). Non abbiamo riportato i grafici relativi al nodo $1$ poich\`e in questo caso il modello esatto e il modello chiuso alle coppie coincidono.Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy derivato dal modello esatto~\eqref{3nodi} (in blu) con quello approssimato  ottenuto   assumendo l'indipendenza delle coppie~\eqref{Coppie3nodi} (in rosso).  Per entrambi i modelli le condizioni iniziali sono stati puri~\eqref{statipuri},  inoltre,  nel modello esatto abbiamo supposto l'indipendenza statica delle condizioni iniziali. Per la sperimentazione abbiamo usato come parametri $\tau=0.3$ e $\gamma=0.1$.\\}
+\label{fig::coppie3nodi}
 \end{figure}
 
-Le equazioni per i singoli nodi sono 
- \begin{equation*}
- \begin{aligned}
- \dot{\angol{S_1}}&= -\tau \tonde{ \angol{ S_1 I_3} + \angol{S_1 I_2}},  \quad 
- &\dot{\angol{S_3}}&= -\tau \tonde{ \angol{I_1 S_3} + \angol{I_2 S_3}+ \angol{S_3 I_4}},  \\
- \dot{\angol{I_1}}&= \spa \tau \tonde{ \angol{ S_1 I_2} + \angol{S_1 I_3}} - \gamma\angol{I_1} \quad 
- &\dot{\angol{I_3}}&= \spa \tau \tonde{ \angol{I_1 S_3} + \angol{I_2 S_3}+ \angol{S_3 I_4}}-\gamma\angol{I_3},\\
- \dot{\angol{S_2}}&= -\tau \tonde{ \angol{ I_1 S_2} + \angol{S_2 I_3}}, \quad &\dot{\angol{S_4}} &= -\tau \angol{I_3S_4},  \\
- \dot{\angol{I_2}}&= \spa \tau \tonde{ \angol{ I_1 S_2} + \angol{S_2 I_3}} - \gamma\angol{I_2},\quad & \dot{\angol{I_4}}&=\spa \tau\angol{I_3S_4}-\gamma\angol{I_4}. \\\
- \end{aligned}	
- \end{equation*}
- Tali equazioni dipendono da alcune coppie: tutte le disposizioni di archi con un nodo suscettibile ed un uno infetto. Abbiamo bisogno di equazioni addizionali.\\
- Esaminiamo l'equazione per $\angol{S_1 I_3}$. 
- \begin{equation*}
- \begin{aligned}	
- \dot{\angol{S_1I_3}}&= \tau\tonde{ \angol{S_1I_2S_3} + \angol{S_1S_3I_4}} - \tonde{ \tau +\gamma}\angol{S_1 I_3} -\tau \angol{ S_1 I_2 I_3}= \\
- &= \tau \tonde{ \angol{S_1I_2S_3} + \frac{ \angol{S_1S_3}\angol{S_3 I_4}}{\angol{S_3}}} -\tonde{ \tau + \gamma} \angol{S_1I_3} - \tau \angol{S_1I_2S_3}
- \end{aligned}
- \end{equation*}
- dove abbiamo usato il Teorema~\ref{th_cut-vertex} per sostituire $\angol{S_1S_3I_4}$.\\
- Con considerazioni analoghe otteniamo
-  \begin{equation*}
- \begin{aligned}
- \dot{\angol{S_1I_2}} =&\spa \tau\angol{S_1S_2I_3} - \tonde{ \tau + \gamma} \angol{S_1 I_2} -\tau\angol{S_1I_2I_3},\\
-\dot{\angol{I_1S_2}} =&\spa\tau\angol{S_1S_2I_3} - \tonde{ \tau + \gamma} \angol{I_1 S_2} -\tau\angol{I_1S_2I_3},\\
-\dot{\angol{S_2I_3}} =&\spa \tau\tonde{\angol{I_1S_2S_3} +\frac{\angol{S_2S_3}\angol{S_3I_4}}{\angol{S_3}}} - \tonde{ \tau + \gamma} \angol{S_2 I_3} -\tau\angol{I_1S_2I_3},\\
-\dot{\angol{I_1S_3}} =&- \tau\tonde{\angol{I_1I_2S_3} +\frac{\angol{I_1S_3}\angol{S_3I_4}}{\angol{S_3}}} - \tonde{ \tau + \gamma} \angol{I_1 S_3} +\tau\angol{S_1I_2S_3},\\ 
-\dot{\angol{I_2S_3}} =&- \tau\tonde{\angol{I_1I_2S_3} +\frac{\angol{I_2S_3}\angol{S_3I_4}}{\angol{S_3}}}- \tonde{ \tau + \gamma} \angol{I_2 S_3} +\tau\angol{I_1S_2S_3},\\ 
-\dot{\angol{S_3I_4}} =&- \tau\tonde{\frac{\angol{I_1S_3}\angol{S_3I_4}}{\angol{S_3}}+ \frac{\angol{I_2S_3}\angol{S_3I_4}}{\angol{S_3}}} - \tonde{ \tau + \gamma} \angol{S_3 I_4}, \\ 
-\dot{\angol{I_3S_4}} =& \spa \tau\tonde{\frac{\angol{I_1S_3}\angol{S_3S_4}}{\angol{S_3}}+\frac{\angol{I_2S_3}\angol{S_3S_4}}{\angol{S_3}}} - \tonde{ \tau + \gamma} \angol{I_3 S_4}.\\ 
-\end{aligned}
- \end{equation*}
- Da queste equazioni emergono nuove coppie, dunque necessitiamo anche di 
- \begin{equation*}
-\begin{aligned}
-	\dot{\angol{S_1S_3}}=& - \tau \frac{\angol{S_1S_3}\angol{S_3I_4}}{\angol{S_3}}- 2\tau \angol{S_1I_2S_3}\\
-	\dot{\angol{S_2S_3}}=& -\tau \frac{\angol{S_2S_3}\angol{S_3I_4}}{\angol{S_3}} -2\tau \angol{I_1S_2S_3}\\
-	\dot{\angol{S_3S_4}}=& -\tau \frac{\angol{I_1S_3}\angol{S_3S_4}}{\angol{S_3}}-2\tau \frac{\angol{I_2S_3}\angol{S_3 S_4}}{\angol{S_3}}
-\end{aligned} 	
- \end{equation*}
- Osserviamo che non necessitiamo di un'equazione per $\angol{S_1S_2}$ e nemmeno di coppie di nodi che coinvolgono dei rimossi.\\
- Le equazioni per le coppie introducono alcune triple
- \begin{equation*}
- \begin{aligned}
-\dot{\angol{S_1S_2I_3}}=&\spa \tau \frac{\angol{S_1S_2S_3}\angol{S_3I_4}}{\angol{S_3}} -\tonde{ 2\tau + \gamma} \angol{S_1S_2I_3},\\
-\dot{\angol{S_1I_2I_3}} =&\spa \tau \tonde{ \angol{S_1S_2I_3}+\frac{\angol{S_1I_2S_3}\angol{S_3I_4}}{\angol{S_3} }} -2\tonde{ \tau + \gamma} \angol{S_1I_2I_3} + \tau \angol{S_1 I_2 S_3},\\
-\dot{\angol{S_1I_2S_3}} =&-\tau \frac{\angol{S_1I_2S_3}\angol{S_3I_4}}{\angol{S_3}} -\tonde{ 2\tau + \gamma} \angol{S_1I_2S_3},\\
-\dot{\angol{I_1S_2I_3}} =&\spa \tau  \angol{S_1S_2I_3} -2\tonde{ \tau + \gamma} \angol{I_1S_2I_3} + \tau \angol{I_1S_2S_3}+\tau \frac{\angol{I_1S_2S_3}\angol{S_3I_4}}{\angol{S_3}},\\
-\dot{\angol{I_1S_2S_3}}=&-\tau \frac{\angol{ I_1S_2S_3}\angol{S_3I_4}}{\angol{S_3}}-\tonde{ 2 \tau + \gamma} \angol{I_1S_2S_3},\\
-\dot{\angol{I_1I_2S_3}} =&\spa\tau \tonde{  \angol{S_1I_2S_3}+ \angol{I_1S_2S_3} - \frac{\angol{I_1I_2S_3}\angol{S_3I_4}}{\angol{S_3}}} -2\tonde{ \tau + \gamma} \angol{I_1I_2S_3}.
- 	\end{aligned}
- 	\end{equation*}
- Scrivendo queste equazioni appare una nuova tripla, completiamo il sistema aggiungendo 
-$$\dot{\angol{S_1 S_2 S_3}} = -\tau\frac{\angol{S_1S_2S_3}\angol{S_3I_4}}{\angol{S_3}}.$$
- 
- Se non avessimo usato le chiusure avremmo dovuto scrivere equazioni per 
-\begin{itemize}
-	\item Nodi: $\angol{S_1},\, \angol{I_1}, \, \angol{S_2},\, \angol{I_2}, \,\angol{S_3},\, \angol{I_3}, \,\angol{S_4},\, \angol{I_4}.$
-	\item Coppie: 
-$  \angol{S_1I_2}. \,
-	\angol{S_1I_3}. \,
-	\angol{I_1S_2}. \,
-	\angol{S_2I_3}. \,
-	\angol{I_1S_3}. \,
-	\angol{I_2S_3}. \,
-	\angol{S_3I_4}. \,
-	\angol{I_3S_4}.$
-	\item Triple: $ \angol{S_1S_2I_3}, \,\angol{ S_1I_2I_3}, \, \angol{S_1I_2S_3}, \, \angol{I_1S_2I_3}, \, \angol{I_1I_2S_3}, \, \angol{I_1S_3I_4}, \, \angol{I_2S_3I_4}, \, \angol{I_2S_3S_4},$\\
-	\textcolor{white}{Triple:} $\angol{I_1S_3S_4}, \, \angol{S_2S_3S_4}, \, \angol{S_1S_3I_4}.$
-	 \item Quadruple: $\angol{I_1I_2S_3I_4},\,
-\angol{S_1I_2S_3I_4},\,
-\angol{I_1S_2S_3I_4},\,
-\angol{I_1I_2S_3S_4},\,
-\angol{S_1I_2S_3I_4}$.
-\end{itemize}
-Senza usare le chiusure avremmo  $35$ variabili, usando le chiusure riusciamo, invece, a scrivere un sistema esatto con $27$ equazioni.
-
-
-
- 

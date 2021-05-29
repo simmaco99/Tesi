@@ -1,0 +1,204 @@
+\subsection{Chiusura al livello delle triple}
+\lipsum[6-10]
+\subsection{Approccio generale alla chiusura}
+In questa sezione ci domanderemo se sia possibile trovare una rappresentazione con un numero minore di variabili che sia pi\`u accurata o,  meglio ancora, esatta.  Per farlo useremo delle propriet\`a di connessione del grafico.\\ \\
+Sia $G=(V,E)$ un grafo connesso.
+\begin{itemize}
+\item Diremo che $v\in V$ \`e un \textit{cut-vertex} (vertice tagliato) se il grafo senza il nodo $v$ risulta sconnesso.
+\item Diremo che $e\in E$ \`e un \textit{ponte} se il grafo $G'=(V, E\backslash\{e\})$ risulta sconnesso.
+\end{itemize}
+Per un esempio di cut-vertex si guardi la Figura~\ref{fig::cut-vertex}.
+\begin{figure}[!h]
+\centering
+\subfloat[]{
+\begin{tikzpicture}[scale=0.8]
+
+	\Vertex[y=0]{1}
+	\Vertex[x=2,y=0,label=]{2} 
+	
+	\Vertex[x=1,y=-1.73,label=1]{3}
+	\Vertex[x=3,y=-1.73]{4}
+	
+	\Vertex[x=-1, y=-3.73]{15}
+	\Vertex[x=1,  y=-3.73,label=2]{5}
+	\Vertex[x=3,  y=-3.73,label=4]{6}
+	\Vertex[x=5,  y=-3.73,label=5]{7}
+	\Vertex[x=7,  y=-3.73]{8}
+
+    \Vertex[x=-1, y=-5.73]{14}
+    \Vertex[x=1,  y=-5.73,label=3]{9}
+	\Vertex[x=3,  y=-5.73]{10}
+    \Vertex[x=5,  y=-5.73]{11}
+    \Vertex[x=7,  y=-5.73]{12}
+   
+    \Vertex[x=0, y=-7.46]{16}
+    \Vertex[x=2, y=-7.46]{17}
+    
+\Edge(9)(16)\Edge(9)(17) \Edge(5)(15) \Edge(14)(15) \Edge(2)(3) \Edge(1)(2) \Edge(1)(3) \Edge(3)(4) \Edge(3)(5) \Edge(5)(4) \Edge(6)(4) \Edge(5)(6) \Edge(6)(7) \Edge(8)(7) \Edge(14)(9) \Edge(9)(5) \Edge(6)(10) \Edge(7)(11) \Edge(7)(12) \Edge(8)(11) \Edge(11)(12) \Edge(7)(11) \Edge(8)(12) \Edge(16)(17) \Edge(16)(9) \Edge(17)(9)
+          
+\end{tikzpicture}	}\\
+\subfloat[]{\begin{tikzpicture}[scale=0.8]
+	\Vertex[x=-2,y=0]{1}
+	\Vertex[x=0,y=0]{2}
+\Vertex[x=-1,y=-1.73,label=1]{33}
+	\Vertex[x=1,y=-1.73,label=1]{3}
+	\Vertex[x=3,y=-1.73]{4}
+
+	\Vertex[x=-3, y=-3.73,]{60}
+	\Vertex[x=-1, y=-3.73,label=2]{55}
+	\Vertex[x=1, y=-3.73,label=2]{5}
+	\Vertex[x=3, y=-3.73,label=4]{6}
+	\Vertex[x=5,y=-3.73,label=4]{66}
+	\Vertex[x=7, y=-3.73,label=5]{7}
+	
+	\Vertex[x=-3, y=-5.73]{14}
+    \Vertex[x=-1, y=-5.73,label=3]{20}
+	\Vertex[x=3,  y=-5.73,label=4]{10}
+	\Vertex[x=9,  y=-3.73,label=5]{11}
+	\Vertex[x=11,  y=-3.73]{12}
+
+    \Vertex[x=-1, y=-7.73,label=3]{9}
+    \Vertex[x=3,  y=-7.73]{67}
+	\Vertex[x=9,  y=-5.73]{77}
+    \Vertex[x=11,  y=-5.73]{88}
+     
+    \Vertex[x=-2, y=-9.46]{16}
+    \Vertex[x=0, y=-9.46]{17}
+    
+\Edge(2)(33) \Edge(1)(2) \Edge(1)(33) \Edge(3)(4) \Edge(3)(5) \Edge(5)(4) \Edge(6)(4) \Edge(5)(6) \Edge(66)(7) \Edge(14)(20) \Edge(55)(60) \Edge(55)(20) \Edge(60)(14) \Edge(67)(10) \Edge(77)(11) \Edge(77)(12) \Edge(88)(11) \Edge(88)(77) \Edge(11)(12) \Edge(77)(11) \Edge(88)(12) \Edge(16)(17) \Edge(16)(9) \Edge(17)(9)
+
+\end{tikzpicture}	
+}
+
+\caption[Cut-vertex e decomposizione in sottoreti]{(a) Un esempio di rete con $5$ cut-vertices e (b) la rete equivalente dopo la decomposizioni in sottoreti.}
+\label{fig::cut-vertex}
+\end{figure}
+\newpage
+
+Prima di presentare il teorema cardine del capitolo  
+ricordiamo per\`o, la seguente definizione.\\ \\
+Siano $A,B$ due eventi di uno spazio di probabilit\`a con $\mathbb{P}(B)>0$. Si dice \textit{probabilit\`a condizionale} di $A$ dato $B$ la quantit\`a.
+\begin{equation} 
+\label{p_con}
+\mathbb{P}(A\, \vert B) = \frac{ \mathbb{P}(A\cap B)}{\mathbb{P}(B)}.
+\end{equation}
+
+\begin{thm}\label{th_cut-vertex}
+Sia $G=(V,E)$ un grafo e $F=\{ v_1, \dots, v_k\}$ un sottoinsieme connesso di vertici e sia $v_i$ un suo cut-vertex. Poniamo  $$ F_1 = \{ v_1, \dots, v_{i-1}\} \text{ e }  F_2 =\{ v_{i+1}, \dots, v_k\}.$$ 
+Se ogni cammino che connette un nodo in $F_1$ ad uno in $F_2$ passa da $v_i$ allora: 
+\begin{equation}\label{cut}\angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i} Z_{v_{i+1}} \dots Z_{v_k}} = \angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i}} \angol{S_{v_i}  Z_{v_{i+1}} \dots Z_{v_k}}	
+\end{equation}
+dove $Z\in \{ S,I,R\}$. 
+\proof  
+Se $\angol{S_{v_i}}=0$ allora l'uguaglianza~\eqref{cut} risulta banalmente vera.\\ \\ 
+Sia $\angol{S_{v_i}}\neq 0 $. Utilizzando la definizione di  probabilit\`a condizionale~\eqref{p_con}
+$$ \angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i} Z_{v_{i+1}}\dots Z_{v_k}} = \angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i} Z_{v_{i+1}}\dots Z_{v_k}\, \vert \, S_{v_i}} \angol{S_{v_i}}.$$
+Notiamo che $$ \angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i} Z_{v_{i+1}}\dots Z_{v_k}\, \vert \, S_{v_i}} = \angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i} \, \vert\, S_{v_i}} \angol{S_{v_i}Z_{v_{i+1}}\dots Z_{v_k}\, \vert \, S_{v_i}},$$ 
+infatti, ogni percorso da $F_1$ a $F_2$ deve passare attraverso $v_i$. Ora  $v_i$ \`e suscettibile dunque la trasmissione non pu\`o avvenire tra un nodo in $F_1$ ed uno in $F_2$. Per tale motivo i due eventi presenti nel membro di sinistra sono indipendenti.\\
+Se riapplichiamo la definizione di probabilit\`a condizionale otteniamo  
+$$ \angol{ Z_{v_1} \dots Z_{v_{i-1}}S_{v_i} \, \vert S_{v_i}} =\frac{ \angol{Z_{v_1} \dots Z_{v_{i-1} S_{v_i}}}}{\angol{ S_{v_i}}},$$
+$$ \angol{ S_{v_i} Z_{v_{i+1}}\dots Z_{v_{k}} \, \vert S_{v_i}} =\frac{ \angol{S_{v_i}Z_{v_{i+1}} \dots Z_{v_{k}}}}{\angol{ S_{v_i}}}.$$
+da cui la tesi.
+\endproof
+\end{thm}
+Grazie a questo teorema siamo pronti per presentare l'algoritmo generale per le chiusure. Ecco i passi dell'algoritmo.
+\begin{enumerate}
+	\item Si trovano tutti i cut-vertices di $G$ e si denotino con $C=\{ v_{i_1}, \dots, v_{i_L}\}$. Tale procedimento pu\`o essere fatto con  un costo in tempo di $O(\vert E \vert + \vert V \vert)$ utilizzando una visita DFS. 
+	\item Si divide la rete originale in sottoreti connesse a due a due scollegate.
+	\item Tale procedura conduce ad una famiglia di sottoreti distinte $G_1, \dots, G_P$. Le sottoreti vengono create in modo che i cut-vertices siano mantenuti in tutte le sottoreti generate. Si veda la Figura~\ref{fig::cut-vertex}.
+	\item Per ogni nodo $i$ delle sottoreti, si ha 
+	\begin{equation*}
+	\begin{aligned}
+\dot{\angol{S_i}} &= -\tau \sum_j g_{ij} \angol{S_iI_j},\\
+\dot{\angol{I_i}} &= \tau \sum_j g_{ij} \angol{S_iI_j}-\gamma\angol{I_i},\\
+\dot{\angol{R_i}} &= 1 -\angol{S_i} -\angol{I_i}.
+		\end{aligned}
+	\end{equation*}
+	Si possono trovare  equazioni simili per le derivate di tutte le coppie che sorgono in queste equazioni. Queste coppie dipendono dalle triple. A loro volta le triple dipendono dalle quadruple. Si forma, cos\`i, una gerarchia di equazioni.
+	\item Nella gerarchia che si verr\`a a creare, se in un termine appaiono   vertici di pi\`u sottoreti allora in esso appare un cut-vertex suscettibile. Si usi il Teorema (\ref{th_cut-vertex}) per esprimere questo termine    in termine di altri pi\`u semplici.
+\end{enumerate}
+\newpage
+Concludiamo l'esempio, che abbiamo iniziato a inizio capitolo, applicando l'algoritmo appena presentato alla rete in Figura~\ref{fig::3nodi}.\\
+Come visto nel modello completo, per i singoli nodi si ha \begin{equation*}
+\begin{aligned}
+	\dot{\angol {S_1}} = & -\tau \angol{ S_1 I_2}, 
+\quad &
+	\dot{\angol {I_1}} = & \tau \angol{S_1 I_2}-\gamma \angol{I_1}, 
+\\
+	\dot{\angol {S_2}} = & -\tau \tonde{ \angol{ I_1 S_2} + \angol{I_3S_2}},	
+\quad & 
+	\dot{\angol {I_2}} = & \tau \tonde{ \angol{ I_1 S_2} + \angol{I_3S_2}}-\gamma \angol{I_2},
+\\
+	\dot{\angol {S_3}} = & -\tau \angol{ I_2 S_3},
+\quad & 
+	\dot{\angol {I_3}} = & \tau \angol{ I_2 S_3}-\gamma \angol{I_3}.
+ \end{aligned}
+\end{equation*}
+Nelle precedenti equazioni appaiono delle coppie: scriviamo le equazioni anche per loro.\\
+$$\dot{\angol{S_1I_2}}=\tau
+\angol{S_1S_2I_3} - \tonde{ \tau + \gamma}\angol{S_1 I_2} = \frac{
+\angol{S_1S_2}\angol{S_2I_3}}{\angol{S_2}} - \tonde{ \tau + \gamma}\angol{S_1 I_2}$$ 
+infatti  dal Teorema~\ref{th_cut-vertex} applicato al cut-vertex $2$ si ha  
+$$ \angol{S_1S_2I_3} = \frac{ \angol{S_1S_2}\angol{S_2I_3}}{\angol{S_2}}.$$ 
+In maniera analoga otteniamo 
+\begin{equation*}
+\begin{aligned}
+\dot{\angol{I_1S_2}}=&-\tau\frac{\angol{I_1S_2}\angol{S_2I_3}}{\angol{S_2}} - \tonde{ \tau + \gamma}\angol{I_1 S_2},
+\\
+\dot{\angol{S_2I_3}}=&-\tau\frac{\angol{I_1S_2}\angol{S_2I_3}}{\angol{S_2}} - \tonde{ \tau + \gamma}\angol{S_2 I_3},
+\\
+\dot{\angol{I_2S_3}}=&\spa\tau\frac{\angol{I_1S_2}\angol{S_2S_3}}{\angol{S_2}} - \tonde{ \tau + \gamma}\angol{I_2 S_3}.
+\end{aligned}
+\end{equation*}
+Le precedenti equazioni introducono altre due coppie. Aggiungendole otteniamo un modello chiuso: 
+\begin{equation*}
+\begin{aligned}
+\dot{\angol{S_1S_2}} = &- \tau\frac{\angol{S_1S_2}\angol{S_2I_3}}{\angol{S_2}},\\
+\dot{\angol{S_2S_3}}= & -\tau \frac{\angol{ I_1 S_2}\angol{S_2S_3}}{\angol{S_2}}.
+	\end{aligned}	
+\end{equation*}
+In questo esempio, non abbiamo ottenuto un notevole vantaggio, infatti abbiamo un sistema di $12$ equazioni mentre il  modello esatto~\eqref{3nodi} $13$ equazioni. Nell'esempio, che vedremo successivamente, potremmo apprezzare meglio il risparmio computazionale.\\ \\
+Andando a risolvere numericamente il sistema e tracciando le soluzioni otteniamo la  Figura~\ref{fig::3nodicut}. Possiamo notare, come previsto dalla teoria, che  che tali grafici sono identici a quelli ottenuti nel modello esteso ~\ref{fig::spe3nodi}. Inoltre, se andiamo a calcolare l'errore assoluto tra le soluzioni (Figura~\ref{fig::errori3nodi}) otteniamo che tali errori sono dell'ordine della tolleranza dell'integratore.
+\begin{figure}[!htb]
+\centering
+\subfloat[][Nodo 1.]
+	{\resizebox{0.45\textwidth}{!}{\input{Figure/Cut_Nodo1}}}
+ \quad 
+\subfloat[][Nodo 2.]
+{\resizebox{0.45\textwidth}{!}{ \input{Figure/Cut_Nodo2}}}
+\\
+\subfloat[][Nodo 3.]
+{\resizebox{0.45\textwidth}{!}
+{\input{Figure/Cut_Nodo3}}
+}
+\quad 
+\subfloat[][Prevalenza.]
+{\resizebox{0.45\textwidth}{!}{ \input{Figure/Prevalenza}}}
+\\
+
+\caption[Sperimentazione in MATLAB relativo al grafo~\ref{fig::3nodi}]{Divisione in classi nei singoli nodi (a)(b)(c) e grafico della prevalenza (d) per il grafo~\ref{fig::3nodi}.  Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy ottenuto usando il Teorema~\ref{th_cut-vertex} con condizioni iniziali  di stati puri~\eqref{statipuri}.  Abbiamo inoltre supposto l'indipendenza statica delle condizioni iniziali.\\
+Per la sperimentazioni abbiamo usato come parametri $\tau= 0.3$ e $\gamma =0.1 $.}\label{fig::3nodicut}
+
+\end{figure}
+\begin{figure}[!htb]
+	\centering
+	\subfloat[][Nodo 1.]
+	{\resizebox{0.45\textwidth}{!}{\input{Figure/Errore1}}}
+ \quad 
+\subfloat[][Nodo 2.]
+{\resizebox{0.45\textwidth}{!}{ \input{Figure/Errore2}}}
+\\
+\subfloat[][Nodo 3.]
+{\resizebox{0.45\textwidth}{!}
+{\input{Figure/Errore3}}}
+\caption[Errori assoluti relativi al grafo~\ref{fig::3nodi}] {Errore assoluto tra la soluzione del problema di Cauchy~\eqref{3nodi} e quello ottenuto utilizzando il Teorema~\ref{th_cut-vertex}.\\
+Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-9$ i due problemi di Cauchy con conduzioni iniziali di stati puri~\eqref{statipuri}. Abbiamo inoltre supposto l'indipendenza statica delle condizioni iniziali.\\
+Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$. }
+\label{fig::errori3nodi}
+\end{figure}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
+
