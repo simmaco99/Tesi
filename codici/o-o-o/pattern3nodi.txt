@@ -1,3 +1,4 @@
+%Numerazione delle equazioni per o-o-o con esatto
 \angol{S_1}
 \angol{I_1}
 \angol{S_2}
