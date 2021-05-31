@@ -161,7 +161,7 @@ Siamo riusciti a ridurre il numero di equazioni da $35$ a $27$.\\ \\ \\
 \end{aligned}
 \end{equation}
 Nella Figura~\ref{fig::plot_lollipop} sono riportati i grafici dello stato dei nodi in funzione del tempo sia per il modello esteso che per quello chiuso. Come ci aspettavamo dalla teoria i grafici ottenuti dai due modelli coincidono su ogni nodo.\\
-Per marcare ci\`o abbiamo calcolato gli errori assoluti tra le due soluzioni (Figura~\ref{fig::lollipop_errori}) ottenendo che tali errori sono dell'ordine della tolleranza dell'integratore
+Per marcare ci\`o abbiamo calcolato gli errori assoluti tra le due soluzioni (Figura~\ref{fig::lollipop_errori}) ottenendo che tali errori sono dell'ordine della tolleranza dell'integratore. Facendo la medesima cosa tra il modello esatto e quello chiuso alle coppie otteniamo che gli errori sono molto maggiori (Figura~\ref{fig::lollipop_errori_pair})
 
 \begin{figure}
 	
@@ -202,13 +202,36 @@ Per marcare ci\`o abbiamo calcolato gli errori assoluti tra le due soluzioni (Fi
 {\resizebox{0.45\textwidth}{!}
 {\input{Figure/Lollipop_Errore4}}
 }
-\caption[Errori assoluti relativi al grafo~\ref{fig::lollipop}] {Errore assoluto tra la soluzione del problema esteso  e quello chiuso.\\
+\caption[Errori assoluti relativi al grafo~\ref{fig::lollipop} tra il modello esatto e con cut-vertex] {Errore assoluto (in scala logaritmica) tra la soluzione del problema esteso  e quello chiuso.\\
 Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-9$ i due problemi di Cauchy con conduzioni iniziali di stati puri~\eqref{statipuri_lollipop}. Abbiamo inoltre supposto l'indipendenza statica delle condizioni iniziali.\\
 Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$.}
 \label{fig::lollipop_errori}
 
 \end{figure}
 
+
+\begin{figure}[!htb]
+	\subfloat[][Nodo 1]
+{\resizebox{0.45\textwidth}{!}{\input{Figure/Pair_Lollipop_Errore1}}}
+ \quad 
+\subfloat[][Nodo 2]
+{\resizebox{0.45\textwidth}{!}{ \input{Figure/Pair_Lollipop_Errore2}}}
+\\
+\subfloat[][Nodo 3]
+{\resizebox{0.45\textwidth}{!}
+{\input{Figure/Pair_Lollipop_Errore3}}
+}
+\quad
+\subfloat[][Nodo 4]
+{\resizebox{0.45\textwidth}{!}
+{\input{Figure/Pair_Lollipop_Errore4}}
+}
+\caption[Errori assoluti relativi al grafo~\ref{fig::lollipop} tra il modello esatto e quello chiuso alle coppie] {Errore assoluto (in scala logaritmica) tra la soluzione del problema esteso  e quello chiuso alle coppie.\\
+Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-9$ i due problemi di Cauchy con conduzioni iniziali di stati puri~\eqref{statipuri_lollipop}. Abbiamo inoltre supposto l'indipendenza statica delle condizioni iniziali.\\
+Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$.}
+\label{fig::lollipop_errori_pair}
+
+\end{figure}
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "main"

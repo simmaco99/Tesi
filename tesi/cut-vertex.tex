@@ -158,7 +158,7 @@ Le precedenti equazioni introducono altre due coppie. Aggiungendole otteniamo un
 	\end{aligned}	
 \end{equation*}
 In questo esempio, non abbiamo ottenuto un notevole vantaggio, infatti abbiamo un sistema di $12$ equazioni mentre il  modello esatto~\eqref{3nodi} $13$ equazioni. Nell'esempio, che vedremo successivamente, potremmo apprezzare meglio il risparmio computazionale.\\ \\
-Andando a risolvere numericamente il sistema e tracciando le soluzioni otteniamo la  Figura~\ref{fig::3nodicut}. Possiamo notare, come previsto dalla teoria, che  che tali grafici sono identici a quelli ottenuti nel modello esteso ~\ref{fig::spe3nodi}. Inoltre, se andiamo a calcolare l'errore assoluto tra le soluzioni (Figura~\ref{fig::errori3nodi}) otteniamo che tali errori sono dell'ordine della tolleranza dell'integratore.
+Andando a risolvere numericamente il sistema e tracciando le soluzioni otteniamo la  Figura~\ref{fig::3nodicut}. Possiamo notare, come previsto dalla teoria, che  che tali grafici sono identici a quelli ottenuti nel modello esteso ~\ref{fig::spe3nodi}. Inoltre, se andiamo a calcolare l'errore assoluto tra le soluzioni (Figura~\ref{fig::errori3nodi}) otteniamo che tali errori sono dell'ordine della tolleranza dell'integratore cosa che non accade confrontando il modello esatto con quello chiuso alle coppie (Figura~\ref{fig::errori3nodiPair}).
 \begin{figure}[!htb]
 \centering
 \subfloat[][Nodo 1.]
@@ -191,12 +191,28 @@ Per la sperimentazioni abbiamo usato come parametri $\tau= 0.3$ e $\gamma =0.1 $
 \subfloat[][Nodo 3.]
 {\resizebox{0.45\textwidth}{!}
 {\input{Figure/Errore3}}}
-\caption[Errori assoluti relativi al grafo~\ref{fig::3nodi}] {Errore assoluto tra la soluzione del problema di Cauchy~\eqref{3nodi} e quello ottenuto utilizzando il Teorema~\ref{th_cut-vertex}.\\
+\caption[Errori assoluti relativi al grafo~\ref{fig::3nodi} tra modello esatto e cut-vertex] {Errore assoluto (in scala logaritmica) tra la soluzione del problema di Cauchy~\eqref{3nodi} e quello ottenuto utilizzando il Teorema~\ref{th_cut-vertex}.\\
 Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-9$ i due problemi di Cauchy con conduzioni iniziali di stati puri~\eqref{statipuri}. Abbiamo inoltre supposto l'indipendenza statica delle condizioni iniziali.\\
 Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$. }
 \label{fig::errori3nodi}
 \end{figure}
 
+\begin{figure}[!htb]
+	\centering
+	\subfloat[][Nodo 1.]
+	{\resizebox{0.45\textwidth}{!}{\input{Figure/Pair_Errore1}}}
+ \quad 
+\subfloat[][Nodo 2.]
+{\resizebox{0.45\textwidth}{!}{ \input{Figure/Pair_Errore2}}}
+\\
+\subfloat[][Nodo 3.]
+{\resizebox{0.45\textwidth}{!}
+{\input{Figure/Pair_Errore3}}}
+\caption[Errori assoluti relativi al grafo~\ref{fig::3nodi} tra modello esatto e chiuso alle coppie] {Errore assoluto (in scala logaritmica) tra la soluzione del problema di Cauchy~\eqref{3nodi} e quello utilizzando la chiusura alle coppie.\\
+Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-9$ i due problemi di Cauchy con conduzioni iniziali di stati puri~\eqref{statipuri}. Abbiamo inoltre supposto l'indipendenza statica delle condizioni iniziali.\\
+Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$. }
+\label{fig::errori3nodiPair}
+\end{figure}
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "main"

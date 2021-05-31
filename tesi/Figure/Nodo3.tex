@@ -1,9 +1,5 @@
 % This file was created by matlab2tikz.
 %
-%The latest updates can be retrieved from
-%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
-%where you can also make suggestions and rate matlab2tikz.
-%
 \definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
 \definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
 \definecolor{mycolor3}{rgb}{0.92900,0.69400,0.12500}%
@@ -17,6 +13,8 @@ at={(1.011in,0.642in)},
 scale only axis,
 xmin=0,
 xmax=60,
+xlabel style={font=\color{white!15!black}},
+xlabel={T},
 ymin=0,
 ymax=1,
 axis background/.style={fill=white},
@@ -138,7 +136,7 @@ legend style={legend cell align=left, align=left, draw=white!15!black}
 59.6935297143247	0.437500002835375\\
 60	0.437500002541907\\
 };
-\addlegendentry{$\langle\text{ S}_\text{2}\rangle\text{(t)}$}
+\addlegendentry{$\langle\text{ S}_\text{3}\rangle\text{(t)}$}
 
 \addplot [color=mycolor2, line width=2.0pt]
   table[row sep=crcr]{%
@@ -256,7 +254,7 @@ legend style={legend cell align=left, align=left, draw=white!15!black}
 59.6935297143247	0.00255614480597557\\
 60	0.00247899512024932\\
 };
-\addlegendentry{$\langle\text{ I}_\text{2}\rangle\text{(t)}$}
+\addlegendentry{$\langle\text{ I}_\text{3}\rangle\text{(t)}$}
 
 \addplot [color=mycolor3, line width=2.0pt]
   table[row sep=crcr]{%
@@ -374,7 +372,7 @@ legend style={legend cell align=left, align=left, draw=white!15!black}
 59.6935297143247	0.559943852358649\\
 60	0.560021002337844\\
 };
-\addlegendentry{$\langle\text{ R}_\text{2}\rangle\text{(t)}$}
+\addlegendentry{$\langle\text{ R}_\text{3}\rangle\text{(t)}$}
 
 \end{axis}
 \end{tikzpicture}%
