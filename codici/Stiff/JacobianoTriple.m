@@ -5,12 +5,12 @@ function [J,variable,valori]=JacobianoTriple(G,X,Y,XY,XX,tau,gama)
     % XX coppie sani sani 
 
     %     Se non hai ancora compilato il programma c++
-    %     !g++ CreaCondizioni.cpp -o CreaCondizioni
+    %     !g++ Jacobiano.cpp -o Jacobiano 
     
     N=size(G,1);
     fprintf("Inserisci il seguente numero: %d\n",N);
     SS=zeros(N,N);
-    !./CreaCondizioni
+    !./Jacobiano
     Condizioni
     B= G.*coppie;
     somma = sum(B,2) - B;
@@ -43,10 +43,10 @@ function [J,variable,valori]=JacobianoTriple(G,X,Y,XY,XX,tau,gama)
     %Andiamo a sostituire le variabili simboliche introdotte con i valori inseriti dall'utente
     
     equation=[Sani;Infetti; SI; SaSa];
-    variable=[S;I; si;ss];  
+    variable=[S;I; si;ss];
     valori =[ X;Y; XY(B~=0);XX(bool)];
-    J=jacobian(equation,variable);
-      J=subs(J,variable, valori);
+     J=jacobian(equation,variable);
+    J=subs(J,variable, valori);
     
 end
 
