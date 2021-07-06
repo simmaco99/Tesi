@@ -1,10 +1,10 @@
-function J=JacobianoCoppie(G,X,Y,tau,gama)
+function J=JacobianoCoppie(G,t,y,tau,gamma)
 %X sani 
 %Y infetti ordinati in senso crescente dei vertici 
-N= size(G,1) ;
-J(1:N, 1:N) =  -tau * diag(G*Y) ;
-J(1:N, N+1:2*N)= -tau * X.* G; 
-J(N+1:2*N,:) = J(1:N,:);
-J(N+1:2*N, N+1:2*N) = - gama * eye(N) ;
+N=size(G,1);
+X=y(1:2:2*N);
+Y=y(2:2:2*N);
+v=diag(G*Y);
+A=X.*G;
+J=[-tau * v,-tau * A; -tau * v,-tau * A - gamma * speye(N) ];
 end
-
