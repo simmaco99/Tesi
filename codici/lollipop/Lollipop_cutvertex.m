@@ -1,5 +1,10 @@
-function f=LollipopCut_Vertex(t,y,tau,gamma)
-%per l'ordine delle variabile si guardi il file Patterncut-vertex
+function f=Lollipop_cutvertex(t,y,tau,gamma)
+% f=Lollipop_cutvertex(G,t,y,tau, gamma) restituisce la funzione che risolve il modello utilizzando il cut-vertex per la rete lollipop
+% t tempo (serve per usare le funzioni ode)
+% y soluzione (per l'ordine si guarda il file Lollipop_cutvertex.txt)
+% tau tasso di infezione 
+% gamma tasso di recupero
+
 f=zeros(26,1);
 f(1)=-tau*(y(10)+y(9));
 f(2)=tau*(y(9)+y(10))-gamma*y(2);

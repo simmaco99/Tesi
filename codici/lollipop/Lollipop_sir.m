@@ -1,5 +1,10 @@
-function f=LollipopEsatto(t,y,tau,gamma)
-%per l'ordine delle variabile si guardi il file Patterncutesatto
+function f=Lollipop_sir(t,y,tau,gamma)
+% f=Lollipop_cutvertex(G,t,y,tau, gamma) restituisce la funzione che risolve il modello esatto per la rete lollipop
+% t tempo (serve per usare le funzioni ode)
+% y soluzione (per l'ordine si guarda il file Lollipop_sir.txt)
+% tau tasso di infezione 
+% gamma tasso di recupero
+
 f=zeros(35,1);
 f(1)=-tau*(y(10)+y(9));
 f(5)=-tau*(y(13)+y(14)+y(15));

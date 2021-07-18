@@ -1,5 +1,10 @@
-function f=sir3nodi(t,y, tau, gamma) 
-%per l'ordine delle variabile leggi pattern3nodi.txt
+function f=3nodi_sir(t,y, tau, gamma) 
+% f=TreNodi_sir(G,t,y,tau, gamma) restituisce la funzione che risolve il modello esatto per la rete con o-o-o
+% t tempo (serve per usare le funzioni ode)
+% y soluzione (per l'ordine si guarda il file TreNodi_sir.txt)
+% tau tasso di infezione 
+% gamma tasso di recupero
+
 f=zeros(13,1);
 f(1)=-tau*y(7);
 f(2)=tau*y(7)-gamma*y(2);

@@ -1,5 +1,10 @@
-function f=sir3nodi_cutvertex(t,y, tau, gamma)
-%per l'ordine delle variabile leggi pattern3nodi_cut_vertex.txt
+function f=TreNodi_cutvertex(t,y, tau, gamma)
+% f=TreNodi_cutvertex(G,t,y,tau, gamma) restituisce la funzione che risolve il modello utilizzando il cut-vertex per la rete con o-o-o
+% t tempo (serve per usare le funzioni ode)
+% y soluzione (per l'ordine si guarda il file TreNodi_cutvertex.txt)
+% tau tasso di infezione 
+% gamma tasso di recupero
+
 f=zeros(12,1);
 f(1)=-tau *y(7);
 f(2)=tau *y(7)-gamma*y(2);

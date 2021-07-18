@@ -8,7 +8,7 @@ tau =0.3;
 gamma=0.1;
 
 G=[ 0 1 0 ; 1 0 1 ; 0 1 0 ];
-Gamma = gamma*ones(3,1);
+Gamma = sparse(diag(gamma*ones(3,1)));
 
 %Condizioni iniziali 
 %Modello esatto 
@@ -19,9 +19,10 @@ CutVertex([2 3 5 8 12])=1;
 CutPair=[ 0; 1; 1;0;1 ;0]; 
 
 
-[t,y]=ode45(@(t,y) sir3nodi(t,y,tau,gamma),[ 0 60], Esatto);
+[t,y]=ode45(@(t,y) TreNodi_sir(t,y,tau,gamma),[ 0 60], Esatto);
 [t,yc]=ode45(@(t,y) closePair(G,t,y,tau ,Gamma), t,CutPair,opts); %chiusura coppie
-[t,yv]=ode45(@(t,y)  sir3nodi_cutvertex(t,y,tau,gamma),t, CutVertex,opts); %cut-vertex
+[t,yv]=ode45(@(t,y)  TreNodi_cutvertex(t,y,tau,gamma),t, CutVertex,opts); %cut-vertex
+[t,ycc]=ode45(@(t,y)  closeTriple(G,t,y,tau,gamma),t, co,opts); %cut-vertex
 
 %Grafici per lo stato del modello esatto 
 for i=1:3

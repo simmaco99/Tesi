@@ -2,8 +2,8 @@ function f=closePair(G,t,y,tau, Gamma)
 % Data la matrice di Adiacenza delle rete crea la funzione che serve per
 % risolvere l'ode chiuso alle coppie
 % G matrice di afiacenza
-% tau fattore di contagio 
-% Gamma vettore dei tassi di recupero gamma_1 , ... gamma_n
+% tau fattore di infezione 
+% Gamma vettore dei tassi di rimozione gamma_1 , ... gamma_n
 
 Gamma= diag(Gamma);
 
