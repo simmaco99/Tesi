@@ -1,9 +1,7 @@
 \documentclass[12pt,a4paper,twoside]{report}
-
 \input{Preambolo}
 % Comando per il testo riempitivo: rimuovere prima della fine
 \usepackage{lipsum}
-
 \begin{document}
 
 \begin{titlepage}
@@ -25,8 +23,9 @@
 
 \begin{minipage}[t]{0.47\textwidth}
 	{\large{\bf Relatore:\\Dott. Fabio Durastante}}
-\end{minipage}\hfill\begin{minipage}[t]{0.47\textwidth}\raggedleft
-	{\large{\bf Candidato:\\Simmaco Di Lillo\\ }}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.47\textwidth}\raggedleft
+	{\large{\bf Candidato:\\Simmaco Di Lillo\\\''}}
 \end{minipage}
 
 \vfill
@@ -39,6 +38,7 @@
 \addcontentsline{toc}{chapter}{Sommario}
 % Da scrivere alla fine, un sommario breve del contenuto finale della tesi
 \cite{KISS}
+
 \end{abstract}
 \include{SIR}
 \include{Grafi}
