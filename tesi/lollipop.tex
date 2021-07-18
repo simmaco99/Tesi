@@ -13,7 +13,7 @@ In questa sezione andremo  a ricavarci le equazioni per la rete in Figura~\ref{f
 \caption[Lollipop ]{Il network lollipop.}
 \label{fig::lollipop}
 \end{figure}
-\subsection{Modello esteso}
+\subsection{Modello esteso}\label{lollipop_completo}
 Le equazioni per i singoli nodi sono:
  \begin{equation*}
  \begin{aligned}
@@ -146,18 +146,18 @@ Con considerazioni analoghe otteniamo
 $$\dot{\angol{S_1 S_2 S_3}} = -\tau\frac{\angol{S_1S_2S_3}\angol{S_3I_4}}{\angol{S_3}}.$$
  
 Siamo riusciti a ridurre il numero di equazioni da $35$ a $27$.\\ \\ \\
- Andiamo a risolvere numericamente i due sistemi con condizioni iniziali a partire da uno stato puro ($1$ certamente infetto e $2,3,4$ certamente sani):
+ Andiamo a risolvere numericamente i due sistemi con condizioni iniziali a partire da uno stato puro ($4$ certamente infetto e $1,2,3$ certamente sani):
 \begin{equation}
 \label{statipuri_lollipop}
 \begin{aligned}
-\angol{S_1}(0) =& 0, \\
-\angol{I_1}(0) =& 1,\\
+\angol{S_1}(0) =& 1, \\
+\angol{I_1}(0) =& 0,\\
 \angol{S_2}(0) = &1, \\
 \angol{I_2}(0) = &0,\\
 \angol{S_3}(0) = &1, \\
 \angol{I_3}(0) = &0,\\
-\angol{S_4}(0) =& 1, \\
-\angol{I_4}(0) = &0.
+\angol{S_4}(0) =& 0, \\
+\angol{I_4}(0) = &1.
 \end{aligned}
 \end{equation}
 Nella Figura~\ref{fig::plot_lollipop} sono riportati i grafici dello stato dei nodi in funzione del tempo sia per il modello esteso che per quello chiuso. Come ci aspettavamo dalla teoria i grafici ottenuti dai due modelli coincidono su ogni nodo.\\
