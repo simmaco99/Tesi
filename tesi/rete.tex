@@ -1,0 +1,61 @@
+\chapter{Esempi su reti reali}
+\section{Minnesota}
+In questa sezione, andremo a simulare un epidemia su una rete reale: la rete stradale del Minnesota in Figura~\ref{fig::minesota}.\\
+Per prima cosa abbiamo indagato come  i tassi d'infezione e di recupero modifichino la stiffness (vedi~\ref{stiff}) del modello chiuso alle coppie e alle triple.\\
+Per indagare ci\`o abbiamo fatto variare i parametri di $\tau$ e $\gamma$ e abbiamo confrontato il numero d'iterazione delle funzioni ode45 e ode15s (Figura~\ref{fig::minnesota_lenght}). Per tutti i parametri la funzione ode15s impiega molte meno iterazioni, dunque il modello \`e stiff. Un'altra conferma di ci\`o ci viene dato anche calcolando il rapporto di stiff (Figura~\ref{fig::minnesota_ratiostiff}).\\ \\ 
+
+Ci siamo anche chiesti come variasse la prevalenza, cambiando le condizioni inziali. In Figura~\ref{fig::minnesota_prevalenza} si osserva come, aumentando il grado del nodo in cui ``parte" l'epidemia, si velocizza il tempo per arrivare al picco. Inoltre notiamo che il picco rimane pressappoco uguale sia che si scelga un nodo di grado $1$ che uno di grado $5$ 
+\begin{figure}[htb]
+\includegraphics[scale=0.8]{Figure/minnesota}
+	\caption{Grafico della rete stradale del Minnesota}
+	\label{fig::minnesota}
+\end{figure}
+\begin{figure}[ht]
+\centering
+\subfloat[][$\gamma=0.10$]
+{\resizebox{0.45\textwidth}{!}{\input{Figure/minnesota_10}}}
+ \quad 
+\subfloat[][$\gamma=0.30$]
+{\resizebox{0.45\textwidth}{!}{ \input{Figure/minnesota_30}}}
+\\
+\subfloat[][$\gamma=0.50$]
+{\resizebox{0.45\textwidth}{!}
+{\input{Figure/minnesota_50}}}
+\quad
+\subfloat[][$\gamma=0.70$]
+{\resizebox{0.45\textwidth}{!}
+{\input{Figure/minnesota_70}}
+}
+\caption[Numero d'iterazione di ode45 e ode15  sulla rete stradale del Minnesota al variare dei parametri]{Numero d'iterazione di ode45 e ode15  sulla rete stradale del Minnesota al variare dei parametri.\\Per ottenere i grafici abbiamo risolto numericamente,  usando gli integratori ode45 e ode15s,  il problema chiuso alle coppie con condizioni iniziali  di stati puri ($1$ sicuramente infetto, gli altri nodi sicuramente sani) per la rete~\ref{fig::minnesota}.\\
+Per la sperimentazioni abbiamo usato timespan $[0 30]$}
+\label{fig::minnesota_lenght}
+\end{figure}
+\begin{figure}[ht]
+\centering
+\subfloat[][$\gamma=0.10$]
+{\resizebox{0.45\textwidth}{!}{\input{Figure/minnesota_indice_10}}}
+ \quad 
+\subfloat[][$\gamma=0.30$]
+{\resizebox{0.45\textwidth}{!}{ \input{Figure/minnesota_indice_30}}}
+\\
+\subfloat[][$\gamma=0.50$]
+{\resizebox{0.45\textwidth}{!}
+{\input{Figure/minnesota_indice_50}}}
+\quad
+\subfloat[][$\gamma=0.70$]
+{\resizebox{0.45\textwidth}{!}
+{\input{Figure/minnesota_indice_70}}
+}
+\caption[Stiff ratio alle condizioni iniziali sulla rete stradale del Minnesota al variare dei parametri ]{Stiff ratio calcolato alle condizioni iniziali:  stati puri ($1$ sicuramente infetto, gli altri nodi sicuramente sani) al variare dei parametri $\tau$ e $\gamma$.\\ Per ottenere i grafici abbiamo calcolato il rapporto tra l'autovalore di modulo massimo e quello minimo del jacobiano, calcolato alle condizioni iniziali, del modello chiuso alle coppie.\\
+Per la sperimentazioni abbiamo calcolato numericamente gli autovalori del Jacobiano usando il comando eig di MATLAB}
+\label{fig::minnesota_ratiostiff}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=0.45]{Figure/minnesota_prevalenza}
+\caption[Grafico della prevalenza al variare del grado del nodo inizialmente infetto.]{Grafico della prevalenza al variare del grado del nodo inizialmente infetto.\\ Per ottenere i grafici abbiamo risolto numericamente, usando MATLAB, cinque problema di Cauchy ottenuti dal modello chiuso alle coppie.\\
+Per le condizioni iniziali abbiamo preso ogni volta un nodo certamente infetto (con grado diverso e tutti gli altri nodi certamente sani).\\
+Per la sperimentazione abbiamo utilizzato come parametri $\tau=0.3$ e $\gamma=0.1$}
+\label{fig::minnesota_prevalenza}
+\end{figure}
