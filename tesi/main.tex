@@ -2,6 +2,7 @@
 \input{Preambolo}
 % Comando per il testo riempitivo: rimuovere prima della fine
 \usepackage{lipsum}
+\usepackage{epigraph}
 \begin{document}
 
 \begin{titlepage}
@@ -25,7 +26,7 @@
 	{\large{\bf Relatore:\\Dott. Fabio Durastante}}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.47\textwidth}\raggedleft
-	{\large{\bf Candidato:\\Simmaco Di Lillo\\\''}}
+	{\large{\bf Candidato:\\Simmaco Di Lillo}}
 \end{minipage}
 
 \vfill
@@ -34,25 +35,25 @@
 
 \end{titlepage}
 
-\begin{abstract}
-\addcontentsline{toc}{chapter}{Sommario}
-% Da scrivere alla fine, un sommario breve del contenuto finale della tesi
-\cite{KISS}
+\addcontentsline{toc}{chapter}{Introduzione}
+\chapter*{Introduzione}
+\epigraph{Mi auguro solo che in una questione che rigurda cos\`i da vicino il bene dell'umanit\`a, si decida con la piena consapevolezza che un po' di analisi e di calcolo possono fornire.}{D. Bernoulli}
 
-\end{abstract}
+Il tema della dinamica delle malattie infettive \`e stato ed \`e uno delle pi\`u ricche aree di applicazione della matematica in ambito biologico.  Le epidemie hanno  da sempre afflitto il genere umano.  DaTucidide e Lucrezio che ci hanno raccontato,  con molta tragicit\`a,  dell' epidemia che nel 430 a.C.  colp\`i la citt\`a di Atene.; alla  peste,  chiamata "morte nera",   che terrorizz\`o l'Europa dal 1347 al 1352 producendo $20$ milioni di vittime~\cite{ujvari2020storia} e  la diminuzione di  un terzo della popolazione del continente~\cite{alchon2003pest}.  In epoche pi\`u recenti il colera,  l'influenza spagnola,  l'influenza suina e molte altre lungo i  secoli fino ad arrivare ai giorni nostri con la pandemia di COVID-19.\\ \\
+La formulazione di un modello matematico nello studio di una malattia \`e utile a chiarificare le ipotesi, le variabili e i parametri in gioco con il fine di valutare i possibili effetti della malattia sulla popolazione. Tali analisi rendono possibili importanti scelte sull'immunizzazione (vaccinazione,  chiusure,  terapie,  ...) e sulla distribuzione di risorse.\\ Storicamente,  la prima trattazione matematica in ambito   epidemiologico \`e attribuita  a Daniel Bernoulli, il quale,  servendosi di un'argomentazione teorica basata sulla crescita esponenziale,  mostr\`o i  vantaggi possibili ottenibili da una vaccinazione preventiva~\cite{Bernoulli}. L'interesse del matematico  francese,  per il vaiolo,  deriva dal fatto che verso la fine del diciottesimo secolo,  questa malattia era  un'emergenza molto attuale: in Europa era la prima causa di morte con $400.000$ decessi annui~\cite{VAIOLO} e aveva colpito pesantemente anche la famiglia del re Luigi XIV.\\ \\
+Attualmente il paradigma di riferimento per la descrizione matematica delle epidemie \`e il modello proposto nel 1927 dagli scienziati scozzesi William O. Kermack e Anderson G. McKendrick~\cite{kermack}.  Tale modello,  che verr\`a analizzato  nel primo capitolo,  riusc\`i a spiegare la rapida crescita e successiva decrescita del numero di infetti osservabili in alcune epidemie.\\ 
+Nella formulazione di un modello diviene, inoltre,  cruciale la rappresentazione matematica  della ``rete dei contatti"; nel secondo capitolo,  riprendendo il lavoro svolto da Kiss~
+\cite{KISS},  useremo la teoria dei grafi per applicare  il modello di Kermack-McKendrick a delle reti sociali.\\
+Infine,  nel terzo capitolo,  effettueremo delle sperimentazioni  numeriche su delle reti reali mettendo in pratica quanto esposto nel capitolo precedente.\\ \\
+Tutti i codici utilizzati nella tesi sono scaricabili dal  repository al link:~\url{link}
+
 \include{SIR}
 \include{Grafi}
 \include{o-o-o}
 \include{Chiusure}
 \include{cut-vertex}
 \include{lollipop}
-\chapter{Integrazione numerica del sistema di ODE}\label{ode}
-\lipsum[6-7]
-
-\section{Esempi numerici}
-
-\lipsum[8-10]
-
+\include{rete}
 \chapter*{Conclusioni}
 \addcontentsline{toc}{chapter}{Conclusioni}
 
