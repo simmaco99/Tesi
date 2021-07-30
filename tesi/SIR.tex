@@ -116,7 +116,7 @@ $$
 \subsection{Un esempio}
 Analizziamo i dati della peste bubonica del $1665-66$ nel villaggio di Eyam in Inghilterra~\cite{raggett1982stochastic}. \\
 I membri del villaggio hanno annotato giorno per giorno il numero di decessi. Per appianare alcune significative variazioni giornaliera nel tasso di mortalit\`a,  Raggett~\cite{raggett1982stochastic} ha raccolto  i dati con una cadenza di $15 \frac{1}{2}$ giorni a partire dal $18$ Giugno del $1666$ (vedi Tabella~\ref{table::1}).
-\begin{table}[!h]
+\begin{table}[!ht]
 \centering
 \caption{Popolazione di deceduti e rimossi.}
 \label{table::1}
@@ -142,7 +142,7 @@ Prendendo come periodo medio di infezione  $11$ giorni, possiamo stimare il nume
 Sfruttando la relazione 
 $$ N = S(t) + I(t) + R(t),$$ 
 otteniamo la Tabella~\ref{table::2}.
-\begin{table}[!h]
+\begin{table}[!ht]
 \centering
 \caption{Numero di suscettibili ed infetti. Dati reali.}
 
@@ -168,8 +168,8 @@ Ora sfruttando ~\eqref{rel_finale} otteniamo $\frac{\alpha}{\beta} \simeq 159$.
 \newpage
 
 Simulando il modello~\eqref{SI} con condizioni iniziali $S(0) = 254$ e  $I(0)=7$,   utilizzando come parametri $\alpha =2.73 $ e $\beta  = 0.0178 $ troviamo i risultati in Tabella~\ref{table::3} e i grafici di $S,I$ e $R$ come funzioni del tempo (Figura~
-\ref{fig::sirsemplice}(a)).\\ Si veda il Capitolo~\ref{ode} per i dettagli riguardo la simulazione.\\ \\
-La Figura~\ref{fig::sirsemplice}(b) mostra i punti reali insieme al ritratto di fase per il modello~\eqref{SI}: notiamo che i  dati effettivi sono notevolmente vicini alle previsioni ottenute. \begin{table}[h]
+\ref{fig::sirsemplice}(a)).\\  \\
+La Figura~\ref{fig::sirsemplice}(b) mostra i punti reali insieme al ritratto di fase per il modello~\eqref{SI}: notiamo che i  dati effettivi sono notevolmente vicini alle previsioni ottenute. \begin{table}[ht]
 \centering
 \caption{Numero di suscettibili ed infetti. Dati sperimentali.}
 $S(0) = 254$ $I(0) = 7$ e $N = 261$ \\
@@ -190,7 +190,7 @@ Data (1666) & S & I\\
 \end{tabular}
 \end{table}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \subfloat[][]{
 \centering
