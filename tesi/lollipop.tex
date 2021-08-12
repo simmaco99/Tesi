@@ -1,5 +1,5 @@
 \section{Un esempio completo}
-In questa sezione andremo  a ricavarci le equazioni per la rete in Figura~\ref{fig::lollipop} sia usando il modello esteso che attraverso l'uso dei cut-vertex.
+In questa sezione andremo  a ricavare le equazioni per la rete in Figura~\ref{fig::lollipop} sia usando il modello esteso che attraverso l'uso dei cut-vertex.
 \begin{figure}[!ht]
 \centering
 \begin{tikzpicture}[scale=0.8]
@@ -142,13 +142,12 @@ Con considerazioni analoghe otteniamo
 \dot{\angol{I_1I_2S_3}} =&\spa\tau \tonde{  \angol{S_1I_2S_3}+ \angol{I_1S_2S_3} - \frac{\angol{I_1I_2S_3}\angol{S_3I_4}}{\angol{S_3}}} -2\tonde{ \tau + \gamma} \angol{I_1I_2S_3}.
  	\end{aligned}
  	\end{equation*}
- Scrivendo queste equazioni appare una nuova tripla, completiamo il sistema aggiungendo 
+ Scrivendo queste equazioni appare una nuova tripla. Completiamo il sistema aggiungendo l'equazione mancante: 
 $$\dot{\angol{S_1 S_2 S_3}} = -\tau\frac{\angol{S_1S_2S_3}\angol{S_3I_4}}{\angol{S_3}}.$$
  
 Siamo riusciti a ridurre il numero di equazioni da $35$ a $27$.\\ \\ \\
  Andiamo a risolvere numericamente i due sistemi con condizioni iniziali a partire da uno stato puro ($4$ certamente infetto e $1,2,3$ certamente sani):
 \begin{equation}
-\label{statipuri_lollipop}
 \begin{aligned}
 \angol{S_1}(0) =& 1, \\
 \angol{I_1}(0) =& 0,\\
@@ -159,9 +158,10 @@ Siamo riusciti a ridurre il numero di equazioni da $35$ a $27$.\\ \\ \\
 \angol{S_4}(0) =& 0, \\
 \angol{I_4}(0) = &1.
 \end{aligned}
+\label{statipuri_lollipop}
 \end{equation}
 Nella Figura~\ref{fig::plot_lollipop} sono riportati i grafici dello stato dei nodi in funzione del tempo sia per il modello esteso che per quello chiuso. Come ci aspettavamo dalla teoria i grafici ottenuti dai due modelli coincidono su ogni nodo.\\
-Per marcare ci\`o abbiamo calcolato gli errori assoluti tra le due soluzioni (Figura~\ref{fig::lollipop_errori}) ottenendo che tali errori sono dell'ordine della tolleranza dell'integratore. Facendo la medesima cosa tra il modello esatto e quello chiuso alle coppie otteniamo che gli errori sono molto maggiori (Figura~\ref{fig::lollipop_errori_pair})
+Per marcare ci\`o abbiamo calcolato gli errori assoluti tra le due soluzioni (Figura~\ref{fig::lollipop_errori}) ottenendo che tali errori sono dell'ordine della tolleranza dell'integratore. Facendo la medesima cosa tra il modello esatto e quello chiuso alle coppie otteniamo che gli errori sono molto maggiori (Figura~\ref{fig::lollipop_errori_pair}).
 
 \begin{figure}
 	
@@ -182,7 +182,7 @@ Per marcare ci\`o abbiamo calcolato gli errori assoluti tra le due soluzioni (Fi
 {\input{Figure/Lollipop_Nodo4}}
 }
 \caption[Sperimentazione in MATLAB relativo al grafo~\ref{fig::lollipop}]{Divisione in classe dei singoli nodi per il grafo~\ref{fig::lollipop}.\\
-	Per ottenere i grafici abbiamo risolto numericamente, usando MATLAB, i due problemi di Cauchy con condizioni iniziali di stati puri~\eqref{statipuri_lollipop}. Abbiamo inoltre supposto l'indipendenza statica delle condizioni iniziali.\\
+	Per ottenere i grafici abbiamo risolto numericamente, usando MATLAB, i due problemi di Cauchy con condizioni iniziali di stati puri~\eqref{statipuri_lollipop}. Abbiamo inoltre supposto l'indipendenza statica di tali condizioni iniziali.\\
 	Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$.}	\label{fig::plot_lollipop}
 \end{figure}
 
@@ -227,7 +227,7 @@ Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1
 {\input{Figure/Pair_Lollipop_Errore4}}
 }
 \caption[Errori assoluti relativi al grafo~\ref{fig::lollipop} tra il modello esatto e quello chiuso alle coppie] {Errore assoluto (in scala logaritmica) tra la soluzione del problema esteso  e quello chiuso alle coppie.\\
-Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-9$ i due problemi di Cauchy con conduzioni iniziali di stati puri~\eqref{statipuri_lollipop}. Abbiamo inoltre supposto l'indipendenza statica delle condizioni iniziali.\\
+Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-9$ i due problemi di Cauchy con condizioni iniziali di stati puri~\eqref{statipuri_lollipop}. Abbiamo inoltre supposto l'indipendenza statica di tali condizioni iniziali.\\
 Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$.}
 \label{fig::lollipop_errori_pair}
 

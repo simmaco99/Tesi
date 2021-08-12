@@ -46,8 +46,7 @@ dove $\Gamma=diag(\gamma_1, \dots, \gamma_n)$ e il prodotto tra vettori \`e inte
 
 Nella Figura~\ref{fig::coppie3nodi} possiamo confrontare le soluzioni del modello esatto con l'approssimazione ottenuta  dall'indipendenza a livello delle coppie per il grafo~\ref{fig::3nodi}. Per non appesantire i grafici abbiamo tracciato solamente  $\angol{S_i}$ e $\angol{I_i}$ in funzione  del tempo: $\angol{ R_i}$ pu\`o essere ricavata.  
 Dalla Figura~\ref{fig::coppie3nodi} (d) possiamo notare che il modello semplificato tende a sovrastimare la prevalenza della malattia. Tale sovrastima risulta sconveniente se volessimo usare queste  predizioni per intervenire con delle politiche di contenimento. Nelle sezioni successive ci domanderemo se sia possibile trovare una rappresentazione con un numero minore di variabili che sia pi\`u accurato o, meglio ancora, esatta. 
-
-\begin{figure}[!ht]
+\begin{figure}[!htb]
 	\centering
 \subfloat[][Nodo 2]
 {\resizebox{0.4\textwidth}{!}{\input{Figure/Coppie_Nodo_2_Sano}} 
@@ -60,11 +59,10 @@ Dalla Figura~\ref{fig::coppie3nodi} (d) possiamo notare che il modello semplific
 \\
 \subfloat[][Prevalenza.]
 {\resizebox{0.4\textwidth}{!}{\input{Figure/Coppie_Prevalenza}}}
-\caption[Confronto tra modello esatto e chiuso alle coppie per~\ref{fig::3nodi}]{Divisione in classi dei  singoli nodi (a)(b) e grafico della prevalenza (c). Non abbiamo riportato i grafici relativi al nodo $1$ poich\`e in questo caso il modello esatto e il modello chiuso alle coppie coincidono.Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy derivato dal modello esatto~\eqref{3nodi} (in blu) con quello approssimato  ottenuto   assumendo la chiusura alle coppie~\eqref{Chiuso_coppie} (in rosso).  Per entrambi i modelli le condizioni iniziali sono stati puri~\eqref{statipuri},  inoltre,  nel modello esatto abbiamo supposto l'indipendenza statica delle condizioni iniziali. Per la sperimentazione abbiamo usato come parametri $\tau=0.3$ e $\gamma=0.1$.\\}
+\caption[Confronto tra modello esatto e chiuso alle coppie per~\ref{fig::3nodi}]{Divisione in classi dei  singoli nodi (a)(b) e grafico della prevalenza (c). Non abbiamo riportato i grafici relativi al nodo $1$ poich\`e in questo caso il modello esatto e il modello chiuso alle coppie coincidono. Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy derivato dal modello esatto~\eqref{3nodi} (in blu) con quello approssimato  ottenuto   assumendo la chiusura alle coppie~\eqref{Chiuso_coppie} (in rosso).  Per entrambi i modelli le condizioni iniziali sono stati puri~\eqref{statipuri}, inoltre,  nel modello esatto abbiamo supposto l'indipendenza statica di tali condizioni iniziali. Per la sperimentazione abbiamo usato come parametri $\tau=0.3$ e $\gamma=0.1$.\\}
 \label{fig::coppie3nodi}
 \end{figure}
 
-\newpage
 \subsection{Chiusura al livello delle triple}
 In analogia a quanto fatto nel paragrafo precedente, cercheremo di sfruttare le chiusure per ottenere un modello chiuso (con un numero minore di equazioni rispetto a quello esatto) ottenendo un'approssimazione migliore del modello chiuso alle coppie.\\
 Per fare ci\`o sfruttiamo l'indipendenza a livello delle triple ovvero usiamo la seguente approssimazione 
@@ -89,27 +87,28 @@ otteniamo il seguente sistema chiuso
 		\dot{\angol{X_i}} = &-\tau \sum_{j=1\atop {j\neq i }} ^N g_{ij} \angol{X_i Y_j},\\
 	\dot{\angol{Y_i}} = &\spa\tau \sum_{j=1\atop {j\neq i }} ^N g_{ij} \angol{X_i Y_j} -\gamma \angol{I_i}, \\
 \dot{\angol{X_i Y_j}} =& \spa \tau \sum_{k=1\atop{k\neq i }}^N g_{jk} \frac{\angol{X_iX_j}\angol{X_jY_k}}{\angol{X_j}} - \tau \sum_{k=1\atop{k\neq j }}^N g_{ik} \frac{\angol{Y_kX_i}\angol{X_iY_j}}{\angol{X_i}}- \tau  g_{ij} \angol{X_i Y_j}  -\gamma \angol{X_i Y_j},\\
-\dot{\angol{X_i X_j}} = &-\tau \sum_{k=1\atop{k \neq j}}^N g_{ik} \frac{\angol{Y_kX_i}\angol{X_iX_j}}{\angol{X_i}} - \tau \angol{k=1\atop{k\neq i }}^N g_{jk} \frac{\angol{X_iX_j}\angol{X_jY_k}}{\angol{X_j}}.
+\dot{\angol{X_i X_j}} = &-\tau \sum_{k=1\atop{k \neq j}}^N g_{ik} \frac{\angol{Y_kX_i}\angol{X_iX_j}}{\angol{X_i}} - \tau \sum_{k=1\atop{k\neq i }}^N g_{jk} \frac{\angol{X_iX_j}\angol{X_jY_k}}{\angol{X_j}}.
 \end{aligned}
 \end{equation} 
 Andando a risolvere numericamente i $3$ modelli osserviamo, in Figura~\ref{fig::confronto_modelli}, come il modello chiuso alle triple approssima in modo migliore, rispetto a quello chiuso alle coppie, il modello esatto.
 \begin{figure}[!htb]
 	\centering
 \subfloat[][Nodo 1: sani e infetti]
-{\resizebox{0.45\textwidth}{!}{\input{Figure/Lollipop_Modelli_S1}}
-{\resizebox{0.45\textwidth}{!}{ \input{Figure/Lollipop_Modelli_I1}}}}
+{\resizebox{0.4\textwidth}{!}{\input{Figure/Lollipop_Modelli_S1}}
+{\resizebox{0.4\textwidth}{!}{ \input{Figure/Lollipop_Modelli_I1}}}}
 \\
 \subfloat[][Nodo 2: sani e infetti]
-{\resizebox{0.45\textwidth}{!}{\input{Figure/Lollipop_Modelli_S2}}
-{\resizebox{0.45\textwidth}{!}{ \input{Figure/Lollipop_Modelli_I2}}}} \\
+{\resizebox{0.4\textwidth}{!}{\input{Figure/Lollipop_Modelli_S2}}
+{\resizebox{0.4\textwidth}{!}{ \input{Figure/Lollipop_Modelli_I2}}}} \\
 \subfloat[][Nodo 3: sani e infetti]
-{\resizebox{0.45\textwidth}{!}{\input{Figure/Lollipop_Modelli_S3}}
-{\resizebox{0.45\textwidth}{!}{ \input{Figure/Lollipop_Modelli_I3}}}}
-\caption[Confronto tra il modello esatto, chiuso alle coppie e alle triple per il grafo~\ref{fig::lollipop}]{Divisione in classi dei singoli nodi per il grafo~\ref{fig::lollipop}. \\
+{\resizebox{0.4\textwidth}{!}{\input{Figure/Lollipop_Modelli_S3}}
+{\resizebox{0.4\textwidth}{!}{ \input{Figure/Lollipop_Modelli_I3}}}}
+\caption[Confronto tra il modello esatto, chiuso alle coppie e alle triple per il grafo~\ref{fig::lollipop}]
+{Divisione in classi dei singoli nodi per il grafo~\ref{fig::lollipop}.\\
 Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB, il problema di Cauchy derivato dal modello esatto~\eqref{lollipop_completo},  dal modello chiuso alle coppie~\eqref{Chiuso_coppie} e da quello alle triple~\eqref{Chiuso_triple}.
-Per i $3$ modelli le condizioni iniziali sono stati puri~\eqref{staipuri_lollipop}.Abbiamo, inoltre,  supposto l'indipendenza statica delle condizioni iniziali.
+Per i $3$ modelli le condizioni iniziali sono stati puri~\eqref{statipuri_lollipop}. Abbiamo, inoltre,  supposto l'indipendenza statica di tali condizioni iniziali.
 Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$.\\
-Non abbiamo riportato i grafici relativi al nodo $4$ poich\`e in questo caso i 3 modelli coincidevano (nei limiti della tolleranza della funzione ode45).\\}
+Non abbiamo riportato i grafici relativi al nodo $4$ poich\`e in questo caso i 3 modelli coincidevano (nei limiti della tolleranza della funzione ode45).}
 \label{fig::confronto_modelli}
 \end{figure}
 
