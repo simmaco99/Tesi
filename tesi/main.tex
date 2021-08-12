@@ -39,13 +39,12 @@
 \chapter*{Introduzione}
 \epigraph{Mi auguro solo che in una questione che rigurda cos\`i da vicino il bene dell'umanit\`a, si decida con la piena consapevolezza che un po' di analisi e di calcolo possono fornire.}{D. Bernoulli}
 
-Il tema della dinamica delle malattie infettive \`e stato ed \`e uno delle pi\`u ricche aree di applicazione della matematica in ambito biologico.  Le epidemie hanno  da sempre afflitto il genere umano.  DaTucidide e Lucrezio che ci hanno raccontato,  con molta tragicit\`a,  dell' epidemia che nel 430 a.C.  colp\`i la citt\`a di Atene.; alla  peste,  chiamata "morte nera",   che terrorizz\`o l'Europa dal 1347 al 1352 producendo $20$ milioni di vittime~\cite{ujvari2020storia} e  la diminuzione di  un terzo della popolazione del continente~\cite{alchon2003pest}.  In epoche pi\`u recenti il colera,  l'influenza spagnola,  l'influenza suina e molte altre lungo i  secoli fino ad arrivare ai giorni nostri con la pandemia di COVID-19.\\ \\
-La formulazione di un modello matematico nello studio di una malattia \`e utile a chiarificare le ipotesi, le variabili e i parametri in gioco con il fine di valutare i possibili effetti della malattia sulla popolazione. Tali analisi rendono possibili importanti scelte sull'immunizzazione (vaccinazione,  chiusure,  terapie,  ...) e sulla distribuzione di risorse.\\ Storicamente,  la prima trattazione matematica in ambito   epidemiologico \`e attribuita  a Daniel Bernoulli, il quale,  servendosi di un'argomentazione teorica basata sulla crescita esponenziale,  mostr\`o i  vantaggi possibili ottenibili da una vaccinazione preventiva~\cite{Bernoulli}. L'interesse del matematico  francese,  per il vaiolo,  deriva dal fatto che verso la fine del diciottesimo secolo,  questa malattia era  un'emergenza molto attuale: in Europa era la prima causa di morte con $400.000$ decessi annui~\cite{VAIOLO} e aveva colpito pesantemente anche la famiglia del re Luigi XIV.\\ \\
+Il tema della dinamica delle malattie infettive \`e stato ed \`e uno delle pi\`u ricche aree di applicazione della matematica in ambito biologico.  Le epidemie hanno  da sempre afflitto il genere umano.  Da Tucidide e Lucrezio che ci hanno raccontato,  con molta tragicit\`a,  dell' epidemia che nel 430 a.C.  colp\`i la citt\`a di Atene; alla  peste,  chiamata "morte nera",   che terrorizz\`o l'Europa dal 1347 al 1352 producendo $20$ milioni di vittime~\cite{ujvari2020storia} e  la diminuzione di  un terzo della popolazione del continente~\cite{alchon2003pest}.  In epoche pi\`u recenti il colera,  l'influenza spagnola,  l'influenza suina e molte altre lungo i  secoli fino ad arrivare ai giorni nostri con la pandemia di COVID-19.\\ \\
+La formulazione di un modello matematico nello studio di una malattia \`e utile a chiarificare le ipotesi, le variabili e i parametri in gioco con il fine di valutare i possibili effetti della malattia sulla popolazione. Tali analisi rendono possibili importanti scelte sull'immunizzazione (vaccinazione,  chiusure,  terapie,  ...) e sulla distribuzione di risorse.\\ Storicamente,  la prima trattazione matematica in ambito   epidemiologico \`e attribuita  a Daniel Bernoulli (1700-1782), il quale, servendosi di un'argomentazione teorica basata sulla crescita esponenziale,  mostr\`o i  vantaggi possibili ottenibili da una vaccinazione preventiva~\cite{Bernoulli}\footnote{Questo articolo \`e una revisione commentata dell'articolo originale di D. Bernoulli.}. L'interesse del matematico  francese  per il vaiolo, deriva dal fatto che verso la fine del diciottesimo secolo,  questa malattia era  un'emergenza molto attuale: in Europa era la prima causa di morte con $400.000$ decessi annui~\cite{VAIOLO} e aveva colpito pesantemente anche la famiglia del re Luigi XIV.\\ \\
 Attualmente il paradigma di riferimento per la descrizione matematica delle epidemie \`e il modello proposto nel 1927 dagli scienziati scozzesi William O. Kermack e Anderson G. McKendrick~\cite{kermack}.  Tale modello,  che verr\`a analizzato  nel primo capitolo,  riusc\`i a spiegare la rapida crescita e successiva decrescita del numero di infetti osservabili in alcune epidemie.\\ 
-Nella formulazione di un modello diviene, inoltre,  cruciale la rappresentazione matematica  della ``rete dei contatti"; nel secondo capitolo,  riprendendo il lavoro svolto da Kiss~
-\cite{KISS},  useremo la teoria dei grafi per applicare  il modello di Kermack-McKendrick a delle reti sociali.\\
+Nella formulazione di un modello, inoltre, diviene cruciale la rappresentazione matematica  della ``rete dei contatti"; nel secondo capitolo,  riprendendo il lavoro svolto da Kiss~\cite{KISS},  useremo la teoria dei grafi per applicare  il modello di Kermack-McKendrick a delle reti sociali.\\
 Infine,  nel terzo capitolo,  effettueremo delle sperimentazioni  numeriche su delle reti reali mettendo in pratica quanto esposto nel capitolo precedente.\\ \\
-Tutti i codici utilizzati nella tesi sono scaricabili dal  repository al link:~\url{link}
+Tutti i codici utilizzati nella tesi sono scaricabili dal  repository al link:~\url{link}.
 
 \include{SIR}
 \include{Grafi}
@@ -54,11 +53,25 @@ Tutti i codici utilizzati nella tesi sono scaricabili dal  repository al link:~\
 \include{cut-vertex}
 \include{lollipop}
 \include{rete}
+
+
 \chapter*{Conclusioni}
-\addcontentsline{toc}{chapter}{Conclusioni}
-
-\lipsum[11-14]
-
+ \addcontentsline{toc}{chapter}{Conclusioni}
+Concludiamo questa tesi sottolineando alcune limitazioni presenti nel modello SIR presentato.\\
+La suddivisione delle popolazione in tre compartimenti non garantisce una grande generalit\`a. Ad esempio, utilizzando questo modello non possiamo considerare il tempo di incubazione ovvero il periodo di tempo tra l'infezione e il momento in cui un individuo diventa infettivo (trasmette la malattia). Per ovviare a questo problema si pu\`o  considerare una generalizzazione del modello SIR: il modello  SEIR dove  abbiamo aggiunto la classe E degli ``esposti" ovvero degli infetti che  non sono infettivi. Le equazione~\eqref{SIR} diventano dunque 
+\begin{equation*}
+\begin{aligned}
+S' &= -\beta S I \\
+E' &= \beta S I  - \eta  E \\
+I' &= aE - \alpha I \\
+R' &=\alpha I 
+\end{aligned}
+\end{equation*}
+dove il periodo medio d'incubazione \`e $\eta^{-1}$.\\
+In analogia a quanto fatto nel secondo capitolo, potremmo estendere il modello SEIR ad una rete.\\
+\\
+Un altro aspetto limitante del modello SIR \`e che esso non tiene conto delle politiche di contenimento: il numero medio di contatti efficaci (contatti che provocano l'infezione) non pu\`o e non deve essere costante. Pensiamo, ad esempio, alle varie misure adottate per contrastare la diffusione di COVID-19 finalizzate a ridurre questo numero: lockdown, distanziamento sociale, uso delle mascherine, ...\\ \\
+Abbiamo visto il legame tra parametri e stiffness per la rete del Minnesota, sarebbe interessante investigare come varia questo legame per vari tipi di network sia reali che randomici: small-world, scale-free ... .\\
 \bibliography{references}
 \addcontentsline{toc}{chapter}{Bibliografia}
 \bibliographystyle{plain}
