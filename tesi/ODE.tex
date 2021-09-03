@@ -1,0 +1,158 @@
+\chapter{Integrazione numerica di ODE}
+In questa capitolo presenteremo alcuni  metodi utilizzabili per l'integrazione  di ODE .  Per la parte teorica abbiamo fatto riferimento al libro~\cite{LeVeque}. 
+Sia $f(t,u)$ la funzione
+$$ f:\, \R \times \R^n \to \R^n$$
+continua in $t$ e lipschitziana in $y$.\\
+Consideriamo il problema al valore iniziale per un sistema di $n$ equazioni ordinarie del primo ordine
+$$ \label{pb}\begin{cases} u'&= f(t,u) \text{ per } t>t_0\\
+ u(t_0) &= u_0	
+ \end{cases}$$ 
+Supponiamo, per semplicit\`a 
+ Sotto tali condizioni, della $f$, il problema di Cauchy~\eqref{pb} ammette una ed una sola soluzione $y(t)$, per $t\geq t_0$. 
+ \section{Metodi d'integrazione ad un passo}
+I metodi d'integrazione ad un passo sono una  classe  molto utilizzata per il calcolo numerico della soluzione di~\eqref{pb}. Tali metodi approssimano i valori della soluzione in corrispondenza di un insieme discreto di valori $t_0, t_1, \dots$; posto  $U^0 = u_0$  si calcolano $U^1, U^2, \dots$  in modo che $$U^n \approx u\left(t_n\right).$$ 
+In generale un metodo ad un passo ha la forma
+ $$ U^{n+1} = U^n   + h_{n+1} \Phi\left( t_n, y_n ,  h_{n+1},f\right).$$
+Tale metodo \`e caratterizzato dal fatto che il valore approssimato $U^{n+1}$ \`e ottenuto a partire da un solo valore precedente $U^n$.\\
+Sono detti metodi \textit{impliciti} quelli che richiedono di risolvere, ad ogni passo,  un sistema di equazioni per ricavare $U^{n+1}$.\\ \\
+L'\textit{errore locale di troncamento}  
+$$ \sigma(n) = u(t_n) -U^n $$ 
+\`e l'errore dovuto all'impiego del valore approssimato fornito dal modello.  
+
+ \subsection{Eulero esplicito}
+Fissato un numero $k$ di intervalli temporali, poniamo 
+$t_n = nk$.\\ 
+Noto $U^n$ per calcolare $U^{n+1}$ possiamo approssimare  il limite che definisce $u'\left(t_n\right)$:
+$$ \lim_{h\to 0^+} \frac{u\left(t_n + h\right) - u\left(t_n\right)}{h}$$ 
+con la quantit\`a 
+$$ D_+ U^n = \frac{U^{n+1}-U^n}{k}.$$
+Tale approssimazione ci permette di ottenere
+$$ f\left(U^n\right) = \frac{U^{n+1}-U^n}{k} \text{ per } n=0, 1, \dots, $$
+Utilizzando la seguente formula
+$$ U^{n+1} = k f\left(U^n\right) + U^n$$
+possiamo calcolare esplicitamente $U^{n+1}$
+\subsection{Eulero implicito }
+L'idea che sta dietro a questo metodo \`e simile a quella del metodo precedente.\\
+Approssimiamo il limite che definisce $u'\left(t_{n+1}\right)$ con
+$$ D_{-}U^{n+1} = \frac{ U^{n+1}-U^n}{k}.$$ 
+Dunque otteniamo 
+
+$$ \frac{ U^{n+1}-U^n}{k} = f\left(U^{n+1}\right)$$ 
+o 
+\begin{equation}
+	 U^{n+1} = U^n + k f\left(U^{n+1}\right).
+	 \label{imp_eulero}
+\end{equation}
+Per calcolare $U^{n+1}$ usando~\eqref{imp_eulero} occorre cercare uno zero di una funzione 
+$$ g(x) = x - kf(x) - U^n$$ 
+che, in generale, non \`e lineare. Un'approssimazione di tale  zero pu\`o essere trovata utilizzando un metodo di Newton.
+\subsection{Serie di Taylor}
+Il metodo di Eulero esplicito pu\`o essere derivato usando uno sviluppo di $u\left(t_{n+1}\right)$ in serie di Taylor  centrato in $u\left(t_n\right)$ troncato al secondo termine:
+$$ u\left(t_{n+1}\right) = u(t_n) + k u'\left(t_n\right) + O\left(k^2\right)$$ 
+sostituendo $u'\left(t_n\right)$ con $f\left(u\left(t_n\right),t_n\right)$.\\ \\
+Un metodo di ordine maggiore pu\`o essere derivato mantenendo pi\`u termine nella serie di Taylor: se tronchiamo lo sviluppo dopo i primi $p+1$ termini
+$$ u\left(t_{n+1}\right) \approx u\left(t_{n}\right) + ku'\left(t_{n}\right) + \frac{1}{2} k^2 u''\left(t_{n}\right) + \dots + \frac{1}{p!}k^p u^{(p)}\left(t_{n}\right)$$ 
+otteniamo un metodo di ordine $p$.\\ \\
+
+Il problema, di tale metodo, \`e che avendo a disposizione solamente
+$$ u'(t) = f(u(t),t)$$
+ dobbiamo calcolare le derivate superiori per differenziazione ripetuta della funzione $f$. Per esempio, possiamo calcolare 
+\begin{equation*}
+\label{der2}
+	\begin{aligned}
+	u''(t) =&\frac{\partial}{\partial u} f\left(u(t),t\right) \, u'(t) + 	\frac{\partial}{\partial t} f\left(u(t),t\right) =\\
+	=& \frac{\partial}{\partial u} f\left(u(t),t\right) \, f\left(u(t),t\right) + \frac{\partial}{\partial t} f\left(u(t),t\right).\end{aligned}
+\end{equation*}
+Tale metodo pu\`o originare espressioni molto disordinate che devono essere elaborate per ogni equazione.  Per questo motivo tale metodo nella pratica non viene utilizzato.
+\subsection{Runge Kutta}
+I metodi di Runge Kutta evitano gli inconvenienti emersi nel metodo precedente: le derivate successive vengono  approssimate calcolando la funzione $f$ in  opportuni istanti  nell'intervallo $\left(t_n , t_{n+1}\right)$.\\ \\
+Per presentare l'idea alla base di questa classe di metodi mostriamo come ottenere un metodo del secondo ordine.\\
+Poniamo 
+$$ \phi(t,u;h) = c_1 f(t,u) + c_2 f\left(t+ ha_2, \, y + hb_{21}f(t,u)\right)$$
+dove i coefficienti $a_2$, $b_{21}$, $c_1$ e $c_2$ sono da determinare in modo che il metodo abbia ordine $2$.  Confrontando gli sviluppi di Taylor della soluzione calcolata e di quella esatta ottenendo le condizioni 
+\begin{equation}
+\begin{aligned}
+c_1 + c_2 = 1\\
+c_1a_1= \frac{1}{2}\\
+c_2b_2 = \frac{1}{2}	.
+\end{aligned}
+\end{equation}
+dunque possiamo calcolare $U^{n+1}$ tramite la formula
+$$ U^{n+1} = U^n + k \phi\left(t_n,U^n;\,k\right)$$
+Il procedimento esposto  in precedenza pu\`o essere esteso in modo da utilizzare un qualsiasi numero $m$ di valutazione della funzione $f$.  In questo modo otterremo il metodo generale di Runge Kutta esplicito a $m$ stadi:
+\begin{equation}
+\begin{aligned}
+&h_1(t,u;\,k) = f(u,t) \\
+&h_r(t,u;\,k) = f\left( t + k a_r, u + h \sum_{s=1}^{r-1} b_{r,s} h_s\right) \text{ per } r = 2, \dots, m \\
+&\phi\left( t, u;\,k\right) = \sum_{r=1}^m c_r h_r(t,u)\\
+&U^{n+1}= U^n + h \phi\left( t_n, U^n;\,\right)\\
+\end{aligned}
+\end{equation}
+Un modo usuale di rappresentare tale metodo \`e sotto forma di tableau come fatto nella in Figura~\ref{fig::tableau}.\\ \\
+La maggior parte dei software per la risoluzione di ODE non utilizza un intervallo temporale fisso ma, piuttosto, lo regola durante il processo d'integrazione in modo da avere un controllo sull'errore.\\
+Un modo utilizzato  per stimare l'errore  \`e quello di confrontare le soluzioni con  due metodi diversi: uno di ordine $p$ ed un altro di ordine $p+1$ (o maggiore).In questo modo, se il passo \`e sufficientemente piccolo,  il metodo di ordine maggiore genera un'approssimazione migliore dell'altro.  La differenza tra le due soluzioni fornisce una stima sull'errore del metodo di ordine inferiore.\\
+Possiamo implementare questa strategia anche nei metodi di Runge Kutta.  Le soluzioni dei due metodi vengono prese semplicemente scegliendo semplicemente d vettori $c$ ; in questo modo si generano due cos\`i le due soluzioni.\\
+Questa versione del metodo di Runge Kutta viene implementata nella funzione ode45 di MATLAB di cui riportiamo il tableau (Figura~\ref{fig::ode45}). Tale tableau \`e ripreso da~\cite{ode_matlab}.
+\begin{figure}[!htb]
+$$\begin{array}{c|cccc}
+ 0 & \\
+ 
+ a_2 	& b_{2,1}	& 			& 			& 	\\
+ \vdots & \vdots 	& \ddots 	&			&	\\
+  a_m 	& b_{m,1}	& \dots		& b_{m,m-1}	&	\\
+  \hline
+		& c_1 		& \dots 	& \dots 	&c_m
+\end{array}$$
+	\caption{Tableau del metodo generale di Runge Kutta esplicito a $m$ stadi}	
+	\label{fig::tableau}
+\end{figure}
+\begin{figure}
+$$\begin{array}{c|ccccccc}
+0					&									&									&									&								&											&						&		\\ \\
+\frac{1}{5}	&	\frac{1}{5}				&									&									&								&											&						&		\\ \\
+\frac{3}{10}	&	\frac{3}{40}				&	\frac{9}{40}				&									&								&											&						&		\\ \\
+\frac{4}{5}	&	\frac{44}{45}			&	-\frac{56}{15}			&	\frac{32}{9}				&								&											&						&		\\ \\
+\frac{8}{9}	&	\frac{19372}{6561}	&	-\frac{25360}{2187}&	\frac{64448}{6561}	&	-\frac{212}{729}	&											&						&		\\ \\
+1					&	\frac{9017}{3168}	&	-\frac{355}{33}		&	\frac{46732}{5247}	&	\frac{49}{176}		&	-\frac{5103}{18656}		&						&		\\ \\
+1					&	\frac{35}{384}			&	0								&	\frac{500}{1113}		&	\frac{125}{192	}	&-\frac{2187}{6784}			&	\frac{11}{84}	&		\\	\\		
+\hline
+					&	\frac{35}{384}			&	0								&	\frac{500}{1113}		&	\frac{125}{192}	&-\frac{2187}{6784}			&	\frac{11}{84}	&	0	\\ \\
+				&	\frac{5179}{57600}	&	0						&	\frac{7571}{16695}	&	\frac{393}{640}		&	-\frac{92097}{339200}	&	\frac{187}{2100}	&	\frac{1}{40}
+\end{array}$$
+\caption{Tableau del metodi di Runge Kutta implementato dalla funzione ode45 di MATLAB}
+\label{fig::ode45}
+\end{figure}
+\section{Assoluta stabilit\`a}
+Consideriamo il problema modello 
+$$ \label{test}\begin{cases}y(t) = \lambda y(t) \\
+y\left(t_0\right) = 1
+\end{cases}
+$$
+dove $Re(\lambda) <0$.\\
+Di tale problema conosciamo la soluzione esatta:  $$y(t) = e^{\lambda t}.$$
+Diremo che un metodo numerico \`e \textit{assolutamente stabile} se 
+$$ \lim_{n\to + \infty} \left| u_n \right| = 0 $$ 
+Chiameremo  regione di assoluta stabilit\`a del metodo numerico 
+$$\mathcal{A}=\left\{ z = \lambda k \in \mathbb{C}\,\, :\,\, | u_n| \to 0 \text{ per } t_n \to +\infty\right\}$$ 
+Diremo che un metodo \`e $\mathcal{A}$-stabile se 
+$$ \mathcal{A}\supseteq \mathbb{C}^-$$
+ovvero se per $Re(\lambda)<0$ la condizione di assoluta stabilit\`a \`e verificata per ogni valore di $k$. \\ \\
+Il metodo di Eulero esplicito applicato al problema test~\eqref{test} produce
+$$ U^{n+1} = (1 + \lambda k) U^n$$
+dunque per ricorsione su $n$ otteniamo 
+$$ U^n = (1 + \lambda k)^n $$ 
+dunque il metodo \`e assolutamente stabile se $ | 1 + \lambda k |< 1$.  La regione di assolut\`a stabilit\`a \`e una palla (nel piano complesso) di raggio $1$ centrata in $(-1,0)$.\\ \\
+
+Il metodo di Eulero implicito  applicato al problema test~\eqref{test} produce 
+$$ U^{n+1} = \frac{1}{1-\lambda k} U^n$$
+dunque 
+$$ U^n = \frac{ 1}{\tonde{ 1 - \lambda k}^n}$$
+dunque il metodo \`e assolutamente stabile se $| 1 - \lambda k| >1$.
+\section{Stiffness}
+Dato il problema~\eqref{pb} definiamo il quoziente di stiffness nel punto~$\left(\overline{t},u\left(\overline{t}\right)\right)$  come il rapporto 
+ $$ \frac{ \max \vert\lambda_i \vert }{\min \vert \lambda_i \vert}$$ 
+ dove $\lambda_i$ sono gli autovalori della matrice Jacobiana del sistema calcolata nel punto  $\left(\overline{t},u\left(\overline{t}\right)\right)$.\\
+ Diremo che un problema \`e stiff se tale rapporto \`e molto pi\`u grande di $1$.\\
+Tale definizione formale presenta diverse limitazioni e non sempre caratterizza accuratamente i sistemi stiff.  Riportiamo una definizione di carattere pi\`u euristico dovuta a J.Lambert~\cite{lambert1991numerical} e qui tradotta in italiano:
+``Un sistema di equazioni differenziali ordinarie si dice stiff se, 
+approssimandolo con uno schema numerico che presenti una regione di assoluta stabilit\`a limitata, esso, per ogni dato iniziale, obbliga lo schema numerico ad impiegare un passo di discretizzazione molto pi\`u piccolo di quello realmente necessario per descrivere ragionevolmente l'andamento della soluzione esatta".
