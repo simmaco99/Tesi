@@ -16,7 +16,7 @@ Da quanto osservato nella parte introduttiva sulle chiusure, possiamo scrivere:
 $$ \angol{ A_i B_j} = \angol{ A_i} \angol{B_j} C_{A_i B_j} \text{ dove } A,B\in \{S,I,R\} \text{ e } (i,j)\in E.$$ 
 Assumendo, in prima approssimazione, l'indipendenza a livello delle coppie abbiamo 
 $$ \angol{ A_i B_j} \approx \angol{A_i}\angol{B_j}.$$ 
-Per enfatizzare che non abbiamo identit\`a esatte, quando andremo a risolvere un sistema ottenuto usando le chiusure denoteremo  con $\angol{X_i}$ l'approssimazione di $\angol{ S_i}$ e con $\angol{ Y_i}$ quella di $\angol{ I_i}$.\\ \\
+Per enfatizzare che, in generale, non abbiamo identit\`a esatte, quando andremo a risolvere un sistema ottenuto usando le chiusure denoteremo  con $\angol{X_i}$ l'approssimazione di $\angol{ S_i}$ e con $\angol{ Y_i}$ quella di $\angol{ I_i}$.\\ \\
 Presentiamo il modello botton-up generale su una rete con $N$ nodi senza loop e mostriamo come usando l'indipendenza a livello delle coppie si riesca ad ottenere un sistema di equazioni differenziali chiuse.\\
 Sia $G=(g_{ij})$ la matrice di adiacenza del grafo $G$. Assumiamo che il tasso di trasmissione da $i$ a $j$ sia $\tau g_{ij}$ e che il tasso di rimozione per il nodo $i$ sia $\gamma_i$ indipendentemente dallo stato di ogni altro nodo.\\
 Dunque le equazione per il sistema diventano
@@ -42,33 +42,32 @@ Possiamo scrivere il sistema precedente in forma vettoriale:
 	\dot{\angol{Y}}=& \spa \tau G X * Y - \Gamma Y,	
 	\end{aligned}
 \end{equation}
-dove $\Gamma=diag(\gamma_1, \dots, \gamma_n)$ e il prodotto tra vettori \`e inteso elemento per elemento.\\
+
+dove $\Gamma=\operatorname{diag}(\gamma_1, \dots, \gamma_n)$ e il prodotto tra vettori \`e inteso elemento per elemento.\\
 
 Nella Figura~\ref{fig::coppie3nodi} possiamo confrontare le soluzioni del modello esatto con l'approssimazione ottenuta  dall'indipendenza a livello delle coppie per il grafo~\ref{fig::3nodi}. Per non appesantire i grafici abbiamo tracciato solamente  $\angol{S_i}$ e $\angol{I_i}$ in funzione  del tempo: $\angol{ R_i}$ pu\`o essere ricavata.  
-Dalla Figura~\ref{fig::coppie3nodi} (d) possiamo notare che il modello semplificato tende a sovrastimare la prevalenza della malattia. Tale sovrastima risulta sconveniente se volessimo usare queste  predizioni per intervenire con delle politiche di contenimento. Nelle sezioni successive ci domanderemo se sia possibile trovare una rappresentazione con un numero minore di variabili che sia pi\`u accurato o, meglio ancora, esatta. 
+Dalla Figura~\ref{fig::coppie3nodi} (d) possiamo notare che il modello semplificato tende a sovrastimare la prevalenza della malattia. Tale sovrastima risulta sconveniente se volessimo usare queste  predizioni per intervenire con delle politiche di contenimento. Nelle sezioni successive ci domanderemo se sia possibile trovare una rappresentazione con un numero minore di variabili che sia pi\`u accurata o, meglio ancora, esatta. 
 \begin{figure}[!htb]
 	\centering
-\subfloat[][Nodo 2]
-{\resizebox{0.4\textwidth}{!}{\input{Figure/Coppie_Nodo_2_Sano}} 
- \quad 
-\resizebox{0.4\textwidth}{!}{ \input{Figure/Coppie_Nodo_2_Infetto}}} \\
-\subfloat[][Nodo 3]
-{\resizebox{0.4\textwidth}{!}{\input{Figure/Coppie_Nodo_3_Sano}} 
- \quad 
-\resizebox{0.4\textwidth}{!}{ \input{Figure/Coppie_Nodo_3_Infetto}}}
+\subfloat[][Nodo 2]{
+	\input{Figure/Coppie_Nodo_2_Sano} 
+	\input{Figure/Coppie_Nodo_2_Infetto}} 
+\\
+\subfloat[][Nodo 3]{
+	\input{Figure/Coppie_Nodo_3_Sano}
+	\input{Figure/Coppie_Nodo_3_Infetto}}
 \\
 \subfloat[][Prevalenza.]
-{\resizebox{0.4\textwidth}{!}{\input{Figure/Coppie_Prevalenza}}}
+{\input{Figure/Coppie_Prevalenza}}
 \caption[Confronto tra modello esatto e chiuso alle coppie per~\ref{fig::3nodi}]{Divisione in classi dei  singoli nodi (a)(b) e grafico della prevalenza (c). Non abbiamo riportato i grafici relativi al nodo $1$ poich\`e in questo caso il modello esatto e il modello chiuso alle coppie coincidono. Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy derivato dal modello esatto~\eqref{3nodi} (in blu) con quello approssimato  ottenuto   assumendo la chiusura alle coppie~\eqref{Chiuso_coppie} (in rosso).  Per entrambi i modelli le condizioni iniziali sono stati puri~\eqref{statipuri}, inoltre,  nel modello esatto abbiamo supposto l'indipendenza statica di tali condizioni iniziali. Per la sperimentazione abbiamo usato come parametri $\tau=0.3$ e $\gamma=0.1$.\\}
 \label{fig::coppie3nodi}
 \end{figure}
 
 \subsection{Chiusura al livello delle triple}
-In analogia a quanto fatto nel paragrafo precedente, cercheremo di sfruttare le chiusure per ottenere un modello chiuso (con un numero minore di equazioni rispetto a quello esatto) ottenendo un'approssimazione migliore del modello chiuso alle coppie.\\
-Per fare ci\`o sfruttiamo l'indipendenza a livello delle triple ovvero usiamo la seguente approssimazione 
-$$ \angol{ A_i B_j C_k }\approx \frac{\angol{A_iB_j}\angol{B_jC_k}}{\angol{B_j}}.$$  \\
-
-Mostriamo come ci\`o ci permette di formulare un modello chiuso. Per rimarcare la non esattezza del modello useremo le lettere $X,Y$ al posto di $S$ e $I$. \\
+In analogia a quanto fatto nel paragrafo precedente, cercheremo di sfruttare l'indipendenza a livello delle triple ovvero l'approssimazione
+$$ \angol{ A_i B_j C_k }\approx \frac{\angol{A_iB_j}\angol{B_jC_k}}{\angol{B_j}}$$
+ per ottenere un modello chiuso (con un numero minore di equazioni rispetto a quello esatto) ottenendo un'approssimazione migliore del modello assumendo l'indipendenza a livello delle coppie.\\ \\
+Mostriamo come ci\`o ci permette di formulare un modello chiuso. Come nel caso delle coppie, per rimarcare la non esattezza del modello useremo le lettere $X,Y$ al posto di $S$ e $I$. \\
 Nel  modello esatto, per i singoli nodi vale: \begin{equation*}
 \begin{aligned}
 	\dot{\angol{S_i}} = &-\tau \sum_{j=1\atop {j\neq i }} ^N g_{ij} \angol{S_i I_j},\\
@@ -86,23 +85,25 @@ otteniamo il seguente sistema chiuso
 \begin{aligned}
 		\dot{\angol{X_i}} = &-\tau \sum_{j=1\atop {j\neq i }} ^N g_{ij} \angol{X_i Y_j},\\
 	\dot{\angol{Y_i}} = &\spa\tau \sum_{j=1\atop {j\neq i }} ^N g_{ij} \angol{X_i Y_j} -\gamma \angol{I_i}, \\
-\dot{\angol{X_i Y_j}} =& \spa \tau \sum_{k=1\atop{k\neq i }}^N g_{jk} \frac{\angol{X_iX_j}\angol{X_jY_k}}{\angol{X_j}} - \tau \sum_{k=1\atop{k\neq j }}^N g_{ik} \frac{\angol{Y_kX_i}\angol{X_iY_j}}{\angol{X_i}}- \tau  g_{ij} \angol{X_i Y_j}  -\gamma \angol{X_i Y_j},\\
+\dot{\angol{X_i Y_j}} =& \spa \tau \sum_{k=1\atop{k\neq i }}^N g_{jk} \frac{\angol{X_iX_j}\angol{X_jY_k}}{\angol{X_j}} - \tau \sum_{k=1\atop{k\neq j }}^N g_{ik} \frac{\angol{Y_kX_i}\angol{X_iY_j}}{\angol{X_i}}- \\
+&-\tau  g_{ij} \angol{X_i Y_j}  -\gamma \angol{X_i Y_j},\\
 \dot{\angol{X_i X_j}} = &-\tau \sum_{k=1\atop{k \neq j}}^N g_{ik} \frac{\angol{Y_kX_i}\angol{X_iX_j}}{\angol{X_i}} - \tau \sum_{k=1\atop{k\neq i }}^N g_{jk} \frac{\angol{X_iX_j}\angol{X_jY_k}}{\angol{X_j}}.
 \end{aligned}
 \end{equation} 
 Andando a risolvere numericamente i $3$ modelli osserviamo, in Figura~\ref{fig::confronto_modelli}, come il modello chiuso alle triple approssima in modo migliore, rispetto a quello chiuso alle coppie, il modello esatto.
 \begin{figure}[!htb]
 	\centering
-\subfloat[][Nodo 1: sani e infetti]
-{\resizebox{0.4\textwidth}{!}{\input{Figure/Lollipop_Modelli_S1}}
-{\resizebox{0.4\textwidth}{!}{ \input{Figure/Lollipop_Modelli_I1}}}}
+\subfloat[][Nodo 1: sani e infetti]{
+	\input{Figure/Lollipop_Modelli_S1}
+	\input{Figure/Lollipop_Modelli_I1}}
 \\
-\subfloat[][Nodo 2: sani e infetti]
-{\resizebox{0.4\textwidth}{!}{\input{Figure/Lollipop_Modelli_S2}}
-{\resizebox{0.4\textwidth}{!}{ \input{Figure/Lollipop_Modelli_I2}}}} \\
-\subfloat[][Nodo 3: sani e infetti]
-{\resizebox{0.4\textwidth}{!}{\input{Figure/Lollipop_Modelli_S3}}
-{\resizebox{0.4\textwidth}{!}{ \input{Figure/Lollipop_Modelli_I3}}}}
+\subfloat[][Nodo 2: sani e infetti]{
+	\input{Figure/Lollipop_Modelli_S2}
+	\input{Figure/Lollipop_Modelli_I2}} 
+\\
+\subfloat[][Nodo 3: sani e infetti]{
+	\input{Figure/Lollipop_Modelli_S3}
+	\input{Figure/Lollipop_Modelli_I3}}
 \caption[Confronto tra il modello esatto, chiuso alle coppie e alle triple per il grafo~\ref{fig::lollipop}]
 {Divisione in classi dei singoli nodi per il grafo~\ref{fig::lollipop}.\\
 Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB, il problema di Cauchy derivato dal modello esatto~\eqref{lollipop_completo},  dal modello chiuso alle coppie~\eqref{Chiuso_coppie} e da quello alle triple~\eqref{Chiuso_triple}.

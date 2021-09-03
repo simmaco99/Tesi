@@ -1,5 +1,5 @@
 \subsection{Approccio generale alla chiusura}
-In questa sezione ci domanderemo se sia possibile trovare una rappresentazione con un numero minore di variabili che sia pi\`u accurata o,  meglio ancora, esatta.  Per farlo useremo delle propriet\`a di connessione del grafico.\\ \\
+Ci occuperemo di trovare un approccio generale alla chiusura che sfrutta le informazioni topologiche della rete~\cite{KISS}.\\ \\
 Sia $G=(V,E)$ un grafo connesso.
 \begin{itemize}
 \item Diremo che $v\in V$ \`e un \textit{cut-vertex} (vertice tagliato) se il grafo senza il nodo $v$ risulta sconnesso.
@@ -99,9 +99,9 @@ $$ \angol{ S_{v_i} Z_{v_{i+1}}\dots Z_{v_{k}} \, \vert S_{v_i}} =\frac{ \angol{S
 da cui la tesi.
 \endproof
 \end{thm}
-Grazie a questo teorema siamo pronti per presentare l'algoritmo generale per le chiusure. Ecco i passi dell'algoritmo.
+Grazie a questo teorema siamo pronti per presentare l'algoritmo generale per le chiusure.
 \begin{enumerate}
-	\item Si trovano tutti i cut-vertices di $G$ e si denotino con $C=\{ v_{i_1}, \dots, v_{i_L}\}$. Tale procedimento pu\`o essere fatto con  un costo in tempo di $O(\vert E \vert + \vert V \vert)$ utilizzando una visita DFS. 
+	\item Si trovano tutti i cut-vertices di $G$ e si denotino con $C=\{ v_{i_1}, \dots, v_{i_L}\}$. Tale procedimento pu\`o essere fatto con  un costo in tempo di $O(\vert E \vert + \vert V \vert)$ utilizzando una visita in profondit\`a (DFS). 
 	\item Si divide la rete originale in sottoreti connesse a due a due scollegate.
 	\item Tale procedura conduce ad una famiglia di sottoreti distinte $G_1, \dots, G_P$. Le sottoreti vengono create in modo che i cut-vertices siano mantenuti in tutte le sottoreti generate. Si veda la Figura~\ref{fig::cut-vertex}.
 	\item Per ogni nodo $i$ delle sottoreti, si ha 
@@ -116,6 +116,7 @@ Grazie a questo teorema siamo pronti per presentare l'algoritmo generale per le 
 	\item Nella gerarchia che si verr\`a a creare, se appare un termine composto da  vertici di sottoreti diverse allora in esso \`e presente un cut-vertex suscettibile. Usando il Teorema (\ref{th_cut-vertex}) \`e possibile esprimere questo termine usando termini pi\`u semplici.
 \end{enumerate}
 \newpage
+\subsection{Un primo esempio. Continuazione}
 Concludiamo l'esempio, che abbiamo iniziato a inizio capitolo, applicando l'algoritmo appena presentato alla rete in Figura~\ref{fig::3nodi}.\\
 Come visto nel modello completo, per i singoli nodi si ha \begin{equation*}
 \begin{aligned}
@@ -159,58 +160,49 @@ In questo esempio, non abbiamo ottenuto un notevole vantaggio, infatti abbiamo u
 Andando a risolvere numericamente il sistema e tracciando le soluzioni otteniamo la  Figura~\ref{fig::3nodicut}. Possiamo notare, come previsto dalla teoria, che  tali grafici sono identici a quelli ottenuti nel modello esteso~\ref{fig::spe3nodi}. Inoltre, se andiamo a calcolare l'errore assoluto tra le soluzioni (Figura~\ref{fig::errori3nodi}) otteniamo che tali errori sono dell'ordine della tolleranza dell'integratore cosa che non accade confrontando il modello esatto con quello chiuso alle coppie (Figura~\ref{fig::errori3nodiPair}).
 \begin{figure}[!htb]
 \centering
-\subfloat[][Nodo 1.]
-	{\resizebox{0.45\textwidth}{!}{\input{Figure/Cut_Nodo1}}}
- \quad 
-\subfloat[][Nodo 2.]
-{\resizebox{0.45\textwidth}{!}{ \input{Figure/Cut_Nodo2}}}
+\subfloat[][Nodo 1.]{\input{Figure/Cut_Nodo1}}
+\subfloat[][Nodo 2.]{\input{Figure/Cut_Nodo2}}
 \\
-\subfloat[][Nodo 3.]
-{\resizebox{0.45\textwidth}{!}
-{\input{Figure/Cut_Nodo3}}
-}
-\quad 
-\subfloat[][Prevalenza.]
-{\resizebox{0.45\textwidth}{!}{ \input{Figure/Prevalenza}}}
-\\
-
-\caption[Sperimentazione in MATLAB relativo al grafo~\ref{fig::3nodi}]{Divisione in classi nei singoli nodi (a)(b)(c) e grafico della prevalenza (d) per il grafo~\ref{fig::3nodi}.  Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy ottenuto usando il Teorema~\ref{th_cut-vertex} con condizioni iniziali  di stati puri~\eqref{statipuri}.  Abbiamo inoltre supposto l'indipendenza statica di tali condizioni iniziali.\\
+\subfloat[][Nodo 3.]{\input{Figure/Cut_Nodo3}}
+\subfloat[][Prevalenza.]{\input{Figure/Prevalenza}}
+\caption[Sperimentazione in MATLAB relativo al grafo~\ref{fig::3nodi}]{Divisione in classi nei singoli nodi (a)(b)(c) e grafico della prevalenza (d) per il grafo~\ref{fig::3nodi}.  Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy ottenuto usando il Teorema~\ref{th_cut-vertex} con condizioni iniziali  di stati puri~\eqref{statipuri}.  Abbiamo inoltre supposto l'indipendenza statistica di tali condizioni iniziali.\\
 Per la sperimentazioni abbiamo usato come parametri $\tau= 0.3$ e $\gamma =0.1 $.}\label{fig::3nodicut}
 
 \end{figure}
 \begin{figure}[!htb]
-	\centering
-	\subfloat[][Nodo 1.]
-	{\resizebox{0.45\textwidth}{!}{\input{Figure/Errore1}}}
- \quad 
+\centering
+\subfloat[][Nodo 1.]
+{
+\input{Figure/Errore1}
+}
 \subfloat[][Nodo 2.]
-{\resizebox{0.45\textwidth}{!}{ \input{Figure/Errore2}}}
+{
+\input{Figure/Errore2}
+}
 \\
 \subfloat[][Nodo 3.]
-{\resizebox{0.45\textwidth}{!}
-{\input{Figure/Errore3}}}
+{
+\input{Figure/Errore3}
+}
+
 \caption[Errori assoluti relativi al grafo~\ref{fig::3nodi} tra modello esatto e cut-vertex] {Errore assoluto (in scala logaritmica) tra la soluzione del problema di Cauchy~\eqref{3nodi} e quello ottenuto utilizzando il Teorema~\ref{th_cut-vertex}.\\
-Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-9$ i due problemi di Cauchy con condizioni iniziali di stati puri~\eqref{statipuri}. Abbiamo inoltre supposto l'indipendenza statica di tali condizioni iniziali.\\
+Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-9$ i due problemi di Cauchy con condizioni iniziali di stati puri~\eqref{statipuri}. Abbiamo inoltre supposto l'indipendenza statistica di tali condizioni iniziali.\\
 Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$. }
 \label{fig::errori3nodi}
 \end{figure}
 
 \begin{figure}[!htb]
-	\centering
-	\subfloat[][Nodo 1.]
-	{\resizebox{0.45\textwidth}{!}{\input{Figure/Pair_Errore1}}}
- \quad 
-\subfloat[][Nodo 2.]
-{\resizebox{0.45\textwidth}{!}{ \input{Figure/Pair_Errore2}}}
+\centering
+\subfloat[][Nodo 1.]{\input{Figure/Pair_Errore1}}
+\subfloat[][Nodo 2.]{\input{Figure/Pair_Errore2}}
 \\
-\subfloat[][Nodo 3.]
-{\resizebox{0.45\textwidth}{!}
-{\input{Figure/Pair_Errore3}}}
+\subfloat[][Nodo 3.]{\input{Figure/Pair_Errore3}}
 \caption[Errori assoluti relativi al grafo~\ref{fig::3nodi} tra modello esatto e chiuso alle coppie] {Errore assoluto (in scala logaritmica) tra la soluzione del problema di Cauchy~\eqref{3nodi} e quello utilizzando la chiusura alle coppie.\\
-Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-9$ i due problemi di Cauchy con condizioni iniziali di stati puri~\eqref{statipuri}. Abbiamo inoltre supposto l'indipendenza statica di tali condizioni iniziali.\\
+Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-9$ i due problemi di Cauchy con condizioni iniziali di stati puri~\eqref{statipuri}. Abbiamo inoltre supposto l'indipendenza statistica di tali condizioni iniziali.\\
 Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$. }
 \label{fig::errori3nodiPair}
 \end{figure}
+
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "main"

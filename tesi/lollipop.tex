@@ -17,12 +17,19 @@ In questa sezione andremo  a ricavare le equazioni per la rete in Figura~\ref{fi
 Le equazioni per i singoli nodi sono:
  \begin{equation*}
  \begin{aligned}
- \dot{\angol{S_1}}&= -\tau \tonde{ \angol{ S_1 I_3} + \angol{S_1 I_2}},  \quad 
- &\dot{\angol{S_3}}&= -\tau \tonde{ \angol{I_1 S_3} + \angol{I_2 S_3}+ \angol{S_3 I_4}},  \\
- \dot{\angol{I_1}}&= \spa \tau \tonde{ \angol{ S_1 I_2} + \angol{S_1 I_3}} - \gamma\angol{I_1},\quad 
- &\dot{\angol{I_3}}&= \spa \tau \tonde{ \angol{I_1 S_3} + \angol{I_2 S_3}+ \angol{S_3 I_4}}-\gamma\angol{I_3},\\
- \dot{\angol{S_2}}&= -\tau \tonde{ \angol{ I_1 S_2} + \angol{S_2 I_3}}, \quad &\dot{\angol{S_4}} &= -\tau \angol{I_3S_4},  \\
- \dot{\angol{I_2}}&= \spa \tau \tonde{ \angol{ I_1 S_2} + \angol{S_2 I_3}} - \gamma\angol{I_2},\quad & \dot{\angol{I_4}}&=\spa \tau\angol{I_3S_4}-\gamma\angol{I_4}. \\\
+ 	\dot{\angol{S_1}}&= -\tau \tonde{ \angol{ S_1 I_3} + \angol{S_1 I_2}}, 
+ \\ 
+ 	\dot{\angol{I_1}}&= \spa \tau \tonde{ \angol{ S_1 I_2} + \angol{S_1 I_3}} - \gamma\angol{I_1},
+ \\
+  	\dot{\angol{S_2}}&= -\tau \tonde{ \angol{ I_1 S_2} + \angol{S_2 I_3}}, 
+ \\
+ \dot{\angol{I_2}}&= \spa \tau \tonde{ \angol{ I_1 S_2} + \angol{S_2 I_3}} - \gamma\angol{I_2}
+ \\
+  \dot{\angol{S_3}}&= -\tau \tonde{ \angol{I_1 S_3} + \angol{I_2 S_3}+ \angol{S_3 I_4}},  \\
+ \dot{\angol{I_3}}&= \spa \tau \tonde{ \angol{I_1 S_3} + \angol{I_2 S_3}+ \angol{S_3 I_4}}-\gamma\angol{I_3},\\
+\dot{\angol{S_4}} &= -\tau \angol{I_3S_4},
+  	,\quad \\
+  \dot{\angol{I_4}}&=\spa \tau\angol{I_3S_4}-\gamma\angol{I_4}.
  \end{aligned}	
  \end{equation*}
  Tali equazioni dipendono da alcune coppie: tutte le disposizioni di archi con un nodo suscettibile ed un uno infetto. Abbiamo bisogno di equazioni addizionali:
@@ -93,14 +100,21 @@ La rete lollipop possiede un solo cut-vertex: il vertice $3$. Decomponiamo il gr
 \label{fig::lollipop_cut}
 \end{figure}
 Per i nodi otteniamo le stesse equazioni viste in precedenza:
-\begin{equation*}
+ \begin{equation*}
  \begin{aligned}
- \dot{\angol{S_1}}&= -\tau \tonde{ \angol{ S_1 I_3} + \angol{S_1 I_2}},  \quad 
- &\dot{\angol{S_3}}&= -\tau \tonde{ \angol{I_1 S_3} + \angol{I_2 S_3}+ \angol{S_3 I_4}},  \\
- \dot{\angol{I_1}}&= \spa \tau \tonde{ \angol{ S_1 I_2} + \angol{S_1 I_3}} - \gamma\angol{I_1},\quad 
- &\dot{\angol{I_3}}&= \spa \tau \tonde{ \angol{I_1 S_3} + \angol{I_2 S_3}+ \angol{S_3 I_4}}-\gamma\angol{I_3},\\
- \dot{\angol{S_2}}&= -\tau \tonde{ \angol{ I_1 S_2} + \angol{S_2 I_3}}, \quad &\dot{\angol{S_4}} &= -\tau \angol{I_3S_4},  \\
- \dot{\angol{I_2}}&= \spa \tau \tonde{ \angol{ I_1 S_2} + \angol{S_2 I_3}} - \gamma\angol{I_2},\quad & \dot{\angol{I_4}}&=\spa \tau\angol{I_3S_4}-\gamma\angol{I_4}. \\
+ 	\dot{\angol{S_1}}&= -\tau \tonde{ \angol{ S_1 I_3} + \angol{S_1 I_2}}, 
+ \\ 
+ 	\dot{\angol{I_1}}&= \spa \tau \tonde{ \angol{ S_1 I_2} + \angol{S_1 I_3}} - \gamma\angol{I_1},
+ \\
+  	\dot{\angol{S_2}}&= -\tau \tonde{ \angol{ I_1 S_2} + \angol{S_2 I_3}}, 
+ \\
+ \dot{\angol{I_2}}&= \spa \tau \tonde{ \angol{ I_1 S_2} + \angol{S_2 I_3}} - \gamma\angol{I_2}
+ \\
+  \dot{\angol{S_3}}&= -\tau \tonde{ \angol{I_1 S_3} + \angol{I_2 S_3}+ \angol{S_3 I_4}},  \\
+ \dot{\angol{I_3}}&= \spa \tau \tonde{ \angol{I_1 S_3} + \angol{I_2 S_3}+ \angol{S_3 I_4}}-\gamma\angol{I_3},\\
+\dot{\angol{S_4}} &= -\tau \angol{I_3S_4},
+  	,\quad \\
+  \dot{\angol{I_4}}&=\spa \tau\angol{I_3S_4}-\gamma\angol{I_4}.
  \end{aligned}	
  \end{equation*}
  Andiamo a ricavarci le equazioni per le coppie.\\ Esaminiamo l'equazione per $\angol{S_1 I_3}$. 
@@ -112,7 +126,7 @@ Per i nodi otteniamo le stesse equazioni viste in precedenza:
  \end{equation*}
  dove abbiamo usato il Teorema~\ref{th_cut-vertex} per sostituire $\angol{S_1S_3I_4}$.\\
 Con considerazioni analoghe otteniamo
-  \begin{equation*}
+\begin{equation*}
  \begin{aligned}
  \dot{\angol{S_1I_2}} =&\spa \tau\angol{S_1S_2I_3} - \tonde{ \tau + \gamma} \angol{S_1 I_2} -\tau\angol{S_1I_2I_3},\\
 \dot{\angol{I_1S_2}} =&\spa\tau\angol{S_1S_2I_3} - \tonde{ \tau + \gamma} \angol{I_1 S_2} -\tau\angol{I_1S_2I_3},\\
@@ -120,9 +134,9 @@ Con considerazioni analoghe otteniamo
 \dot{\angol{I_1S_3}} =&- \tau\tonde{\angol{I_1I_2S_3} +\frac{\angol{I_1S_3}\angol{S_3I_4}}{\angol{S_3}}} - \tonde{ \tau + \gamma} \angol{I_1 S_3} +\tau\angol{S_1I_2S_3},\\ 
 \dot{\angol{I_2S_3}} =&- \tau\tonde{\angol{I_1I_2S_3} +\frac{\angol{I_2S_3}\angol{S_3I_4}}{\angol{S_3}}}- \tonde{ \tau + \gamma} \angol{I_2 S_3} +\tau\angol{I_1S_2S_3},\\ 
 \dot{\angol{S_3I_4}} =&- \tau\tonde{\frac{\angol{I_1S_3}\angol{S_3I_4}}{\angol{S_3}}+ \frac{\angol{I_2S_3}\angol{S_3I_4}}{\angol{S_3}}} - \tonde{ \tau + \gamma} \angol{S_3 I_4}, \\ 
-\dot{\angol{I_3S_4}} =& \spa \tau\tonde{\frac{\angol{I_1S_3}\angol{S_3S_4}}{\angol{S_3}}+\frac{\angol{I_2S_3}\angol{S_3S_4}}{\angol{S_3}}} - \tonde{ \tau + \gamma} \angol{I_3 S_4}.\\ 
+\dot{\angol{I_3S_4}} =& \spa \tau\tonde{\frac{\angol{I_1S_3}\angol{S_3S_4}}{\angol{S_3}}+\frac{\angol{I_2S_3}\angol{S_3S_4}}{\angol{S_3}}} - \tonde{ \tau + \gamma} \angol{I_3 S_4}. 
 \end{aligned}
- \end{equation*}
+\end{equation*}
  Da queste equazioni emergono nuove coppie, dunque necessitiamo anche di 
  \begin{equation*}
 \begin{aligned}
@@ -135,11 +149,14 @@ Con considerazioni analoghe otteniamo
  \begin{equation*}
  \begin{aligned}
 \dot{\angol{S_1S_2I_3}}=&\spa \tau \frac{\angol{S_1S_2S_3}\angol{S_3I_4}}{\angol{S_3}} -\tonde{ 2\tau + \gamma} \angol{S_1S_2I_3},\\
-\dot{\angol{S_1I_2I_3}} =&\spa \tau \tonde{ \angol{S_1S_2I_3}+\frac{\angol{S_1I_2S_3}\angol{S_3I_4}}{\angol{S_3} }} -2\tonde{ \tau + \gamma} \angol{S_1I_2I_3} + \tau \angol{S_1 I_2 S_3},\\
+\dot{\angol{S_1I_2I_3}} =&\spa \tau \tonde{ \angol{S_1S_2I_3}+\frac{\angol{S_1I_2S_3}\angol{S_3I_4}}{\angol{S_3} }} -2\tonde{ \tau + \gamma} \angol{S_1I_2I_3} + \\
+&+\tau \angol{S_1 I_2 S_3},\\
 \dot{\angol{S_1I_2S_3}} =&-\tau \frac{\angol{S_1I_2S_3}\angol{S_3I_4}}{\angol{S_3}} -\tonde{ 2\tau + \gamma} \angol{S_1I_2S_3},\\
-\dot{\angol{I_1S_2I_3}} =&\spa \tau  \angol{S_1S_2I_3} -2\tonde{ \tau + \gamma} \angol{I_1S_2I_3} + \tau \angol{I_1S_2S_3}+\tau \frac{\angol{I_1S_2S_3}\angol{S_3I_4}}{\angol{S_3}},\\
+\dot{\angol{I_1S_2I_3}} =&\spa \tau  \angol{S_1S_2I_3} -2\tonde{ \tau + \gamma} \angol{I_1S_2I_3} + \tau \angol{I_1S_2S_3}+\\
+&+\tau \frac{\angol{I_1S_2S_3}\angol{S_3I_4}}{\angol{S_3}},\\
 \dot{\angol{I_1S_2S_3}}=&-\tau \frac{\angol{ I_1S_2S_3}\angol{S_3I_4}}{\angol{S_3}}-\tonde{ 2 \tau + \gamma} \angol{I_1S_2S_3},\\
-\dot{\angol{I_1I_2S_3}} =&\spa\tau \tonde{  \angol{S_1I_2S_3}+ \angol{I_1S_2S_3} - \frac{\angol{I_1I_2S_3}\angol{S_3I_4}}{\angol{S_3}}} -2\tonde{ \tau + \gamma} \angol{I_1I_2S_3}.
+\dot{\angol{I_1I_2S_3}} =&\spa\tau \tonde{  \angol{S_1I_2S_3}+ \angol{I_1S_2S_3} - \frac{\angol{I_1I_2S_3}\angol{S_3I_4}}{\angol{S_3}}} -\\
+&-2\tonde{ \tau + \gamma} \angol{I_1I_2S_3}.
  	\end{aligned}
  	\end{equation*}
  Scrivendo queste equazioni appare una nuova tripla. Completiamo il sistema aggiungendo l'equazione mancante: 
@@ -164,70 +181,41 @@ Nella Figura~\ref{fig::plot_lollipop} sono riportati i grafici dello stato dei n
 Per marcare ci\`o abbiamo calcolato gli errori assoluti tra le due soluzioni (Figura~\ref{fig::lollipop_errori}) ottenendo che tali errori sono dell'ordine della tolleranza dell'integratore. Facendo la medesima cosa tra il modello esatto e quello chiuso alle coppie otteniamo che gli errori sono molto maggiori (Figura~\ref{fig::lollipop_errori_pair}).
 
 \begin{figure}
-	
 	\centering
-\subfloat[][Nodo 1]
-{\resizebox{0.45\textwidth}{!}{\input{Figure/Lollipop_Nodo1}}}
- \quad 
-\subfloat[][Nodo 2]
-{\resizebox{0.45\textwidth}{!}{ \input{Figure/Lollipop_Nodo2}}}
+\subfloat[][Nodo 1]{\input{Figure/Lollipop_Nodo1}}
+\subfloat[][Nodo 2]{\input{Figure/Lollipop_Nodo2}}
 \\
-\subfloat[][Nodo 3]
-{\resizebox{0.45\textwidth}{!}
-{\input{Figure/Lollipop_Nodo3}}
-}
-\quad
-\subfloat[][Nodo 4]
-{\resizebox{0.45\textwidth}{!}
-{\input{Figure/Lollipop_Nodo4}}
-}
+\subfloat[][Nodo 3]{\input{Figure/Lollipop_Nodo3}}
+\subfloat[][Nodo 4]{\input{Figure/Lollipop_Nodo4}}
+
 \caption[Sperimentazione in MATLAB relativo al grafo~\ref{fig::lollipop}]{Divisione in classe dei singoli nodi per il grafo~\ref{fig::lollipop}.\\
-	Per ottenere i grafici abbiamo risolto numericamente, usando MATLAB, i due problemi di Cauchy con condizioni iniziali di stati puri~\eqref{statipuri_lollipop}. Abbiamo inoltre supposto l'indipendenza statica di tali condizioni iniziali.\\
+	Per ottenere i grafici abbiamo risolto numericamente, usando MATLAB, i due problemi di Cauchy con condizioni iniziali di stati puri~\eqref{statipuri_lollipop}. Abbiamo inoltre supposto l'indipendenza statistica di tali condizioni iniziali.\\
 	Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$.}	\label{fig::plot_lollipop}
 \end{figure}
 
 \begin{figure}[!htb]
-	\subfloat[][Nodo 1]
-{\resizebox{0.45\textwidth}{!}{\input{Figure/Lollipop_Errore1}}}
- \quad 
-\subfloat[][Nodo 2]
-{\resizebox{0.45\textwidth}{!}{ \input{Figure/Lollipop_Errore2}}}
+\centering
+\subfloat[][Nodo 1]{\input{Figure/Lollipop_Errore1}}
+\subfloat[][Nodo 2]{ \input{Figure/Lollipop_Errore2}}
 \\
-\subfloat[][Nodo 3]
-{\resizebox{0.45\textwidth}{!}
-{\input{Figure/Lollipop_Errore3}}
-}
-\quad
-\subfloat[][Nodo 4]
-{\resizebox{0.45\textwidth}{!}
-{\input{Figure/Lollipop_Errore4}}
-}
-\caption[Errori assoluti relativi al grafo~\ref{fig::lollipop} tra il modello esatto e con cut-vertex] {Errore assoluto (in scala logaritmica) tra la soluzione del problema esteso  e quello chiuso.\\
-Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-9$ i due problemi di Cauchy con conduzioni iniziali di stati puri~\eqref{statipuri_lollipop}. Abbiamo inoltre supposto l'indipendenza statica delle condizioni iniziali.\\
+\subfloat[][Nodo 3]{\input{Figure/Lollipop_Errore3}}
+\subfloat[][Nodo 4]{\input{Figure/Lollipop_Errore4}}
+
+\caption[Errori assoluti relativi al grafo~\ref{fig::lollipop} tra il modello esatto e con cut-vertex] {Errore assoluto (in scala logaritmica) tra la soluzione del problema esteso  e quello chiuso con cut-vertex.\\
+Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-12$ i due problemi di Cauchy con conduzioni iniziali di stati puri~\eqref{statipuri_lollipop}. Abbiamo inoltre supposto l'indipendenza statistica delle condizioni iniziali.\\
 Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$.}
 \label{fig::lollipop_errori}
-
 \end{figure}
 
 
 \begin{figure}[!htb]
-	\subfloat[][Nodo 1]
-{\resizebox{0.45\textwidth}{!}{\input{Figure/Pair_Lollipop_Errore1}}}
- \quad 
-\subfloat[][Nodo 2]
-{\resizebox{0.45\textwidth}{!}{ \input{Figure/Pair_Lollipop_Errore2}}}
+\subfloat[][Nodo 1]{\input{Figure/Pair_Lollipop_Errore1}}
+\subfloat[][Nodo 2]{\input{Figure/Pair_Lollipop_Errore2}}
 \\
-\subfloat[][Nodo 3]
-{\resizebox{0.45\textwidth}{!}
-{\input{Figure/Pair_Lollipop_Errore3}}
-}
-\quad
-\subfloat[][Nodo 4]
-{\resizebox{0.45\textwidth}{!}
-{\input{Figure/Pair_Lollipop_Errore4}}
-}
+\subfloat[][Nodo 3]{\input{Figure/Pair_Lollipop_Errore3}}
+\subfloat[][Nodo 4]{\input{Figure/Pair_Lollipop_Errore4}}
 \caption[Errori assoluti relativi al grafo~\ref{fig::lollipop} tra il modello esatto e quello chiuso alle coppie] {Errore assoluto (in scala logaritmica) tra la soluzione del problema esteso  e quello chiuso alle coppie.\\
-Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-9$ i due problemi di Cauchy con condizioni iniziali di stati puri~\eqref{statipuri_lollipop}. Abbiamo inoltre supposto l'indipendenza statica di tali condizioni iniziali.\\
+Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-12$ i due problemi di Cauchy con condizioni iniziali di stati puri~\eqref{statipuri_lollipop}. Abbiamo inoltre supposto l'indipendenza statistica di tali condizioni iniziali.\\
 Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$.}
 \label{fig::lollipop_errori_pair}
 

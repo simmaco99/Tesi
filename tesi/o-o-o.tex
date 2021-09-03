@@ -1,5 +1,6 @@
 \chapter{Il modello SIR \textit{bottom-up} su una rete}
-\section{Un primo esempio}
+In questo capitolo ci occuperemo di descrivere il modello SIR su di una rete sfruttando il modello scalare ed i concetti introdotti nella Sezione~\ref{grafi}. Costruiremo un modello Markoviano SIR su una rete di $N$ individui. Ogni individuo \`e in ogni istante temporale, suscettibile, infetto o rimosso con una certa probabilit\`a $p$. Come nel modello scalare del capitolo precedente, un individuo infetto pu\`o trasmettere il suo stato con la differenza che questo processo avviene unicamente per i nodi che sono suoi vicini nella rete.\\
+In particolare ci occuperemo di derivare le equazioni per lo stato di ogni singolo nodo delle rete ottenendo un modello ``botton-up" esatto dell'epidemia. Successivamente cercheremo di ridurre il numero di equazioni del modello con il fine di mantenere l'esattezza e semplificare, dal punto di vista computazionale, il problema da integrare.  \section{Un primo esempio}
 Vediamo come \`e possibile applicare il modello $SIR$ ad un semplice grafo con 3 nodi (vedi Figura~\ref{fig::3nodi}).\\
 \begin{figure}[ht]
 \centering
@@ -40,21 +41,22 @@ Mettendo insieme questi punti e ricordando il tasso di rimozione otteniamo il se
 	\dot{\angol {S_1}} = & -\tau \angol{ S_1 I_2}, 
 \quad &
 	\dot{\angol {I_1}} = & \tau \angol{S_1 I_2}-\gamma \angol{I_1}, 
-\quad & 
-	\dot{\angol {R_1}} = & \gamma \angol{ I_1},
 \\
 	\dot{\angol {S_2}} = & -\tau \tonde{ \angol{ I_1 S_2} + \angol{I_3S_2}},	
 \quad & 
 	\dot{\angol {I_2}} = & \tau \tonde{ \angol{ I_1 S_2} + \angol{I_3S_2}}-\gamma \angol{I_2},
-\quad & 
-	\dot{\angol {R_2}} = & \gamma \angol{ I_2},
 \\
 	\dot{\angol {S_3}} = & -\tau \angol{ I_2 S_3},
 \quad & 
 	\dot{\angol {I_3}} = & \tau \angol{ I_2 S_3}-\gamma \angol{I_3},
-\quad & 
- 	\dot{\angol {R_3}} = & \gamma \angol{ I_3}.
 \end{aligned}
+\end{equation*}
+\begin{equation*} 
+\begin{aligned}
+	\dot{\angol {R_1}} = & \gamma \angol{ I_1},\\
+	\dot{\angol {R_2}} = & \gamma \angol{ I_2},\\
+ 	\dot{\angol {R_3}} = & \gamma \angol{ I_3}.
+ 	\end{aligned}
 \end{equation*}
 Analizzando attentamente il sistema possiamo notare che le equazioni per $\angol{R_i}$ possono essere rimosse infatti 
 $$ \forall i\in\{1, 2, 3\} \quad \forall t\geq 0 \quad \angol{R_i}(t) = 1 - \tonde{\angol{S_i} +\angol{I_i}}(t).$$
@@ -77,31 +79,29 @@ Aggiungendo le equazioni necessarie otteniamo il sistema
 \label{3nodi}
 \begin{aligned}
 	\dot{\angol {S_1}} =& -\tau \angol{ S_1 I_2},
-& \quad 
-	\dot{\angol{S_1I_2}}=& \spa\tau\angol{S_1S_2I_3} - \tonde{ \tau + \gamma}\angol{S_1 I_2},
 \\ 
 	\dot{\angol {I_1}} =&\spa \tau \angol{ S_1 I_2}-\gamma \angol{I_1}, 
-& \quad 
-	\dot{\angol{I_1S_2}}=&-\tau\angol{I_1S_2I_3} - \tonde{ \tau + \gamma}\angol{I_1 S_2},
 \\ 
 	\dot{\angol {S_2}} = & -\tau \tonde{ \angol{ I_1 S_2}+ \angol{I_3S_2}},
-& \quad 
-	\dot{\angol{I_2S_3}}=&\spa\tau\angol{I_1S_2I_3} - \tonde{ \tau + \gamma}\angol{I_1 S_2},
 \\
 	\dot{\angol {I_2}} = &\spa \tau \tonde{ \angol{ I_1 S_2} + \angol{I_3S_2}}-\gamma \angol{I_2}, 
-& \quad 
-	\dot{\angol{S_2I_3}}=&-\tau\angol{I_1S_2I_3} - \tonde{ \tau + \gamma}\angol{I_1 S_2},
 \\ 
 	\dot{\angol {S_3}} = & -\tau \angol{ I_2 S_3}
-&\quad  
-	\dot{\angol{S_1S_2I_3}}=&-\tonde{\tau + \gamma}\angol{S_1S_2I_3},
 \\
 	\dot{\angol {I_3}} = & \spa \tau  \angol{ I_2 S_3}-\gamma \angol{I_3},	
-& \quad 
+\\
+	\dot{\angol{S_1I_2}}=& \spa\tau\angol{S_1S_2I_3} - \tonde{ \tau + \gamma}\angol{S_1 I_2},
+\\
+	\dot{\angol{I_1S_2}}=&-\tau\angol{I_1S_2I_3} - \tonde{ \tau + \gamma}\angol{I_1 S_2},
+\\ 
+	\dot{\angol{I_2S_3}}=&\spa\tau\angol{I_1S_2I_3} - \tonde{ \tau + \gamma}\angol{I_1 S_2},
+\\
+	\dot{\angol{S_2I_3}}=&-\tau\angol{I_1S_2I_3} - \tonde{ \tau + \gamma}\angol{I_1 S_2},
+\\
+	\dot{\angol{S_1S_2I_3}}=&-\tonde{\tau + \gamma}\angol{S_1S_2I_3},
+\\
 	\dot{\angol{I_1S_2I_3}}=&-\tonde{2\tau + 2\gamma}\angol{I_1S_2I_3},
 \\
-	&
-&\quad  
 	\dot{\angol{I_1S_2S_3}}=&-\tonde{\tau + \gamma}\angol{I_1S_2S_3}.
  \end{aligned}
 \end{equation}
@@ -118,7 +118,7 @@ Per la sperimentazione, le condizioni iniziali sono state prese a partire da uno
 \angol{I_3}(0) &= 0,\\
 \end{aligned}
 \end{equation}
-sotto le ipotesi di indipendenza statica delle condizioni iniziali (vedi~\cite{MR3340258}) ovvero
+sotto le ipotesi di indipendenza statistica delle condizioni iniziali (vedi~\cite{MR3340258}) ovvero
 $$
 \angol{A_i B_j}(0) =\angol{A_i}(0) \angol{B_j}(0)$$ 
 per $A,B\in \{ S, I\}$ e  $i,j=1, 2,3$.\\
@@ -126,22 +126,12 @@ per $A,B\in \{ S, I\}$ e  $i,j=1, 2,3$.\\
 Poich\`e $\angol{S_1}(0)=0$ si ha che $\angol{S_1}(t)=0$ \`e soluzione del problema di Cauchy.  Osserviamo,  inoltre, che $\angol{I_2}(t)\geq \angol{I_3}(t)$ infatti il nodo $2$ ha due strade per infettarsi (di cui una inizialmente chiusa $\angol{I_3}(0)=0$) mentre il nodo $3$ ne ha una sola (che inizialmente \`e chiusa). 
 \begin{figure}[ht]
 \centering
-\subfloat[][Nodo 1]
-{\resizebox{0.45\textwidth}{!}{\input{Figure/Nodo1}}}
- \quad 
-\subfloat[][Nodo 2]
-{\resizebox{0.45\textwidth}{!}{ \input{Figure/Nodo2}}}
+\subfloat[][Nodo 1]{\input{Figure/Nodo1}}
+\subfloat[][Nodo 2]{\input{Figure/Nodo2}}
 \\
-\subfloat[][Nodo 3]
-{\resizebox{0.45\textwidth}{!}
-{\input{Figure/Nodo3}}
-}
-\quad
-\subfloat[][Prevalenza]
-{\resizebox{0.45\textwidth}{!}
-{\input{Figure/Prevalenza}}
-}
-\caption[Sperimentazione in MATLAB relativo al grafo~\ref{fig::3nodi}]{Divisione in classi nei singoli nodi (a)(b)(c) e grafico della prevalenza (d) per il grafo~\ref{fig::3nodi}.   Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy~\eqref{3nodi} con condizioni iniziali  di stati puri~\eqref{statipuri}. Abbiamo,  inoltre,  supposto l'indipendenza statica delle condizioni iniziali.\\
+\subfloat[][Nodo 3]{\input{Figure/Nodo3}}
+\subfloat[][Prevalenza]{\input{Figure/Prevalenza}}
+\caption[Sperimentazione in MATLAB relativo al grafo~\ref{fig::3nodi}]{Divisione in classi nei singoli nodi (a)(b)(c) e grafico della prevalenza (d) per il grafo~\ref{fig::3nodi}.   Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy~\eqref{3nodi} con condizioni iniziali  di stati puri~\eqref{statipuri}. Abbiamo,  inoltre,  supposto l'indipendenza statistica delle condizioni iniziali.\\
 Per la sperimentazioni abbiamo usato come parametri $\tau= 0.3$ e $\gamma =0.1 $.}\label{fig::spe3nodi}
 \end{figure}
 
