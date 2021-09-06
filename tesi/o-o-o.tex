@@ -1,6 +1,6 @@
 \chapter{Il modello SIR \textit{bottom-up} su una rete}
 In questo capitolo ci occuperemo di descrivere il modello SIR su di una rete sfruttando il modello scalare ed i concetti introdotti nella Sezione~\ref{grafi}. Costruiremo un modello Markoviano SIR su una rete di $N$ individui. Ogni individuo \`e in ogni istante temporale, suscettibile, infetto o rimosso con una certa probabilit\`a $p$. Come nel modello scalare del capitolo precedente, un individuo infetto pu\`o trasmettere il suo stato con la differenza che questo processo avviene unicamente per i nodi che sono suoi vicini nella rete.\\
-In particolare ci occuperemo di derivare le equazioni per lo stato di ogni singolo nodo delle rete ottenendo un modello ``botton-up" esatto dell'epidemia. Successivamente cercheremo di ridurre il numero di equazioni del modello con il fine di mantenere l'esattezza e semplificare, dal punto di vista computazionale, il problema da integrare.  \section{Un primo esempio}
+In particolare ci occuperemo di derivare le equazioni per lo stato di ogni singolo nodo delle rete ottenendo un modello ``\textit{bottom-up}" esatto dell'epidemia. Successivamente cercheremo di ridurre il numero di equazioni del modello con il fine di mantenere l'esattezza e semplificare, dal punto di vista computazionale, il problema da integrare.  \section{Un primo esempio}
 Vediamo come \`e possibile applicare il modello $SIR$ ad un semplice grafo con 3 nodi (vedi Figura~\ref{fig::3nodi}).\\
 \begin{figure}[ht]
 \centering
@@ -25,7 +25,7 @@ In analogia a quanto fatto in~\ref{modellosir} si ha che:
 	\item ogni nodo $i$ pu\`o diventare infetto se \`e suscettibile e almeno uno dei suoi vicini \`e infetto. Per ogni suo vicino infetto $i$ diventa infetto con un tasso di~$\tau$;
 	\item una volta infettato, ogni nodo diventa rimosso con un tasso di $\gamma$ indipendentemente dallo stato di qualsiasi altro nodo.
 \end{itemize}
-\newpage
+
 Passiamo ora allo studio del grafo~\ref{fig::3nodi}.
 \begin{itemize}
 	
@@ -123,17 +123,18 @@ $$
 \angol{A_i B_j}(0) =\angol{A_i}(0) \angol{B_j}(0)$$ 
 per $A,B\in \{ S, I\}$ e  $i,j=1, 2,3$.\\
 
-Poich\`e $\angol{S_1}(0)=0$ si ha che $\angol{S_1}(t)=0$ \`e soluzione del problema di Cauchy.  Osserviamo,  inoltre, che $\angol{I_2}(t)\geq \angol{I_3}(t)$ infatti il nodo $2$ ha due strade per infettarsi (di cui una inizialmente chiusa $\angol{I_3}(0)=0$) mentre il nodo $3$ ne ha una sola (che inizialmente \`e chiusa). 
-\begin{figure}[ht]
-\centering
-\subfloat[][Nodo 1]{\input{Figure/Nodo1}}
-\subfloat[][Nodo 2]{\input{Figure/Nodo2}}
-\\
-\subfloat[][Nodo 3]{\input{Figure/Nodo3}}
-\subfloat[][Prevalenza]{\input{Figure/Prevalenza}}
-\caption[Sperimentazione in MATLAB relativo al grafo~\ref{fig::3nodi}]{Divisione in classi nei singoli nodi (a)(b)(c) e grafico della prevalenza (d) per il grafo~\ref{fig::3nodi}.   Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy~\eqref{3nodi} con condizioni iniziali  di stati puri~\eqref{statipuri}. Abbiamo,  inoltre,  supposto l'indipendenza statistica delle condizioni iniziali.\\
-Per la sperimentazioni abbiamo usato come parametri $\tau= 0.3$ e $\gamma =0.1 $.}\label{fig::spe3nodi}
+\begin{figure}[h]
+	\centering
+	\subfloat[][Nodo 1]{\input{Figure/Nodo1}}
+	\subfloat[][Nodo 2]{\input{Figure/Nodo2}}
+	\\
+	\subfloat[][Nodo 3]{\input{Figure/Nodo3}}
+	\subfloat[][Prevalenza]{\input{Figure/Prevalenza}}
+	\caption[Sperimentazione in MATLAB relativo al grafo~\ref{fig::3nodi}]{Divisione in classi nei singoli nodi (a)(b)(c) e grafico della prevalenza (d) per il grafo~\ref{fig::3nodi}.   Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy~\eqref{3nodi} con condizioni iniziali  di stati puri~\eqref{statipuri}. Abbiamo,  inoltre,  supposto l'indipendenza statistica delle condizioni iniziali.\\
+		Per la sperimentazioni abbiamo usato come parametri $\tau= 0.3$ e $\gamma =0.1 $.}\label{fig::spe3nodi}
 \end{figure}
+Poich\`e $\angol{S_1}(0)=0$ si ha che $\angol{S_1}(t)=0$ \`e soluzione del problema di Cauchy.  Osserviamo,  inoltre, che $\angol{I_2}(t)\geq \angol{I_3}(t)$ infatti il nodo $2$ ha due strade per infettarsi (di cui una inizialmente chiusa $\angol{I_3}(0)=0$) mentre il nodo $3$ ne ha una sola (che inizialmente \`e chiusa). 
+
 
 
 %%% Local Variables:

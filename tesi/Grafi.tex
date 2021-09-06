@@ -1,6 +1,6 @@
 \section{Reti complesse e grafi}\label{grafi}
 Abbiamo trattato fino ad ora l'epidemia considerando la popolazione aggregata codificando l'intero meccanismo di contatto nel parametro $\beta$. Per avere un controllo maggiore dobbiamo estendere il modello affinch\`e possa trattare direttamente le interazioni tra i vettori dell'epidemia.\\
-Molti sistemi che si basano su interazioni tra soggetti sono rappresentabili e visualizzabili, in maniera naturale, come network dove i nodi rappresentano gli individui e gli archi le interazioni.\\
+Molti sistemi che si basano su interazioni tra soggetti sono rappresentabili e visualizzabili, in maniera naturale, come \textit{network} dove i nodi rappresentano gli individui e gli archi le interazioni.\\
 In questa sezione andremo a definire formalmente un grafo e alcune nozioni rilevanti.\\ \\
 Un \textit{grafo} \`e una coppia $G=(V,	E) $ dove:
 \begin{itemize}
@@ -64,7 +64,7 @@ $$ P=\left( v_0, \dots, v_n\right) $$
 dove $\forall i=0, \dots, n-1$ si ha $(v_i, v_{i+1})\in E$, $v_0=u$ e  $v_n= v$.\\
 Un grafo si dice \textit{fortemente connesso} se per ogni coppia di nodi $(u,v)$ esiste un cammino che li congiunge.\\
 Definiamo il \textit{diametro} di un grafo come la distanza massima tra  due nodi, la distanza \`e il numero di archi di un cammino. 
-\newpage
+
 Poich\`e nello studio della diffusione di una popolazione con molti individui, \`e irrealistico sperare di conoscere l'esatta matrice di adiacenza \`e spesso utile suopporre che la propagazione della malattia sia governata solamente da alcune misure qualitative. Ci focalizzeremo quindi sulle seguenti quanti\`a.\\ \\
 Definiamo il \textit{grado uscente} (\textit{out-degree})  del nodo $i$  come il numero di archi che partono dal nodo $i$. In termini della matrice di adiacenza
 $$ k_i^{out} =\sum_{j=1}^N g_{ij}.$$

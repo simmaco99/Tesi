@@ -1,5 +1,5 @@
 \chapter{Integrazione numerica di ODE}
-In questa capitolo presenteremo alcuni  metodi utilizzabili per l'integrazione  di ODE .  Per la parte teorica abbiamo fatto riferimento al libro~\cite{LeVeque}. 
+In questa capitolo presenteremo alcuni  metodi utilizzabili per l'integrazione  di ODE .  Per la parte teorica abbiamo fatto riferimento a~\cite[Capitoli 5-8]{LeVeque}. 
 Sia $f(t,u)$ la funzione
 $$ f:\, \R \times \R^n \to \R^n$$
 continua in $t$ e lipschitziana in $y$.\\
@@ -24,26 +24,26 @@ Fissato un numero $k$ di intervalli temporali, poniamo
 $t_n = nk$.\\ 
 Noto $U^n$ per calcolare $U^{n+1}$ possiamo approssimare  il limite che definisce $u'\left(t_n\right)$:
 $$ \lim_{h\to 0^+} \frac{u\left(t_n + h\right) - u\left(t_n\right)}{h}$$ 
-con la quantit\`a 
+con la differenza finita \emph{in avanti}
 $$ D_+ U^n = \frac{U^{n+1}-U^n}{k}.$$
 Tale approssimazione ci permette di ottenere
 $$ f\left(U^n\right) = \frac{U^{n+1}-U^n}{k} \text{ per } n=0, 1, \dots, $$
 Utilizzando la seguente formula
-$$ U^{n+1} = k f\left(U^n\right) + U^n$$
-possiamo calcolare esplicitamente $U^{n+1}$
+$$ U^{n+1} = k f\left(U^n\right) + U^n,$$
+possiamo calcolare esplicitamente $U^{n+1}$.
 \subsection{Eulero implicito }
 L'idea che sta dietro a questo metodo \`e simile a quella del metodo precedente.\\
-Approssimiamo il limite che definisce $u'\left(t_{n+1}\right)$ con
+Approssimiamo il limite che definisce $u'\left(t_{n+1}\right)$ con la differenza finita \emph{all'indietro}
 $$ D_{-}U^{n+1} = \frac{ U^{n+1}-U^n}{k}.$$ 
 Dunque otteniamo 
 
-$$ \frac{ U^{n+1}-U^n}{k} = f\left(U^{n+1}\right)$$ 
-o 
+$$ \frac{ U^{n+1}-U^n}{k} = f\left(U^{n+1}\right),$$ 
+ovvero 
 \begin{equation}
 	 U^{n+1} = U^n + k f\left(U^{n+1}\right).
 	 \label{imp_eulero}
 \end{equation}
-Per calcolare $U^{n+1}$ usando~\eqref{imp_eulero} occorre cercare uno zero di una funzione 
+Per calcolare $U^{n+1}$ usando la~\eqref{imp_eulero} occorre cercare uno zero di una funzione 
 $$ g(x) = x - kf(x) - U^n$$ 
 che, in generale, non \`e lineare. Un'approssimazione di tale  zero pu\`o essere trovata utilizzando un metodo di Newton.
 \subsection{Serie di Taylor}
@@ -63,9 +63,9 @@ $$ u'(t) = f(u(t),t)$$
 	u''(t) =&\frac{\partial}{\partial u} f\left(u(t),t\right) \, u'(t) + 	\frac{\partial}{\partial t} f\left(u(t),t\right) =\\
 	=& \frac{\partial}{\partial u} f\left(u(t),t\right) \, f\left(u(t),t\right) + \frac{\partial}{\partial t} f\left(u(t),t\right).\end{aligned}
 \end{equation*}
-Tale metodo pu\`o originare espressioni molto disordinate che devono essere elaborate per ogni equazione.  Per questo motivo tale metodo nella pratica non viene utilizzato.
-\subsection{Runge Kutta}
-I metodi di Runge Kutta evitano gli inconvenienti emersi nel metodo precedente: le derivate successive vengono  approssimate calcolando la funzione $f$ in  opportuni istanti  nell'intervallo $\left(t_n , t_{n+1}\right)$.\\ \\
+Tale metodo pu\`o originare un elevato numero di espressioni differenti che devono essere ricavate e calcolate per ogni equazione. Per questo motivo tale metodo nella pratica risulta essere scarsamente utilizzato.
+\subsection{Runge-Kutta}
+I metodi di Runge-Kutta evitano gli inconvenienti emersi dall'impiego delle formule di Taylor: le derivate successive vengono  approssimate calcolando la funzione $f$ in  opportuni istanti  nell'intervallo $\left(t_n , t_{n+1}\right)$.\\ \\
 Per presentare l'idea alla base di questa classe di metodi mostriamo come ottenere un metodo del secondo ordine.\\
 Poniamo 
 $$ \phi(t,u;h) = c_1 f(t,u) + c_2 f\left(t+ ha_2, \, y + hb_{21}f(t,u)\right)$$
@@ -79,7 +79,7 @@ c_2b_2 = \frac{1}{2}	.
 \end{equation}
 dunque possiamo calcolare $U^{n+1}$ tramite la formula
 $$ U^{n+1} = U^n + k \phi\left(t_n,U^n;\,k\right)$$
-Il procedimento esposto  in precedenza pu\`o essere esteso in modo da utilizzare un qualsiasi numero $m$ di valutazione della funzione $f$.  In questo modo otterremo il metodo generale di Runge Kutta esplicito a $m$ stadi:
+Il procedimento esposto  in precedenza pu\`o essere esteso in modo da utilizzare un qualsiasi numero $m$ di valutazione della funzione $f$.  In questo modo otterremo il metodo generale di Runge-Kutta esplicito a $m$ stadi:
 \begin{equation}
 \begin{aligned}
 &h_1(t,u;\,k) = f(u,t) \\
@@ -88,11 +88,11 @@ Il procedimento esposto  in precedenza pu\`o essere esteso in modo da utilizzare
 &U^{n+1}= U^n + h \phi\left( t_n, U^n;\,\right)\\
 \end{aligned}
 \end{equation}
-Un modo usuale di rappresentare tale metodo \`e sotto forma di tableau come fatto nella in Figura~\ref{fig::tableau}.\\ \\
-La maggior parte dei software per la risoluzione di ODE non utilizza un intervallo temporale fisso ma, piuttosto, lo regola durante il processo d'integrazione in modo da avere un controllo sull'errore.\\
-Un modo utilizzato  per stimare l'errore  \`e quello di confrontare le soluzioni con  due metodi diversi: uno di ordine $p$ ed un altro di ordine $p+1$ (o maggiore).In questo modo, se il passo \`e sufficientemente piccolo,  il metodo di ordine maggiore genera un'approssimazione migliore dell'altro.  La differenza tra le due soluzioni fornisce una stima sull'errore del metodo di ordine inferiore.\\
-Possiamo implementare questa strategia anche nei metodi di Runge Kutta.  Le soluzioni dei due metodi vengono prese semplicemente scegliendo semplicemente d vettori $c$ ; in questo modo si generano due cos\`i le due soluzioni.\\
-Questa versione del metodo di Runge Kutta viene implementata nella funzione ode45 di MATLAB di cui riportiamo il tableau (Figura~\ref{fig::ode45}). Tale tableau \`e ripreso da~\cite{ode_matlab}.
+Un modo usuale di rappresentare tale metodo \`e sotto forma di \textit{tableau di Butcher} come fatto in Figura~\ref{fig::tableau}.\\ \\
+La maggior parte dei software per la risoluzione di ODE non utilizza un intervallo temporale fisso ma, piuttosto, lo regola durante il processo d'integrazione in modo da avere un controllo sull'errore locale di troncamento.\\
+Un modo utilizzato  per stimare l'errore  \`e quello di confrontare le soluzioni con  due metodi diversi: uno di ordine $p$ ed un altro di ordine $p+1$ (o maggiore).In questo modo, se il passo \`e sufficientemente piccolo,  il metodo di ordine maggiore genera un'approssimazione migliore dell'altro.  La differenza tra le due soluzioni fornisce qu una stima sull'errore del metodo di ordine inferiore.\\
+Possiamo implementare questa strategia anche nei metodi di Runge-Kutta.  Le soluzioni dei due metodi vengono prese semplicemente scegliendo semplicemente due vettori $c$ nel \emph{tableau} in Figura~\ref{fig::tableau}; in questo modo si generano due cos\`i le due soluzioni sfruttando le medesime valutazioni della dinamica $f$ del sistema.\\
+Questa versione del metodo di Runge-Kutta viene implementata nella funzione \texttt{ode45} di MATLAB di cui riportiamo il tableau (Figura~\ref{fig::ode45}), si veda~\cite{ode_matlab} per i dettagli e la derivazione.
 \begin{figure}[!htb]
 $$\begin{array}{c|cccc}
  0 & \\
@@ -103,10 +103,10 @@ $$\begin{array}{c|cccc}
   \hline
 		& c_1 		& \dots 	& \dots 	&c_m
 \end{array}$$
-	\caption{Tableau del metodo generale di Runge Kutta esplicito a $m$ stadi}	
+	\caption{Tableau del metodo generale di Runge-Kutta esplicito a $m$ stadi}	
 	\label{fig::tableau}
 \end{figure}
-\begin{figure}
+\begin{figure}[htb]
 $$\begin{array}{c|ccccccc}
 0					&									&									&									&								&											&						&		\\ \\
 \frac{1}{5}	&	\frac{1}{5}				&									&									&								&											&						&		\\ \\
@@ -119,7 +119,7 @@ $$\begin{array}{c|ccccccc}
 					&	\frac{35}{384}			&	0								&	\frac{500}{1113}		&	\frac{125}{192}	&-\frac{2187}{6784}			&	\frac{11}{84}	&	0	\\ \\
 				&	\frac{5179}{57600}	&	0						&	\frac{7571}{16695}	&	\frac{393}{640}		&	-\frac{92097}{339200}	&	\frac{187}{2100}	&	\frac{1}{40}
 \end{array}$$
-\caption{Tableau del metodi di Runge Kutta implementato dalla funzione ode45 di MATLAB}
+\caption{Tableau del metodi di Runge-Kutta implementato dalla funzione \texttt{ode45} di MATLAB}
 \label{fig::ode45}
 \end{figure}
 \section{Assoluta stabilit\`a}
@@ -141,18 +141,62 @@ Il metodo di Eulero esplicito applicato al problema test~\eqref{test} produce
 $$ U^{n+1} = (1 + \lambda k) U^n$$
 dunque per ricorsione su $n$ otteniamo 
 $$ U^n = (1 + \lambda k)^n $$ 
-dunque il metodo \`e assolutamente stabile se $ | 1 + \lambda k |< 1$.  La regione di assolut\`a stabilit\`a \`e una palla (nel piano complesso) di raggio $1$ centrata in $(-1,0)$.\\ \\
+dunque il metodo \`e assolutamente stabile se $ | 1 + \lambda k |< 1$.  La regione di assolut\`a stabilit\`a \`e dunque il disco (nel piano complesso) di raggio $1$ centrato in $(-1,0)$.\\ \\
 
 Il metodo di Eulero implicito  applicato al problema test~\eqref{test} produce 
 $$ U^{n+1} = \frac{1}{1-\lambda k} U^n$$
 dunque 
 $$ U^n = \frac{ 1}{\tonde{ 1 - \lambda k}^n}$$
 dunque il metodo \`e assolutamente stabile se $| 1 - \lambda k| >1$.
+
+Le due regioni di assoluta stabilità sono riportate per confronto nella Figura~\ref{fig:assolutastabilitaeulero}. Osserviamo, in particolare, che il metodo di Eulero implicito è un metodo $\mathcal{A}$-stabile, poiché l'intero $\mathbb{C}^{-}$ è contenuto in $\mathcal{A}$.
+
+\begin{figure}
+\centering
+\subfloat[][Eulero Esplicito]{
+\definecolor{cccccc}{rgb}{0.8,0.8,0.8}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-3,0) -- (3,0);
+\foreach \x in {-3,-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3) -- (0,3);
+\foreach \y in {-3,-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y\imath$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-3,-3) rectangle (3,3);
+\draw [color=cccccc,fill=cccccc,fill opacity=0.5] (-1,0) circle (1cm);
+\end{tikzpicture}
+}
+\subfloat[][Eulero Implicito]{
+\definecolor{cccccc}{rgb}{0.8,0.8,0.8}
+\definecolor{ffffff}{rgb}{1,1,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3,-3) rectangle (3,3);
+\fill[color=cccccc,fill=cccccc,fill opacity=0.5] (-3,-3) -- (3,-3) -- (3,3) -- (-3,3) -- cycle;
+\draw [color=ffffff,fill=ffffff,fill opacity=1] (1,0) circle (1cm);
+\draw [color=cccccc] (-3,-3)-- (3,-3);
+\draw [color=cccccc] (3,-3)-- (3,3);
+\draw [color=cccccc] (3,3)-- (-3,3);
+\draw [color=cccccc] (-3,3)-- (-3,-3);
+\draw[->,color=black] (-3,0) -- (3,0);
+\foreach \x in {-3,-2,-1,1,2}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0,-3) -- (0,3);
+\foreach \y in {-3,-2,-1,1,2}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y\imath$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\end{tikzpicture}
+}
+\caption[Regioni di assoluta stabilità]{Regioni di assoluta stabilità $\mathcal{A}$ dei metodi di Eulero implicito ed Esplicito.}\label{fig:assolutastabilitaeulero}
+\end{figure}
+
 \section{Stiffness}
 Dato il problema~\eqref{pb} definiamo il quoziente di stiffness nel punto~$\left(\overline{t},u\left(\overline{t}\right)\right)$  come il rapporto 
  $$ \frac{ \max \vert\lambda_i \vert }{\min \vert \lambda_i \vert}$$ 
  dove $\lambda_i$ sono gli autovalori della matrice Jacobiana del sistema calcolata nel punto  $\left(\overline{t},u\left(\overline{t}\right)\right)$.\\
  Diremo che un problema \`e stiff se tale rapporto \`e molto pi\`u grande di $1$.\\
 Tale definizione formale presenta diverse limitazioni e non sempre caratterizza accuratamente i sistemi stiff.  Riportiamo una definizione di carattere pi\`u euristico dovuta a J.Lambert~\cite{lambert1991numerical} e qui tradotta in italiano:
+\begin{quote}
 ``Un sistema di equazioni differenziali ordinarie si dice stiff se, 
 approssimandolo con uno schema numerico che presenti una regione di assoluta stabilit\`a limitata, esso, per ogni dato iniziale, obbliga lo schema numerico ad impiegare un passo di discretizzazione molto pi\`u piccolo di quello realmente necessario per descrivere ragionevolmente l'andamento della soluzione esatta".
+\end{quote}

@@ -1,5 +1,5 @@
 \section{Chiusure}
-Come gi\`a osservato nell'esempio introduttivo, il modello botton-up su una rete richiede un elevato numero di equazioni differenziali: le equazioni per i nodi dipendono dalle coppie, le coppie dalle triple e cos\`i via.\\
+Come gi\`a osservato nell'esempio introduttivo, il modello bottom-up su una rete richiede un elevato numero di equazioni differenziali: le equazioni per i nodi dipendono dalle coppie, le coppie dalle triple e cos\`i via.\\
 Tale approccio, al crescere del numero di nodi, risulterebbe computazionalmente intrattabile. Per risolvere questo problema dobbiamo trovare alcune semplificazioni che ci permettano di esprimere le coppie in termini dei singoli nodi, le triple in termini delle coppie e dei nodi e cos\`i via.\\
 Se riusciamo a fare ci\`o, possiamo rompere la ``cascata" nella quale ogni struttura dipende da tutte le strutture di ordine superiore.\\ \\
 Andiamo a presentare un approccio formale basato sul lavoro di Keeling~\cite{keeling1995ecology}  e van Baalen~\cite{van2000pair}.  A tal fine introduciamo i  \textit{coefficienti di correlazione}.\\
@@ -17,7 +17,7 @@ $$ \angol{ A_i B_j} = \angol{ A_i} \angol{B_j} C_{A_i B_j} \text{ dove } A,B\in 
 Assumendo, in prima approssimazione, l'indipendenza a livello delle coppie abbiamo 
 $$ \angol{ A_i B_j} \approx \angol{A_i}\angol{B_j}.$$ 
 Per enfatizzare che, in generale, non abbiamo identit\`a esatte, quando andremo a risolvere un sistema ottenuto usando le chiusure denoteremo  con $\angol{X_i}$ l'approssimazione di $\angol{ S_i}$ e con $\angol{ Y_i}$ quella di $\angol{ I_i}$.\\ \\
-Presentiamo il modello botton-up generale su una rete con $N$ nodi senza loop e mostriamo come usando l'indipendenza a livello delle coppie si riesca ad ottenere un sistema di equazioni differenziali chiuse.\\
+Presentiamo il modello bottom-up generale su una rete con $N$ nodi senza loop e mostriamo come usando l'indipendenza a livello delle coppie si riesca ad ottenere un sistema di equazioni differenziali chiuse.\\
 Sia $G=(g_{ij})$ la matrice di adiacenza del grafo $G$. Assumiamo che il tasso di trasmissione da $i$ a $j$ sia $\tau g_{ij}$ e che il tasso di rimozione per il nodo $i$ sia $\gamma_i$ indipendentemente dallo stato di ogni altro nodo.\\
 Dunque le equazione per il sistema diventano
 \begin{equation}
@@ -47,16 +47,21 @@ dove $\Gamma=\operatorname{diag}(\gamma_1, \dots, \gamma_n)$ e il prodotto tra v
 
 Nella Figura~\ref{fig::coppie3nodi} possiamo confrontare le soluzioni del modello esatto con l'approssimazione ottenuta  dall'indipendenza a livello delle coppie per il grafo~\ref{fig::3nodi}. Per non appesantire i grafici abbiamo tracciato solamente  $\angol{S_i}$ e $\angol{I_i}$ in funzione  del tempo: $\angol{ R_i}$ pu\`o essere ricavata.  
 Dalla Figura~\ref{fig::coppie3nodi} (d) possiamo notare che il modello semplificato tende a sovrastimare la prevalenza della malattia. Tale sovrastima risulta sconveniente se volessimo usare queste  predizioni per intervenire con delle politiche di contenimento. Nelle sezioni successive ci domanderemo se sia possibile trovare una rappresentazione con un numero minore di variabili che sia pi\`u accurata o, meglio ancora, esatta. 
-\begin{figure}[!htb]
+\begin{figure}[!b]
 	\centering
 \subfloat[][Nodo 2]{
 	\input{Figure/Coppie_Nodo_2_Sano} 
 	\input{Figure/Coppie_Nodo_2_Infetto}} 
-\\
+
 \subfloat[][Nodo 3]{
 	\input{Figure/Coppie_Nodo_3_Sano}
 	\input{Figure/Coppie_Nodo_3_Infetto}}
 \\
+\phantomcaption
+\end{figure}
+\begin{figure}[t]
+\ContinuedFloat
+\centering
 \subfloat[][Prevalenza.]
 {\input{Figure/Coppie_Prevalenza}}
 \caption[Confronto tra modello esatto e chiuso alle coppie per~\ref{fig::3nodi}]{Divisione in classi dei  singoli nodi (a)(b) e grafico della prevalenza (c). Non abbiamo riportato i grafici relativi al nodo $1$ poich\`e in questo caso il modello esatto e il modello chiuso alle coppie coincidono. Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy derivato dal modello esatto~\eqref{3nodi} (in blu) con quello approssimato  ottenuto   assumendo la chiusura alle coppie~\eqref{Chiuso_coppie} (in rosso).  Per entrambi i modelli le condizioni iniziali sono stati puri~\eqref{statipuri}, inoltre,  nel modello esatto abbiamo supposto l'indipendenza statica di tali condizioni iniziali. Per la sperimentazione abbiamo usato come parametri $\tau=0.3$ e $\gamma=0.1$.\\}
@@ -100,7 +105,10 @@ Andando a risolvere numericamente i $3$ modelli osserviamo, in Figura~\ref{fig::
 \subfloat[][Nodo 2: sani e infetti]{
 	\input{Figure/Lollipop_Modelli_S2}
 	\input{Figure/Lollipop_Modelli_I2}} 
-\\
+\phantomcaption
+\end{figure}
+\begin{figure}
+\ContinuedFloat
 \subfloat[][Nodo 3: sani e infetti]{
 	\input{Figure/Lollipop_Modelli_S3}
 	\input{Figure/Lollipop_Modelli_I3}}
@@ -109,7 +117,7 @@ Andando a risolvere numericamente i $3$ modelli osserviamo, in Figura~\ref{fig::
 Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB, il problema di Cauchy derivato dal modello esatto~\eqref{lollipop_completo},  dal modello chiuso alle coppie~\eqref{Chiuso_coppie} e da quello alle triple~\eqref{Chiuso_triple}.
 Per i $3$ modelli le condizioni iniziali sono stati puri~\eqref{statipuri_lollipop}. Abbiamo, inoltre,  supposto l'indipendenza statica di tali condizioni iniziali.
 Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$.\\
-Non abbiamo riportato i grafici relativi al nodo $4$ poich\`e in questo caso i 3 modelli coincidevano (nei limiti della tolleranza della funzione ode45).}
+Non abbiamo riportato i grafici relativi al nodo $4$ poich\`e in questo caso i 3 modelli coincidevano (nei limiti della tolleranza della funzione \texttt{ode45}).}
 \label{fig::confronto_modelli}
 \end{figure}
 
