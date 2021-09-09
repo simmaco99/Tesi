@@ -5,7 +5,7 @@ Concludiamo la tesi con un'applicazione del modello SIR su una rete reale:  la r
 \includegraphics{Figure/minnesota}
 \caption[Grafico della rete stradale del Minnesota.]{Grafico della rete stradale del Minnesota. I dati provengo dalla \emph{SuiteSparse Matrix Collection}~\cite{RepMatrici}.}\label{fig::minnesota}
 \end{figure}
-In particolare ci concentriamo su alcuni aspetti numerici concernenti l'integrazione del sistema di ODE risultante.
+In particolare, ci concentriamo su alcuni aspetti numerici concernenti l'integrazione del sistema di ODE risultante.
 %\newpage
 
 Un primo quesito su cui abbiamo indagato \`e come la scelta dei tassi d'infezione e di recupero influenzassero la scelta dei passi temporali (\emph{time-step}) nei due metodi. Il time-step deve essere scelto sufficientemente piccolo in modo da garantire il controllo dell'errore locale di troncamento.  In particolare, se le condizioni sulla stabilit\`a ci costringono ad utilizzare un passo molto pi\`u piccolo di quanto indicato dall'errore di troncamento locale allora il metodo che abbiamo scelto non \`e ottimale per il problema. Ci\`o accade, ad esempio, se proviamo ad utilizzare un metodo esplicito per risolvere un problema stiff.
@@ -18,8 +18,8 @@ In Figura~\ref{fig::minnesota_lenght} si pu\`o osservare come varia il numero di
 \\
 \subfloat[][$\gamma=0.50$]{\input{Figure/minnesota_50}}
 \subfloat[][$\gamma=0.70$]{\input{Figure/minnesota_70}}
-\caption[Numero d'iterazione di \texttt{ode45} e \texttt{ode15s}  sulla rete stradale del Minnesota al variare dei parametri]{Numero d'iterazione di \texttt{ode45} e \texttt{ode15s}  sulla rete stradale del Minnesota al variare dei parametri.\\Per ottenere i grafici abbiamo risolto numericamente,  usando gli integratori \texttt{ode45} e \texttt{ode15s},  il problema chiuso alle coppie con condizioni iniziali  di stati puri ($1$ sicuramente infetto, gli altri nodi sicuramente sani) per la rete~\ref{fig::minnesota}.\\
-Per la sperimentazioni abbiamo usato timespan $[0 \,\,30]$.}
+\caption[Numero di time-step per \texttt{ode45} e \texttt{ode15s}  sulla rete stradale del Minnesota al variare dei parametri]{Numero di time-step  per \texttt{ode45} e \texttt{ode15s}  sulla rete stradale del Minnesota al variare dei parametri.\\Per ottenere i grafici abbiamo risolto numericamente,  usando gli integratori \texttt{ode45} e \texttt{ode15s},  il problema chiuso alle coppie con condizioni iniziali  di stati puri ($1$ sicuramente infetto, gli altri nodi sicuramente sani) per la rete~\ref{fig::minnesota}.\\
+Per la sperimentazione abbiamo usato l'intervallo temporale $[0 \,\,30]$.}
 \label{fig::minnesota_lenght}
 \end{figure}
 \begin{figure}[htbp]
@@ -30,10 +30,10 @@ Per la sperimentazioni abbiamo usato timespan $[0 \,\,30]$.}
 \subfloat[][$\gamma=0.50$]{\input{Figure/minnesota_indice_50}}
 \subfloat[][$\gamma=0.70$]{\input{Figure/minnesota_indice_70}}
 \caption[Stiff ratio alle condizioni iniziali sulla rete stradale del Minnesota al variare dei parametri ]{Stiff ratio calcolato alle condizioni iniziali:  stati puri ($1$ sicuramente infetto, gli altri nodi sicuramente sani) al variare dei parametri $\tau$ e $\gamma$.\\ Per ottenere i grafici abbiamo calcolato il rapporto tra l'autovalore di modulo massimo e quello minimo della matrice Jacobiana, calcolato alle condizioni iniziali, del modello chiuso alle coppie.\\
-Per la sperimentazioni abbiamo calcolato numericamente gli autovalori della matrice Jacobiana usando il comando eig di MATLAB.}
+Per la sperimentazione abbiamo calcolato numericamente gli autovalori della matrice Jacobiana usando il comando \texttt{eig} di MATLAB.}
 \label{fig::minnesota_ratiostiff}
 \end{figure}
-Questo ci suggerisce di utilizzare metodi di tipo implicito per integrare i sistemi di ode~\ref{Chiuso_coppie}.
+Questo ci suggerisce di utilizzare metodi di tipo implicito per integrare i sistemi di ode~\eqref{Chiuso_coppie}.
 
 Un altro aspetto su cui abbiamo indagato \`e il legame tra il grado del nodo in cui ``inizia" l'epidemia e il suo sviluppo.
 Nella rete in esame ogni nodo ha come grado un numero compreso tra $1$ e $5$ dunque abbiamo risolto $5$ problemi di Cauchy facendo partire l'epidemia ogni volta da un nodo di grado diverso. 
@@ -41,7 +41,7 @@ Nella rete in esame ogni nodo ha come grado un numero compreso tra $1$ e $5$ dun
 \centering
 %\input{Figure/minnesota_prevalenza}
 \includegraphics{Figure/minnesota_prevalenza}
-\caption[Grafico della prevalenza al variare del grado del nodo inizialmente infetto.]{Grafico della prevalenza al variare del grado del nodo inizialmente infetto.\\ Per ottenere i grafici abbiamo risolto numericamente, usando MATLAB, cinque problema di Cauchy ottenuti dal modello chiuso alle coppie.\\
+\caption[Grafico della prevalenza al variare del grado del nodo inizialmente infetto.]{Grafico della prevalenza al variare del grado del nodo inizialmente infetto.\\ Per ottenere i grafici abbiamo risolto numericamente, usando MATLAB, cinque problemi di Cauchy ottenuti dal modello chiuso alle coppie.\\
 Per le condizioni iniziali abbiamo preso ogni volta un nodo certamente infetto (con grado diverso e tutti gli altri nodi certamente sani).\\
 Per la sperimentazione abbiamo utilizzato come parametri $\tau=0.3$ e $\gamma=0.1$.}
 \label{fig::minnesota_prevalenza}
@@ -53,7 +53,7 @@ L'ultimo quesito su cui abbiamo indagato \`e come l'immunizzazione cambi le curv
 \centering
 \includegraphics{Figure/minnesota_immunizzazione}
 %\input{Figure/minnesota_immunizzazione}
-\caption[Grafico della prevalenza al variare della percentuale d'immunizzazionne.]{Grafico della prevalenza al variare della percentuale d'immunizzazione al tempo iniziale.\\ Per ottenere i grafici abbiamo risolto numericamente, usando MATLAB, quattro problema di Cauchy ottenuti dal modello chiuso alle coppie utilizzando come parametri $\tau=0.3$ e $\gamma=0.1$.}
+\caption[Grafico della prevalenza al variare della percentuale d'immunizzazione.]{Grafico della prevalenza al variare della percentuale d'immunizzazione al tempo iniziale.\\ Per ottenere i grafici abbiamo risolto numericamente, usando MATLAB, quattro problemi di Cauchy ottenuti dal modello chiuso alle coppie utilizzando come parametri $\tau=0.3$ e $\gamma=0.1$.}
 \label{fig::minnesota_immunizzato}
 \end{figure}
 Per simulare l'immunizzazione di una percentuale $x$  della popolazione abbiamo considerato come condizioni iniziale un solo nodo infetto con probabilit\`a $1-x$ e rimosso con probabilit\`a $x$ mentre gli altri nodi sani con probabilit\`a $x$ e rimossi con probabilit\`a $1-x$.

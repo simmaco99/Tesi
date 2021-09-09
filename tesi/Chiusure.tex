@@ -6,8 +6,8 @@ Andiamo a presentare un approccio formale basato sul lavoro di Keeling~\cite{kee
 Siano $A, B\in \{ S, I,R\}$ e $(i,j)\in E$ allora 
 $$C_{A_i B_j} = \frac{\angol{A_i B_j}}{\angol{A_i} \angol{B_j}}.$$
 Tali coefficienti quantificano la propensione che due nodi adiacenti abbiamo stato differente o identico.\\
-Se $C_{A_iB_j}=1$ allora possiamo, in modo equivalente, assuemere  $A_i$ e $B_j$ indipendenti.\\
-Osserviamo che nel modello $SIR$ gli stati non sono per\`o indipendenti. I nodi infetti possono infettare i loro vicini dunque hanno una maggior probabilit\`a di essere uniti ad altri nodi infetti,  di conseguenza  $C_{I_i I_j}\geq 1$.  Diremo che $I_i$ e $I_j$ sono correlati positivamente.\\
+Se $C_{A_iB_j}=1$ allora possiamo, in modo equivalente, assumere  $A_i$ e $B_j$ indipendenti.\\
+Osserviamo che nel modello $SIR$ gli stati non sono per\`o indipendenti. I nodi infetti possono infettare i loro vicini, dunque, hanno una maggior probabilit\`a di essere uniti ad altri nodi infetti. $C_{I_i I_j}\geq 1$.  Diremo che $I_i$ e $I_j$ sono correlati positivamente.\\
 Con medesime argomentazioni si arriva a dire che $S_i$ e $I_j$ sono correlati negativamente: $C_{S_i I_j}\leq 1$.\\
  In un certo senso, sapere che $j$ \`e infetto aumenta la nostra aspettativa  che $i$ sia infetto e diminuisce quella che sia sano.\\
   
@@ -19,19 +19,19 @@ $$ \angol{ A_i B_j} \approx \angol{A_i}\angol{B_j}.$$
 Per enfatizzare che, in generale, non abbiamo identit\`a esatte, quando andremo a risolvere un sistema ottenuto usando le chiusure denoteremo  con $\angol{X_i}$ l'approssimazione di $\angol{ S_i}$ e con $\angol{ Y_i}$ quella di $\angol{ I_i}$.\\ \\
 Presentiamo il modello bottom-up generale su una rete con $N$ nodi senza loop e mostriamo come usando l'indipendenza a livello delle coppie si riesca ad ottenere un sistema di equazioni differenziali chiuse.\\
 Sia $G=(g_{ij})$ la matrice di adiacenza del grafo $G$. Assumiamo che il tasso di trasmissione da $i$ a $j$ sia $\tau g_{ij}$ e che il tasso di rimozione per il nodo $i$ sia $\gamma_i$ indipendentemente dallo stato di ogni altro nodo.\\
-Dunque le equazione per il sistema diventano
+Dunque, le equazioni, per il sistema diventano
 \begin{equation}
 \begin{aligned}
-	 \angol{ S_i} =& - \sum_{j=1\atop{j\neq i }}^N g_{ij} \angol{ S_i I_j},\\
-	 \angol{I_i} =&\spa \tau \sum_{j=1\atop{j\neq i}}^N  g_{ij} \angol{ S_i I_j} -\gamma_i \angol{I_i},
+	 \dot{\angol{ S_i}}=& - \sum_{j=1\atop{j\neq i }}^N g_{ij} \angol{ S_i I_j},\\
+	 \dot{\angol{I_i}} =&\spa \tau \sum_{j=1\atop{j\neq i}}^N  g_{ij} \angol{ S_i I_j} -\gamma_i \angol{I_i},
 \end{aligned}
 \end{equation}
 dove ricordiamo che $\angol{R_i}=1-\angol{S_i}- \angol{I_i}$.\\
 Usando l'indipendenza a livello delle coppie otteniamo  un sistema chiuso: 
 \begin{equation}
 \begin{aligned}
-	 \angol{ X_i} =& -\tau \sum_{j=1\atop{j\neq i }}^N g_{ij}\angol{ X_i} \angol{Y_j},\\
-	 \angol{Y_i} =&\spa \tau \sum_{j=1\atop{j\neq i}}^N  g_{ij}\angol{ X_i}\angol{Y_j} -\gamma_i \angol{Y_i}.
+	 \dot{\angol{ X_i}} =& -\tau \sum_{j=1\atop{j\neq i }}^N g_{ij}\angol{ X_i} \angol{Y_j},\\
+	 \dot{\angol{Y_i}} =&\spa \tau \sum_{j=1\atop{j\neq i}}^N  g_{ij}\angol{ X_i}\angol{Y_j} -\gamma_i \angol{Y_i}.
 \end{aligned}
 \label{Chiuso_coppie}
 \end{equation}
@@ -64,15 +64,15 @@ Dalla Figura~\ref{fig::coppie3nodi} (d) possiamo notare che il modello semplific
 \centering
 \subfloat[][Prevalenza.]
 {\input{Figure/Coppie_Prevalenza}}
-\caption[Confronto tra modello esatto e chiuso alle coppie per~\ref{fig::3nodi}]{Divisione in classi dei  singoli nodi (a)(b) e grafico della prevalenza (c). Non abbiamo riportato i grafici relativi al nodo $1$ poich\`e in questo caso il modello esatto e il modello chiuso alle coppie coincidono. Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy derivato dal modello esatto~\eqref{3nodi} (in blu) con quello approssimato  ottenuto   assumendo la chiusura alle coppie~\eqref{Chiuso_coppie} (in rosso).  Per entrambi i modelli le condizioni iniziali sono stati puri~\eqref{statipuri}, inoltre,  nel modello esatto abbiamo supposto l'indipendenza statica di tali condizioni iniziali. Per la sperimentazione abbiamo usato come parametri $\tau=0.3$ e $\gamma=0.1$.\\}
+\caption[Confronto tra modello esatto e chiuso alle coppie per~\ref{fig::3nodi}]{Divisione in classi dei  singoli nodi (a)(b) e grafico della prevalenza~(c). Non abbiamo riportato i grafici relativi al nodo $1$ poich\'e in questo caso il modello esatto e il modello chiuso alle coppie coincidono. Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy derivato dal modello esatto~\eqref{3nodi} (in blu) e quello approssimato  ottenuto   assumendo la chiusura alle coppie~\eqref{Chiuso_coppie} (in rosso).  Per entrambi i modelli le condizioni iniziali sono stati puri~\eqref{statipuri}, inoltre,  nel modello esatto abbiamo supposto l'indipendenza statistica di tali condizioni iniziali. Per la sperimentazione abbiamo usato come parametri $\tau=0.3$ e $\gamma=0.1$.\\}
 \label{fig::coppie3nodi}
 \end{figure}
 
 \subsection{Chiusura al livello delle triple}
 In analogia a quanto fatto nel paragrafo precedente, cercheremo di sfruttare l'indipendenza a livello delle triple ovvero l'approssimazione
 $$ \angol{ A_i B_j C_k }\approx \frac{\angol{A_iB_j}\angol{B_jC_k}}{\angol{B_j}}$$
- per ottenere un modello chiuso (con un numero minore di equazioni rispetto a quello esatto) ottenendo un'approssimazione migliore del modello assumendo l'indipendenza a livello delle coppie.\\ \\
-Mostriamo come ci\`o ci permette di formulare un modello chiuso. Come nel caso delle coppie, per rimarcare la non esattezza del modello useremo le lettere $X,Y$ al posto di $S$ e $I$. \\
+ per ottenere un modello chiuso (con un numero minore di equazioni rispetto a quello esatto). Tale modello ci fornir\`a  un'approssimazione migliore di quello chiuso ottenuto assumendo l'indipendenza a livello delle coppie.\\ \\
+Come nel caso delle coppie, per rimarcare la non esattezza del modello useremo le lettere $X,Y$ al posto di $S$ e $I$. \\
 Nel  modello esatto, per i singoli nodi vale: \begin{equation*}
 \begin{aligned}
 	\dot{\angol{S_i}} = &-\tau \sum_{j=1\atop {j\neq i }} ^N g_{ij} \angol{S_i I_j},\\
@@ -83,7 +83,7 @@ Mentre per le coppie
 $$
 \dot{\angol{S_i I_j}} = \tau \sum_{k=1\atop{k\neq i }}^N g_{jk} \angol{S_iS_jI_k} - \tau \sum_{k=1\atop{k\neq j }}^N g_{ik} \angol{I_kS_iI_j} - \tau  g_{ij} \angol{S_i I_j}  -\gamma \angol{S_i I_j}.
 $$
-Dunque usando la chiusura alle triple e osservando che vale
+Dunque, usando la chiusura alle triple e osservando che vale
 $$ \dot{\angol{S_i S_j}} = -\tau \sum_{k=1\atop{k \neq j}}^N g_{ik} \angol{I_kS_iS_j} - \tau \sum_{k=1\atop{k\neq i }}^N g_{jk} \angol{S_iS_jI_k},$$ 
 otteniamo il seguente sistema chiuso 
 \begin{equation}\label{Chiuso_triple}
@@ -115,9 +115,9 @@ Andando a risolvere numericamente i $3$ modelli osserviamo, in Figura~\ref{fig::
 \caption[Confronto tra il modello esatto, chiuso alle coppie e alle triple per il grafo~\ref{fig::lollipop}]
 {Divisione in classi dei singoli nodi per il grafo~\ref{fig::lollipop}.\\
 Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB, il problema di Cauchy derivato dal modello esatto~\eqref{lollipop_completo},  dal modello chiuso alle coppie~\eqref{Chiuso_coppie} e da quello alle triple~\eqref{Chiuso_triple}.
-Per i $3$ modelli le condizioni iniziali sono stati puri~\eqref{statipuri_lollipop}. Abbiamo, inoltre,  supposto l'indipendenza statica di tali condizioni iniziali.
+Per i $3$ modelli le condizioni iniziali sono stati puri~\eqref{statipuri_lollipop}. Abbiamo, inoltre,  supposto l'indipendenza statistica di tali condizioni iniziali.
 Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$.\\
-Non abbiamo riportato i grafici relativi al nodo $4$ poich\`e in questo caso i 3 modelli coincidevano (nei limiti della tolleranza della funzione \texttt{ode45}).}
+Non abbiamo riportato i grafici relativi al nodo $4$ poich\'e in questo caso i 3 modelli coincidevano (nei limiti della tolleranza della funzione \texttt{ode45}).}
 \label{fig::confronto_modelli}
 \end{figure}
 

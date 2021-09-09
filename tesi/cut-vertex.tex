@@ -105,9 +105,8 @@ da cui la tesi.
 \end{thm}
 Grazie a questo teorema siamo pronti per presentare l'algoritmo generale per le chiusure.
 \begin{enumerate}
-	\item Si trovano tutti i cut-vertices di $G$ e si denotino con $C=\{ v_{i_1}, \dots, v_{i_L}\}$. Tale procedimento pu\`o essere fatto con  un costo in tempo di $O(\vert E \vert + \vert V \vert)$ utilizzando una visita in profondit\`a (DFS). 
-	\item Si divide la rete originale in sottoreti connesse a due a due scollegate.
-	\item Tale procedura conduce ad una famiglia di sottoreti distinte $G_1, \dots, G_P$. Le sottoreti vengono create in modo che i cut-vertices siano mantenuti in tutte le sottoreti generate. Si veda la Figura~\ref{fig::cut-vertex}.
+	\item Si trovano tutti i cut-vertex di $G$ e si denotino con $C=\{ v_{i_1}, \dots, v_{i_L}\}$. Tale procedimento pu\`o essere fatto con  un costo in tempo di $O(\vert E \vert + \vert V \vert)$ utilizzando una visita in profondit\`a (DFS). 
+	\item Si divide la rete originale in sottoreti connesse a due a due scollegate. Tale procedura conduce ad una famiglia di sottoreti distinte $G_1, \dots, G_P$. Le sottoreti vengono create in modo che i cut-vertex siano mantenuti in tutte le sottoreti generate. Si veda la Figura~\ref{fig::cut-vertex}.
 	\item Per ogni nodo $i$ delle sottoreti, si ha 
 	\begin{equation*}
 	\begin{aligned}
@@ -160,7 +159,7 @@ Le precedenti equazioni introducono altre due coppie. Aggiungendole otteniamo un
 \dot{\angol{S_2S_3}}= & -\tau \frac{\angol{ I_1 S_2}\angol{S_2S_3}}{\angol{S_2}}.
 	\end{aligned}	
 \end{equation*}
-In questo esempio, non abbiamo ottenuto un notevole vantaggio, infatti abbiamo un sistema di $12$ equazioni mentre il  modello esatto~\eqref{3nodi} $13$ equazioni. Nell'esempio, che vedremo successivamente, potremmo apprezzare meglio il risparmio computazionale.\\ \\
+In questo esempio, non abbiamo ottenuto un notevole vantaggio, infatti abbiamo un sistema di $12$ equazioni mentre il  modello esatto~\eqref{3nodi} ne ha $13$ equazioni. Nell'esempio, che vedremo successivamente, potremmo apprezzare meglio il risparmio computazionale.\\ \\
 Andando a risolvere numericamente il sistema e tracciando le soluzioni otteniamo la  Figura~\ref{fig::3nodicut}. Possiamo notare, come previsto dalla teoria, che  tali grafici sono identici a quelli ottenuti nel modello esteso~\ref{fig::spe3nodi}. Inoltre, se andiamo a calcolare l'errore assoluto tra le soluzioni (Figura~\ref{fig::errori3nodi}) otteniamo che tali errori sono dell'ordine della tolleranza dell'integratore cosa che non accade confrontando il modello esatto con quello chiuso alle coppie (Figura~\ref{fig::errori3nodiPair}).
 \begin{figure}[!htb]
 \centering
@@ -170,7 +169,7 @@ Andando a risolvere numericamente il sistema e tracciando le soluzioni otteniamo
 \subfloat[][Nodo 3.]{\input{Figure/Cut_Nodo3}}
 \subfloat[][Prevalenza.]{\input{Figure/Prevalenza}}
 \caption[Sperimentazione in MATLAB relativo al grafo~\ref{fig::3nodi}]{Divisione in classi nei singoli nodi (a)(b)(c) e grafico della prevalenza (d) per il grafo~\ref{fig::3nodi}.  Per ottenere i grafici abbiamo risolto numericamente,  usando MATLAB,  il problema di Cauchy ottenuto usando il Teorema~\ref{th_cut-vertex} con condizioni iniziali  di stati puri~\eqref{statipuri}.  Abbiamo inoltre supposto l'indipendenza statistica di tali condizioni iniziali.\\
-Per la sperimentazioni abbiamo usato come parametri $\tau= 0.3$ e $\gamma =0.1 $.}\label{fig::3nodicut}
+Per la sperimentazione abbiamo usato come parametri $\tau= 0.3$ e $\gamma =0.1 $.}\label{fig::3nodicut}
 
 \end{figure}
 \begin{figure}[!htb]
@@ -190,7 +189,7 @@ Per la sperimentazioni abbiamo usato come parametri $\tau= 0.3$ e $\gamma =0.1 $
 }
 
 \caption[Errori assoluti relativi al grafo~\ref{fig::3nodi} tra modello esatto e cut-vertex] {Errore assoluto (in scala logaritmica) tra la soluzione del problema di Cauchy~\eqref{3nodi} e quello ottenuto utilizzando il Teorema~\ref{th_cut-vertex}.\\
-Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-9$ i due problemi di Cauchy con condizioni iniziali di stati puri~\eqref{statipuri}. Abbiamo inoltre supposto l'indipendenza statistica di tali condizioni iniziali.\\
+Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-12$ i due problemi di Cauchy con condizioni iniziali di stati puri~\eqref{statipuri}. Abbiamo inoltre supposto l'indipendenza statistica di tali condizioni iniziali.\\
 Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$. }
 \label{fig::errori3nodi}
 \end{figure}
@@ -202,7 +201,7 @@ Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1
 \\
 \subfloat[][Nodo 3.]{\input{Figure/Pair_Errore3}}
 \caption[Errori assoluti relativi al grafo~\ref{fig::3nodi} tra modello esatto e chiuso alle coppie] {Errore assoluto (in scala logaritmica) tra la soluzione del problema di Cauchy~\eqref{3nodi} e quello utilizzando la chiusura alle coppie.\\
-Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-9$ i due problemi di Cauchy con condizioni iniziali di stati puri~\eqref{statipuri}. Abbiamo inoltre supposto l'indipendenza statistica di tali condizioni iniziali.\\
+Per ottenere i grafici abbiamo risolto numericamente, con una tolleranza di $1e-12$ i due problemi di Cauchy con condizioni iniziali di stati puri~\eqref{statipuri}. Abbiamo inoltre supposto l'indipendenza statistica di tali condizioni iniziali.\\
 Per la sperimentazione abbiamo usato come parametri $\tau = 0.3$ e $\gamma = 0.1$. }
 \label{fig::errori3nodiPair}
 \end{figure}

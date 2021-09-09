@@ -1,5 +1,5 @@
 \section{Reti complesse e grafi}\label{grafi}
-Abbiamo trattato fino ad ora l'epidemia considerando la popolazione aggregata codificando l'intero meccanismo di contatto nel parametro $\beta$. Per avere un controllo maggiore dobbiamo estendere il modello affinch\`e possa trattare direttamente le interazioni tra i vettori dell'epidemia.\\
+Abbiamo trattato fino ad ora l'epidemia considerando la popolazione aggregata codificando l'intero meccanismo di contatto nel parametro $\beta$. Per avere un controllo maggiore dobbiamo estendere il modello affinch\'e possa trattare direttamente le interazioni tra i vettori dell'epidemia.\\
 Molti sistemi che si basano su interazioni tra soggetti sono rappresentabili e visualizzabili, in maniera naturale, come \textit{network} dove i nodi rappresentano gli individui e gli archi le interazioni.\\
 In questa sezione andremo a definire formalmente un grafo e alcune nozioni rilevanti.\\ \\
 Un \textit{grafo} \`e una coppia $G=(V,	E) $ dove:
@@ -29,7 +29,7 @@ Per visualizzare un grafo si pu\`o usare una rappresentazione come in Figura~\re
 \end{figure}
 
 \`E possibile codificare un grafo, con un numero finito di nodi, attraverso una matrice detta matrice di adiacenza.\\
-Supponiamo $\abs{V}=N$ dunque esiste una biezione $\phi:\{ 1, \dots, N\}\to E$.\\La \textit{matrice di adiacenza} di $G$ \`e la matrice $H_G=(g_{ij})$ dove 
+Supponiamo $\abs{V}=N$ dunque esiste una biiezione $\phi:\{ 1, \dots, N\}\to E$.\\La \textit{matrice di adiacenza} di $G$ \`e la matrice $H_G=(g_{ij})$ dove 
 $$ g_{ij}=\begin{cases}
 1	& \text{ se } \tonde{ \phi(i), \phi(j)} \in E \\
 0 &\text{ altrimenti } 
@@ -58,20 +58,20 @@ $$
 \end{figure}
 \newpage
 Un grafo $G$ si dice \textit{pesato} se ad ogni suo arco \`e associato un'etichetta.\\
-Formalmente, $G=(V,E)$ si dice grafo pesato se esiste una funzione $p:\, E \to P$ dove $P$ \`e un insieme. Generalmente $T=\mathbb{R}$.\\ \\
-Dato un grafo $G=(V,E)$, un \text{cammino} $P$ che connette i vertici $u,v\in V$ \`e una sequenza di vertici 
+Formalmente, $G=(V,E)$ si dice grafo pesato se esiste una funzione $p:\, E \to T$ dove $T$ \`e un insieme. Generalmente $T=\mathbb{R}$.\\ \\
+Dato un grafo $G=(V,E)$, un \text{cammino} $P$ che connette i vertici $u,$ $v\in V$ \`e una sequenza di vertici 
 $$ P=\left( v_0, \dots, v_n\right) $$ 
 dove $\forall i=0, \dots, n-1$ si ha $(v_i, v_{i+1})\in E$, $v_0=u$ e  $v_n= v$.\\
 Un grafo si dice \textit{fortemente connesso} se per ogni coppia di nodi $(u,v)$ esiste un cammino che li congiunge.\\
-Definiamo il \textit{diametro} di un grafo come la distanza massima tra  due nodi, la distanza \`e il numero di archi di un cammino. 
+Definiamo il \textit{diametro} di un grafo come la distanza massima tra  due nodi, la distanza \`e il numero di archi di un cammino.\\
 
-Poich\`e nello studio della diffusione di una popolazione con molti individui, \`e irrealistico sperare di conoscere l'esatta matrice di adiacenza \`e spesso utile suopporre che la propagazione della malattia sia governata solamente da alcune misure qualitative. Ci focalizzeremo quindi sulle seguenti quanti\`a.\\ \\
+Poich\'e nello studio della diffusione di una popolazione con molti individui, \`e irrealistico sperare di conoscere l'esatta matrice di adiacenza \`e spesso utile supporre che la propagazione della malattia sia governata solamente da alcune misure qualitative. Ci focalizzeremo quindi sulle seguenti quantit\`a.\\ \\
 Definiamo il \textit{grado uscente} (\textit{out-degree})  del nodo $i$  come il numero di archi che partono dal nodo $i$. In termini della matrice di adiacenza
 $$ k_i^{out} =\sum_{j=1}^N g_{ij}.$$
 Analogamente il \textit{grado entrante} (\textit{in-degree}) \`e il numero di archi che arrivano al nodo:
 $$ k_i^{in} = \sum_{j=1}^N g_{ji}.$$
 Nel caso di grafi non orientati si ha $k_i^{out} = k_i^{in}$ che denoteremo, semplicemente, con $k_i$.\\
-Il \textit{grado medio} di un grafo \`e la quantit\`a 
+Il \textit{grado medio} di un grafo non orientato \`e la quantit\`a 
 $$ \angol K = \frac{1}{N}\sum_{i=1}^N k_i.$$
 Sia $L$ il numero di gradi differenti e siano $\{ d_1, \dots, d_L\}$ i possibili gradi.\\
 Sia $N_\ell$ il numero di vertici con grado $d_\ell$ allora il \textit{grado di distribuzione} del grado $\ell$ \`e la quantit\`a
