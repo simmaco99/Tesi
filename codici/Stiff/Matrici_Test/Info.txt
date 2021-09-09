@@ -1,1 +1,0 @@
-Le matrici che si trovano in questa cartella sono matrici di Erdos-Renyi con probabilità 0.5 generate casualmente

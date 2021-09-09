@@ -118,7 +118,7 @@ for i=1:4
     legend({'Sani', 'Infetti','Rimossi'},'FontSize',14);
     xlabel('T');
     str=sprintf('Lollipop_Nodo%d.tex', i);
-    matlab2tikz(str);
+    matlab2tikz('showInfo', false,str);
 end
 
 %Errore assoluto tra modello esatto e cut-vertex
@@ -130,7 +130,7 @@ for i=1:4
     xlabel('T')
     ylabel('Errore assoluto');
     str=sprintf('Lollipop_Errore%d.tex', i);
-    matlab2tikz(str);
+    matlab2tikz('showInfo', false,str);
 
 end
 
@@ -143,12 +143,11 @@ for i=1:4
     xlabel('T')
     ylabel('Errore assoluto');
     str=sprintf('Pair_Lollipop_Errore%d.tex', i);
-    matlab2tikz(str);
+    matlab2tikz('showInfo', false,str);
 end
 
 
 %Modello esatto chiuso alle coppie e alle triple 
-
 for i=1:8
 %     cleanfigure
     plot(T,Y(:,i),T,Yc(:,i),T,Yt(:,i),'LineWidth',2);
@@ -160,6 +159,6 @@ for i=1:8
         s='I';
     end
     str=sprintf('Lollipop_Modelli_%s%d.tex', s,round(i/2));
-    matlab2tikz(str);
+    matlab2tikz('showInfo', false,str);
 end
 

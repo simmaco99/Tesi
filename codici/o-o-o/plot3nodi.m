@@ -19,10 +19,10 @@ CutVertex([2 3 5 8 12])=1;
 CutPair=[ 0; 1; 1;0;1 ;0]; 
 
 
-[t,y]=ode45(@(t,y) TreNodi_sir(t,y,tau,gamma),[ 0 60], Esatto);
-[t,yc]=ode45(@(t,y) closePair(G,t,y,tau ,Gamma), t,CutPair,opts); %chiusura coppie
-[t,yv]=ode45(@(t,y)  TreNodi_cutvertex(t,y,tau,gamma),t, CutVertex,opts); %cut-vertex
-[t,ycc]=ode45(@(t,y)  closeTriple(G,t,y,tau,gamma),t, co,opts); %cut-vertex
+[t,y]=ode45(@(t,y) TreNodi_sir(t,y,tau,gamma),[ 0 60], Esatto,opts);		%esatto
+[t,yc]=ode45(@(t,y) closePair(G,t,y,tau ,Gamma), t,CutPair,opts); 			%chiusura coppie
+[t,yv]=ode45(@(t,y)  TreNodi_cutvertex(t,y,tau,gamma),t, CutVertex,opts); 	%cut-vertex
+
 
 %Grafici per lo stato del modello esatto 
 for i=1:3
@@ -90,10 +90,9 @@ end
 err=abs(y(:,1:6)-yv(:,1:6));
 for i=1:3
 figure();    
-plot(t,err(:,2*i-1),t,err(:,2*i),'LineWidth',2);
+semilogy(t,err(:,2*i-1),t,err(:,2*i),'LineWidth',2);
 legend({'Suscettibili','Infetti'},'FontSize',14);
 xlabel('T');
-ylabel('Errore assoluto');
 file=sprintf('Errore%d.tex',i);
 matlab2tikz('showInfo', false,file);
 end
@@ -105,20 +104,8 @@ for i =1:3
     semilogy(t,err2(:,2*i-1),t,err2(:,2*i),'LineWidth',2);
     legend({'Suscettibili','Infetti'},'FontSize',14);
     xlabel('T');
-    ylabel('Errore assoluto');
     file=sprintf('Pair_Errore%d.tex',i);
     matlab2tikz('showInfo', false,file);
 end
 
-for i=1:3
-    subplot(3,2,2*i-1);
-    plot(t,yv(:,2*i-1),t,y(:,2*i-1 ),'LineWidth',2);
-    xlabel('T');
-    subplot(3,2,2*i);
-    plot(t,y(:,2*i), t,yv(:,2*i),'LineWidth',2);
-    xlabel('T')
-    
-end
-
-er= abs(yv(:,1:6) - y(:,1:6));
 
