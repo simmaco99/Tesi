@@ -22,7 +22,7 @@ Sia $G=(g_{ij})$ la matrice di adiacenza del grafo $G$. Assumiamo che il tasso d
 Dunque, le equazioni, per il sistema diventano
 \begin{equation}
 \begin{aligned}
-	 \dot{\angol{ S_i}}=& - \sum_{j=1\atop{j\neq i }}^N g_{ij} \angol{ S_i I_j},\\
+	 \dot{\angol{ S_i}}=& - \tau\sum_{j=1\atop{j\neq i }}^N g_{ij} \angol{ S_i I_j},\\
 	 \dot{\angol{I_i}} =&\spa \tau \sum_{j=1\atop{j\neq i}}^N  g_{ij} \angol{ S_i I_j} -\gamma_i \angol{I_i},
 \end{aligned}
 \end{equation}
