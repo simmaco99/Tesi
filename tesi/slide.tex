@@ -25,6 +25,7 @@
 \newtheorem{defn}{Definizione}
 \theoremstyle{plain}
 \newtheorem{thm}{Teorema}
+\usepackage{appendixnumberbeamer} 
 
 \title[Discussione Tesi Triennale]{Il Modello Epidemiologico SIR \\ sulle Reti Complesse}
 \author{Simmaco Di Lillo}
@@ -37,6 +38,7 @@
 \begin{frame}
 \titlepage
 \end{frame}
+
 \begin{frame}
 \frametitle{Il modello SIR scalare}
     Il modello SIR \`e un modello compartimentale: la popolazione viene suddivisa in $3$ classi 
@@ -46,6 +48,7 @@
     \item $R$: i rimossi.
     \end{itemize}
 \end{frame}
+
 \begin{frame}{Il modello SIR scalare}
 \begin{figure}
 \centering
@@ -53,23 +56,42 @@
   \Vertex[x=0,shape = rectangle,label=S,size=1]{S}
   \Vertex[x=3,shape = rectangle,label=I,size=1]{I}
   \Vertex[x=6,shape = rectangle,label=R,size=1]{R}
-  \Edge[Direct,label=$\beta I$](S)(I)   \Edge[Direct,label = $\alpha$](I)(R)
+  \Edge[Direct,label=$\tau  I$](S)(I)   \Edge[Direct,label = $\gamma$](I)(R)
   \end{tikzpicture}
   \caption{Schema del modello SIR.}
-  \pause
-  \begin{equation}
-  \begin{aligned}
-      \dot{S} =& -\beta S I \\
-      \dot{I} = & \spa \beta S I - \alpha I  \\
-      \dot{R} = & \spa \alpha I 
-      \end{aligned}
-  \end{equation}
-  \end{figure}
+   \end{figure}
     
+  \begin{columns}
+  \begin{column}{0.5\textwidth}
+  Assunzioni :
+  \begin{itemize}
+  \item $N$: numero di individui  (costante)  \item $\tau$: tasso di contatto 
+  \item $\gamma$: tassi di recupero
+  \end{itemize}
+  \end{column}
+  \pause
+  \begin{column}{0.5\textwidth}
+  \begin{equation*}
+  \begin{aligned}
+      \dot{S} =& -\tau S I \\
+      \dot{I} = & \spa \tau S I - \gamma I  \\
+      \dot{R} = & \spa \gamma I 
+      \end{aligned}
+  \end{equation*}
+  \end{column}
+  \end{columns}
+ 
 \end{frame}
 \begin{frame}
 \frametitle{Il modello SIR bottom-up su una rete}
 \framesubtitle{Un primo esempio}
+\pause
+Notazione:
+\begin{itemize}
+\item $\angol{A_i}(t)$: probabilit\`a che il nodo $i$ si trovi nello stato $A$ al tempo $t$ 
+\item $\angol{A_iB_j}(t)$: probabilit\`a che il nodo $i$ si trovi nello stato $A$ e il nodo $j$ in $B $ al tempo $t$ 
+\end{itemize}
+\pause
 \begin{figure}
 \centering
 \begin{tikzpicture}
@@ -81,12 +103,12 @@
   \end{figure}
   Come si infettano?
   \begin{itemize}
-      \item<1-> Il nodo $1$ ha una sola fonte d'infezione.\\
-      \only<1>{$\langle S_1\rangle $ diminuisce con un tasso di $\tau \angol{S_1 I_2}$}
-      \item<2-> Il nodo $2$ ne ha due.\\
-       \only<2>{$\langle S_2\rangle $ diminuisce con un tasso di $\tau \angol{I_1 S_2} +\tau \angol{S_2 I_3}$}
-      \item<3-> Anche il  nodo $3$ ne ha una sola.\\
-      \only<3>{$\langle S_3\rangle $ diminuisce con un tasso di $\tau \angol{I_2 S_3} $}
+      \item<3-> Il nodo $1$ ha una sola fonte d'infezione.\\
+      \only<3>{$\langle S_1\rangle $ diminuisce con un tasso di $\tau \angol{S_1 I_2}$}
+      \item<4-> Il nodo $2$ ne ha due.\\
+       \only<4>{$\langle S_2\rangle $ diminuisce con un tasso di $\tau \angol{I_1 S_2} +\tau \angol{S_2 I_3}$}
+      \item<5-> Anche il  nodo $3$ ne ha una sola.\\
+      \only<5>{$\langle S_3\rangle $ diminuisce con un tasso di $\tau \angol{I_2 S_3} $}
   \end{itemize}
 \end{frame}
 \begin{frame}
@@ -125,12 +147,11 @@ Come evolvono nel tempo le coppie?
 	\dot{\angol{I_2S_3}}=&\spa\tau\angol{I_1S_2S_3} - \tonde{ \tau + \gamma}\angol{I_2 S_3}.
 	\end{aligned}
 \end{equation*}
+\pause
 e le triple?
 \begin{equation*}
     \begin{aligned}
-        \dot{\angol{S_2I_3}}=&-\tau\angol{I_1S_2I_3} - \tonde{ \tau + \gamma}\angol{I_1 S_2},
-\\
-	\dot{\angol{S_1S_2I_3}}=&-\tonde{\tau + \gamma}\angol{S_1S_2I_3},
+        	\dot{\angol{S_1S_2I_3}}=&-\tonde{\tau + \gamma}\angol{S_1S_2I_3},
 \\
 	\dot{\angol{I_1S_2I_3}}=&-\tonde{2\tau + 2\gamma}\angol{I_1S_2I_3},
 \\
@@ -141,10 +162,10 @@ e le triple?
 \begin{frame}
       \frametitle{Il modello SIR bottom-up su una rete}
 \framesubtitle{Modello generale}
-Sia $G = \left( g_{ij}\right)$ la matrice di adiacenza del grafo $G$. L'epidemia si diffonde sul grafo nel seguente modo 
+Sia $G = \left( g_{ij}\right)$ la \alert{ matrice di adiacenza} del grafo $G$. L'epidemia si diffonde sul grafo nel seguente modo 
 \begin{equation*}
 \begin{aligned}
-	 \dot{\angol{ S_i}}=& - \sum_{j=1\atop{j\neq i }}^N g_{ij} \angol{ S_i I_j},\\
+	 \dot{\angol{ S_i}}=& - \tau \sum_{j=1\atop{j\neq i }}^N g_{ij} \angol{ S_i I_j},\\
 	 \dot{\angol{I_i}} =&\spa \tau \sum_{j=1\atop{j\neq i}}^N  g_{ij} \angol{ S_i I_j} -\gamma_i \angol{I_i},
 \end{aligned}
 \end{equation*}
@@ -152,15 +173,20 @@ Sia $G = \left( g_{ij}\right)$ la matrice di adiacenza del grafo $G$. L'epidemia
 \begin{frame}
 \frametitle{Il modello SIR bottom-up su una rete}
 \framesubtitle{Chiusura alle coppie}
-Per ottenere un modello chiuso ma \alert{non esatto} possiamo assumere l'indipendenza  a livello delle coppie. Ovvero utilizzare l'approssimazione 
-$$ \angol{ A_i B_j } \approx \angol{ A_i }\angol{B_j} \quad \forall A, \, B \in \{ S, \, I,\, R\} \text{ e } \forall (i,j) \in E $$
+\begin{defn}[Coefficienti di correlazione]
+Siano $A,B \in \{ S, I, R\}$ e $(i,j)\in E $ allora 
+$$ C_{A_i B_j} = \frac{ \angol{ A_i B_j}}{\angol{A_i} \angol{B_j}} $$ 
+\end{defn}
 \pause
-\begin{equation*}
- \begin{aligned}
-	 \dot{\angol{ S_i}}=& - \sum_{j=1\atop{j\neq i }}^N g_{ij} \angol{ S_i}\angol{ I_j},\\
- 	 \dot{\angol{I_i}} =&\spa \tau \sum_{j=1\atop{j\neq i}}^N  g_{ij}  \angol{S_i}\angol{ I_j} -\gamma_i \angol{I_i}.
- \end{aligned}
- \end{equation*}
+Nel modello SIR 
+\begin{itemize}
+\item $C_{I_i I_j} \geq 1 $ 
+\item $C_{S_iI_j}\leq 1 $ 
+\end{itemize}
+\pause
+Per ottenere un modello chiuso ma \alert{non esatto} assumeremo l'indipendenza a livello delle coppie ovvero:
+$$ \angol{ A_i B_j } \approx \angol{ A_i }\angol{B_j} \quad \forall A, \, B \in \{ S, \, I,\, R\} \text{ e } \forall (i,j) \in E $$
+
 \end{frame}
 \begin{frame}
 \frametitle{Il modello SIR bottom-up su una rete}
@@ -175,7 +201,7 @@ $$ \angol{ A_i B_j } \approx \angol{ A_i }\angol{B_j} \quad \forall A, \, B \in 
     \end{column}
     \begin{column}{0.5\textwidth}
     Riportiamo la definizione data dall'OMS nel 1959:
-    \begin{quote}La \textit{prevalenza} indica il numero di individui malati in una determinata popolazione, senza nessuna distinzione tra nuovi e vecchi casi. La ``prevalenza puntiforme"  \`e solitamente espressa come una frazione: il denominatore \`e il numero della
+    \begin{quote}La \textit{prevalenza} indica il numero di individui malati in una determinata popolazione, senza nessuna distinzione tra nuovi e vecchi casi. La \alert{prevalenza puntiforme}  \`e solitamente espressa come una frazione: il denominatore \`e il numero della
     popolazione.	
     \end{quote}
     \end{column}
@@ -190,7 +216,7 @@ Diamo due importanti definizioni
     \begin{defn}[cut-vertex]
     Sia $G=(V,E)$ un grafo connesso. $v\in V$ \`e un \textit{cut-vertex} se il grafo senza il nodo $v$ risulta sconnesso.
     \end{defn}
-    
+    \pause 
     \begin{defn}[Probabilit\`a condizionale]
     Siano $A,B$ due eventi di uno spazio di probabilit\`a con $\mathbb{P}(B)>0$. Si dice \textit{probabilit\`a condizionale} di $A$ dato $B$ la quantit\`a
     $$ \mathbb{P}(A\, \vert B) = \frac{ \mathbb{P}(A\cap B)}{\mathbb{P}(B)}.$$
@@ -200,10 +226,10 @@ Diamo due importanti definizioni
 \begin{frame}
 \frametitle{Il modello SIR bottom-up su una rete}
 \framesubtitle{Approccio generale alla chiusura}
-\begin{thm}[Kiss, Morris, Se\'elley, Simon, Wilkinson, J.~Math.~Biol.~2015]
+\begin{thm}[\small{Kiss, Morris, Se\'elley, Simon, Wilkinson, J.~Math.~Biol.~2015}]
 Sia $G=(V,E)$ un grafo e $F=\{ v_1, \dots, v_k\}$ un sottoinsieme connesso di vertici e sia $v_i$ un suo cut-vertex. Poniamo  $$ F_1 = \{ v_1, \dots, v_{i-1}\} \text{ e }  F_2 =\{ v_{i+1}, \dots, v_k\}.$$ 
 Se ogni cammino che connette un nodo in $F_1$ ad uno in $F_2$ passa da $v_i$ allora: 
-\begin{equation*}\label{cut}\angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i} Z_{v_{i+1}} \dots Z_{v_k}} = \angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i}} \angol{S_{v_i}  Z_{v_{i+1}} \dots Z_{v_k}}	
+\begin{equation*}angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i} Z_{v_{i+1}} \dots Z_{v_k}} = \angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i}} \angol{S_{v_i}  Z_{v_{i+1}} \dots Z_{v_k}}	
 \end{equation*}
 dove $Z\in \{ S,I,R\}$. 
 \end{thm}
@@ -212,6 +238,14 @@ dove $Z\in \{ S,I,R\}$.
 \begin{frame}
 \frametitle{Il modello SIR bottom-up su una rete}
 \framesubtitle{Approccio generale alla chiusura}
+
+\small {
+\begin{thm} $[...]$
+\begin{equation*}\angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i} Z_{v_{i+1}} \dots Z_{v_k}} = \angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i}} \angol{S_{v_i}  Z_{v_{i+1}} \dots Z_{v_k}}	
+\end{equation*}
+\end{thm}}
+
+
 \begin{proof}
 \only<1>{Se $\angol{S_{v_i}}=0$ allora l'uguaglianza risulta banalmente vera.\\ }
 \pause Sia $\angol{S_{v_i}}\neq 0 $
@@ -231,8 +265,8 @@ Riapplicando la definizione di probabilit\`a condizionale la tesi
 \frametitle{Il modello SIR bottom-up su una rete}
 \framesubtitle{Approccio generale alla chiusura}
 \begin{itemize}
-	\item<1->{Con una visit\`a in profondit\`a si trovano   tutti i cut-vertex di $G$.}
-	\item<2->\alt<2>{Si divide la rete originale in sottoreti connesse a due a due scollegate. Le sottoreti vengono create in modo che i cut-vertex siano mantenuti in tutte le sottoreti generate.}{Si divide la rete originale in sottoreti ...}
+	\item<1->\alt<1>{Con una \alert{visita in profondit\`a} si trovano tutti i cut-vertex di $G$.}{Con una visita in profondit\`a si trovano tutti i cut-vertex di $G$.}
+	\item<2->\alt<2>{Si divide la rete originale in \alert{sottoreti} connesse a due a due scollegate. Le sottoreti vengono create in modo che i cut-vertex siano mantenuti in tutte le sottoreti generate.}{Si divide la rete originale in sottoreti ...}
 	\item<3-> \alt<3>{Per ogni nodo $i$ delle sottoreti, si ha}{ Per ogni nodo $i$ delle sottoreti ...}
 	\only<3>{
 	\begin{equation*}
@@ -243,7 +277,7 @@ Riapplicando la definizione di probabilit\`a condizionale la tesi
 		\end{aligned}
 	\end{equation*}
 	Si possono trovare  equazioni simili anche per le strutture di ordine maggiore (coppie, triple, ...)}
-	\item<4-> Nella gerarchia che si verr\`a a creare, se appare un termine composto da  vertici di sottoreti diverse allora in esso \`e presente un cut-vertex suscettibile. Usando il Teorema precedente  \`e possibile esprimere questo termine usando termini pi\`u semplici.
+	\item<4-> Nella gerarchia che si verr\`a a creare, se appare un termine composto da  vertici di sottoreti diverse allora in esso \`e presente un cut-vertex suscettibile. Usando il Teorema precedente  \`e possibile esprimere questo termine usando \alert{termini pi\`u semplici}.
 \end{itemize}
 
 \end{frame}
@@ -285,15 +319,42 @@ Riapplicando la definizione di probabilit\`a condizionale la tesi
 \begin{equation*}
  \begin{aligned}	
  \dot{\angol{S_1I_3}}&=
- \pause  \tau\tonde{ \angol{S_1I_2S_3} 
-+ \angol{S_1S_3I_4}} \pause -  \tau  \angol{S_1I_3} \pause - \gamma\angol{S_1 I_3}\pause -\tau \angol{ S_1 I_2 I_3}= \\ \pause
- &= \tau \tonde{ \angol{S_1I_2S_3} + \frac{ \angol{S_1S_3}\angol{S_3 I_4}}{\angol{S_3}}} -\tonde{ \tau + \gamma} \angol{S_1I_3} - \tau \angol{S_1I_2S_3}
+ \pause  \tau \tonde{ \angol{S_1I_2S_3} +
+  \alt<8>
+  {\alert{\angol{S_1S_3I_4}}}
+  {\angol{S_1S_3I_4}} }
+   \pause -  \tau  \angol{S_1I_3} \pause - \gamma\angol{S_1 I_3}\pause -\tau \angol{ S_1 I_2 I_3}= \\ \pause
+ &= \tau \tonde{ \angol{S_1I_2S_3} +
+ \alt<8>{\alert{
+  \frac{\angol{S_1S_3}\angol{S_3 I_4}}{\angol{S_3}}}}
+  {\frac{\angol{S_1S_3}\angol{S_3 I_4}}{\angol{S_3}}  }
+  } -\tonde{ \tau + \gamma} \angol{S_1I_3} - \tau \angol{S_1I_2S_3}
  \end{aligned}
  \end{equation*}
 \pause
 Grazie al Teorema,  il numero di equazioni passa da $35$ a $27$
 \end{frame}
+\begin{frame}
+\frametitle{Errori usando le chiusure}
 
+\begin{columns}
+\begin{column}{0.5\textwidth} 
+ \begin{figure}
+\centering
+\includegraphics[width=0.85\textwidth]{Figure/figure10}
+\caption{Chiusura alle coppie.}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\pause
+ \begin{figure}
+\centering
+\includegraphics[width=0.85\textwidth]{Figure/figure9}
+\caption{Chiusura con cut-vertex.}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
 \begin{frame}
 \frametitle{La rete stradale del Minnesota}
 \begin{columns}
@@ -339,5 +400,17 @@ Le condizioni iniziali sono stati puri: un nodo certamente infetto gli altri cer
 \end{column}
 \end{columns}
 \end{frame}
+
+\begin{frame}
+\begin{center}
+\begin{huge}
+Grazie per l'attenzione.\\
+Tutto il materiale \`e reperibile sul repository:\\
+\url{https://github.com/simmaco99/Tesi}
+\end{huge}
+\end{center}
+\end{frame}
+
+
 
 \end{document}
