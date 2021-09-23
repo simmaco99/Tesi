@@ -85,7 +85,6 @@
 \begin{frame}
 \frametitle{Il modello SIR bottom-up su una rete}
 \framesubtitle{Un primo esempio}
-\pause
 Notazione:
 \begin{itemize}
 \item $\angol{A_i}(t)$: probabilit\`a che il nodo $i$ si trovi nello stato $A$ al tempo $t$ 
@@ -181,7 +180,7 @@ $$ C_{A_i B_j} = \frac{ \angol{ A_i B_j}}{\angol{A_i} \angol{B_j}} $$
 Nel modello SIR 
 \begin{itemize}
 \item $C_{I_i I_j} \geq 1 $ 
-\item $C_{S_iI_j}\leq 1 $ 
+\item $C_{I_iS_j}\leq 1 $ 
 \end{itemize}
 \pause
 Per ottenere un modello chiuso ma \alert{non esatto} assumeremo l'indipendenza a livello delle coppie ovvero:
@@ -229,7 +228,7 @@ Diamo due importanti definizioni
 \begin{thm}[\small{Kiss, Morris, Se\'elley, Simon, Wilkinson, J.~Math.~Biol.~2015}]
 Sia $G=(V,E)$ un grafo e $F=\{ v_1, \dots, v_k\}$ un sottoinsieme connesso di vertici e sia $v_i$ un suo cut-vertex. Poniamo  $$ F_1 = \{ v_1, \dots, v_{i-1}\} \text{ e }  F_2 =\{ v_{i+1}, \dots, v_k\}.$$ 
 Se ogni cammino che connette un nodo in $F_1$ ad uno in $F_2$ passa da $v_i$ allora: 
-\begin{equation*}angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i} Z_{v_{i+1}} \dots Z_{v_k}} = \angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i}} \angol{S_{v_i}  Z_{v_{i+1}} \dots Z_{v_k}}	
+\begin{equation*}\angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i} Z_{v_{i+1}} \dots Z_{v_k}} = \angol{ Z_{v_1}\dots Z_{v_{i-1}} S_{v_i}} \angol{S_{v_i}  Z_{v_{i+1}} \dots Z_{v_k}}	
 \end{equation*}
 dove $Z\in \{ S,I,R\}$. 
 \end{thm}
